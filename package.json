@@ -1,0 +1,36 @@
+{
+  "name": "tic-tac-toe-extreme",
+  "version": "1.0.0",
+  "description": "Initial Commit",
+  "main": "index.js",
+  "scripts": {
+    "__comment__1": "DEV SCRIPTS",
+    "prepParcelCache": "bash -c './nukeParcel.sh'",
+    "parcelDevStart": "parcel index.html",
+    "devServer-Saas": "node-sass src/sass/main.scss src/css/style.css -w",
+    "devServer-Main": "npm-run-all prepParcelCache parcelDevStart",
+    "__comment__2": "CSS SCRIPTS",
+    "compile-Saas": "node-sass src/sass/main.scss src/css/temps/compiledSaas.css",
+    "prefix-CSS": "postcss --use autoprefixer -b 'last 10 versions' src/css/temps/compiledSaas.css -o src/css/temps/compiledSaasAndPrefixed.css",
+    "compress-CSS": "node-saas src/css/temps/compiledSaasAndPrefixed.css src/css/style.css",
+    "__comment__3": "PROD SCRIPTS",
+    "css-Build": " npm-run-all compile-Saas prefix-CSS compress-CSS",
+    "final-Build": "parcel build index.html --dist-dir ./dist"
+  },
+  "keywords": [],
+  "author": "Samuil Berenzon",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "node-sass": "^8.0.0",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.8.3",
+    "postcss-cli": "^10.1.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "core-js": "^3.30.1",
+    "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.11"
+  }
+}
