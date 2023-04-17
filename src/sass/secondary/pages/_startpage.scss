@@ -1,5 +1,7 @@
 .startpage {
-  background-color: aqua;
+  background-color: #072227;
   height: 100%;
   width: 100%;
+  //  SECTION_START: Grid Settings
+  @include BaseContainerRowColumns;
 }

@@ -14,7 +14,7 @@ import { async } from "regenerator-runtime";
 
 // ---- Internal Modules ------------------------------------------
 
-import App from "./modules/App";
+import App from "./modules/app";
 // -
 // -
 

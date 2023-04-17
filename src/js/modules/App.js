@@ -1,6 +1,6 @@
 // IMPORT_START:
 
-import Startpage from "./Startpage";
+import Startpage from "./startpage";
 
 // IMPORT_END:
 

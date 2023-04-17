@@ -26,10 +26,28 @@ html {
   font-family: "Roboto Mono", monospace;
   font-weight: 400; }
 
+.line-one-third {
+  background-color: #4fbdba; }
+  .line-one-third--upper {
+    grid-area: one; }
+  .line-one-third--lower {
+    grid-area: oneL; }
+
+.line-two-third {
+  background-color: #35858b; }
+  .line-two-third--upper {
+    grid-area: two; }
+  .line-two-third--lower {
+    grid-area: twoL; }
+
 .startpage {
-  background-color: aqua;
+  background-color: #072227;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1.5rem 82rem 1.5rem;
+  grid-template-columns: repeat(10, 6.5rem);
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
 
 .app {
   background-color: bisque;
