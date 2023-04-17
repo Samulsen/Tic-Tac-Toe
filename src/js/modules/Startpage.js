@@ -28,16 +28,23 @@ const outerLinesGenerator = function (root) {
   NewOuterLine(...TwoThird, "line-two-third--lower");
 };
 
+const mainContainerGenerator = function (root) {
+  const mainContainer = document.createElement("div");
+  mainContainer.classList.add("main-container");
+  root.appendChild(mainContainer);
+};
+
 // SECTION_END:
 
 const Startpage = function () {
-  // SECTION_START: Root Elements
+  // SECTION_START: Root Element
 
   const StartpageElement = document.createElement("div");
   StartpageElement.classList.add("startpage");
 
   // SECTION_START: Child Elements
   outerLinesGenerator(StartpageElement);
+  mainContainerGenerator(StartpageElement);
   // SECTION_END: RETURN START
   return StartpageElement;
 };

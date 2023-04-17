@@ -1,0 +1,54 @@
+.startpage {
+  //NOTE: Takes the width and height of parent = body (body has 100vh and wh)
+  height: 100%;
+  width: 100%;
+  //SECTION_START: grid-dimensions defintion
+
+  display: grid;
+  grid-template-rows: 1.5rem 82rem 1.5rem;
+  grid-template-columns: repeat(10, 6.5rem);
+
+  //SECTION_START: template-area defintion
+
+  grid-template-areas:
+    "two two two two two two two one one one"
+    "main main main main main main main main main main"
+    "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL";
+
+  //SECTION_START: NOTE:CHILDS=> upper and lower lines
+
+  .line-one-third {
+    background-color: #4fbdba;
+
+    &--upper {
+      grid-area: one;
+    }
+
+    &--lower {
+      grid-area: oneL;
+    }
+  }
+
+  .line-two-third {
+    background-color: #35858b;
+
+    &--upper {
+      grid-area: two;
+    }
+
+    &--lower {
+      grid-area: twoL;
+    }
+  }
+
+  //SECTION_START: main container
+
+  .main-container {
+    background-color: #072227;
+    grid-area: main;
+    display: grid;
+    // NOTE: Future Refactoring Point for dynamic layouting!
+    grid-template-columns: 100%;
+    grid-template-rows: 18rem 40rem 24rem;
+  }
+}

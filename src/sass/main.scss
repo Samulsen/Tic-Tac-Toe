@@ -2,32 +2,34 @@
 
 // ABSTRACTS IMPORTS ---------------------------------------------
 
-@import "secondary/abstracts/functions";
-@import "secondary/abstracts/mixins";
-@import "secondary/abstracts/variables";
+@import "secondary/1. abstracts/functions";
+@import "secondary/1. abstracts/mixins";
+@import "secondary/1. abstracts/variables";
 
 // BASE IMPORTS --------------------------------------------------
 
-@import "secondary/base/base";
-@import "secondary/base/animations";
-@import "secondary/base/typography";
-@import "secondary/base/utilities";
+@import "secondary/2. base/base";
+@import "secondary/2. base/animations";
+@import "secondary/2. base/typography";
+@import "secondary/2. base/utilities";
+
+// LAYOUT IMPORTS -----------------------------------------------
+
+@import "secondary/3. layout/startpage";
+
+// -
+//NOTE: MAIN LAYOUT => Has to be loaded last!
+@import "secondary/3. layout/app";
 
 // COMPONENTS IMPORTS --------------------------------------------
 
-@import "secondary/components/outerLines";
+// -
 // -
 // -
 
 // PAGES IMPORTS ------------------------------------------------
 
-@import "secondary/pages/startpage";
 // -
-// -
-
-// LAYOUT IMPORTS -----------------------------------------------
-
-@import "secondary/layout/app";
 // -
 // -
 
