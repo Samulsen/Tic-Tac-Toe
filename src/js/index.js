@@ -13,12 +13,12 @@ import { async } from "regenerator-runtime";
 // -
 
 // ---- Internal Modules ------------------------------------------
-
-import App from "./modules/app";
+import dateDisplay from "./modules/dateDisplay";
 // -
 // -
 
 // ----------------------- END OF IMPORTS -------------------------
 
-const root = document.querySelector(".root");
-root.insertAdjacentElement("afterbegin", App());
+setInterval(() => {
+  dateDisplay();
+}, 1000);

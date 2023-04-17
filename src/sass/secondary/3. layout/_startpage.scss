@@ -71,7 +71,8 @@
       // background-color: rgb(16, 16, 16);
       grid-area: menuSection;
       display: grid;
-      grid-template-columns: repeat(2, 50%);
+      justify-content: space-around;
+      grid-template-columns: repeat(2, 43%);
       grid-template-rows: 45% 40%;
 
       .buttonStart {
@@ -84,6 +85,15 @@
         padding: 2rem 3rem;
         justify-self: center;
         align-self: start;
+        text-decoration: none;
+
+        &--singleplayer {
+          justify-self: start;
+        }
+
+        &--multiplayer {
+          justify-self: end;
+        }
       }
 
       .displayDateBox {
@@ -91,9 +101,9 @@
         color: white;
         font-size: 2rem;
         border-style: solid;
-        padding: 2rem 1.5rem;
-        justify-self: center;
+        padding: 2rem 2rem;
         align-self: end;
+        text-align: center;
       }
     }
   }
