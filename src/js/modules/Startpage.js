@@ -29,8 +29,53 @@ const outerLinesGenerator = function (root) {
 };
 
 const mainContainerGenerator = function (root) {
+  //SECTION_START: CREATE mainContainer Parent
+
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("main-container");
+
+  //SECTION_START: CREATE 3x child Elements for Parent
+
+  const titleSection = document.createElement("div");
+  titleSection.classList.add("titleSection");
+
+  const previewSection = document.createElement("div");
+  previewSection.classList.add("previewSection");
+
+  const menuSection = document.createElement("div");
+  menuSection.classList.add("menuSection");
+
+  //SECTION_START: Populate childs bevor appending to parent
+
+  const populateMenuSection = function () {
+    //NOTE: SINGLEPLAYER BUTTON
+    const buttonSingleplayer = document.createElement("a");
+    buttonSingleplayer.href = "#";
+    buttonSingleplayer.classList.add("buttonStart");
+    buttonSingleplayer.classList.add("buttonStart--singleplayer");
+    buttonSingleplayer.innerHTML = "Singleplayer";
+    //NOTE: MULTIPLAYER BUTTON
+    const buttonMultiplayer = document.createElement("a");
+    buttonMultiplayer.href = "#";
+    buttonMultiplayer.classList.add("buttonStart");
+    buttonMultiplayer.classList.add("buttonStart--multiplayer");
+    buttonMultiplayer.innerHTML = "Multiplayer";
+    //NOTE: TEXT DISPLAY
+    const displayDateBox = document.createElement("div");
+    displayDateBox.classList.add("displayDateBox");
+    displayDateBox.innerHTML = "Play against the computer or with a friend!";
+    return [buttonSingleplayer, buttonMultiplayer, displayDateBox];
+  };
+
+  populateMenuSection().forEach((el) => menuSection.appendChild(el));
+
+  //SECTION_START: Append to Parent Container as Childs
+
+  [titleSection, previewSection, menuSection].forEach((el) =>
+    mainContainer.appendChild(el)
+  );
+
+  //NOTE: APPEND LAST WHEN ALL CHILD OF mainContainer have been added!
   root.appendChild(mainContainer);
 };
 
@@ -45,7 +90,6 @@ const Startpage = function () {
   // SECTION_START: Child Elements
   outerLinesGenerator(StartpageElement);
   mainContainerGenerator(StartpageElement);
-  // SECTION_END: RETURN START
   return StartpageElement;
 };
 

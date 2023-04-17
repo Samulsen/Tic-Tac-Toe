@@ -50,7 +50,35 @@ html {
     grid-area: main;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 18rem 40rem 24rem; }
+    grid-template-rows: 18rem 40rem 24rem;
+    grid-template-areas: "titleSection" "previewSection" "menuSection"; }
+    .startpage .main-container .titleSection {
+      grid-area: titleSection; }
+    .startpage .main-container .previewSection {
+      grid-area: previewSection; }
+    .startpage .main-container .menuSection {
+      grid-area: menuSection;
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      grid-template-rows: 45% 40%; }
+      .startpage .main-container .menuSection .buttonStart {
+        color: white;
+        font-weight: 700;
+        font-size: 3rem;
+        border-style: solid;
+        border-width: 0.75rem;
+        border-color: #b8621b;
+        padding: 2rem 3rem;
+        justify-self: center;
+        align-self: start; }
+      .startpage .main-container .menuSection .displayDateBox {
+        grid-column: 1 / 3;
+        color: white;
+        font-size: 2rem;
+        border-style: solid;
+        padding: 2rem 1.5rem;
+        justify-self: center;
+        align-self: end; }
 
 .app {
   background-color: bisque;
