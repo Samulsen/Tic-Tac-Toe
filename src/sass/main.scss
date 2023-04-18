@@ -14,12 +14,14 @@
 @import "secondary/2. base/utilities";
 
 // LAYOUT IMPORTS -----------------------------------------------
-
-@import "secondary/3. layout/startpage";
-
-// -
-//NOTE: MAIN LAYOUT => Has to be loaded last!
-@import "secondary/3. layout/app";
+//IMPORT_START:STARTPAGE
+@import "secondary/3. layout/startpage/startpage";
+@import "secondary/3. layout/startpage/titleSection";
+@import "secondary/3. layout/startpage/previewSection";
+@import "secondary/3. layout/startpage/menuSection";
+//IMPORT_START:SINGLEPLAYER
+//
+//IMPORT_START:MULTIPLAYER
 
 // COMPONENTS IMPORTS --------------------------------------------
 
@@ -32,5 +34,8 @@
 // -
 // -
 // -
+
+//IMPORT_START: MAIN LAYOUT => Has to be loaded last!
+@import "secondary/3. layout/app";
 
 // ----------------------- END OF IMPORTS -----------------------
