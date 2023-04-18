@@ -4,20 +4,22 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-  /* Normalize brwosersettings! TEST */
+  /* Normalize brwosersettings!  */
 }
 
 html {
   /* Defining global font size for rem by percentage, for flexibel browser compatibility --> default 16px * 62.5% = 10px (root rem factor) */
-  font-size: 62.5%;
+  // font-size: 62.5%;
+  //NOTE: Had to reduce font-size for rem spec because of prev error with scaling...
+  font-size: 50%;
 }
 
 // Temporary for connection test!
 
 body {
-  background-color: grey;
-  height: 100vh;
-  width: 100vw;
+  min-width: 100vw;
+  min-height: 100vh;
+
   display: grid;
   justify-content: center;
   align-content: center;
