@@ -1,0 +1,32 @@
+.singleplayer__titleSection {
+  grid-area: titleSection;
+  display: grid;
+  grid-template-rows: 3rem 5rem 3rem;
+  grid-template-columns: 100%;
+  align-content: center;
+
+  &--line {
+    background-color: #5b8a72;
+    height: 1.1rem;
+    width: 30rem;
+    justify-self: center;
+    border-radius: 10rem;
+    align-self: center;
+
+    // &--upper {
+    //   justify-self: flex-start;
+    // }
+
+    // &--lower {
+    //   justify-self: flex-end;
+    // }
+  }
+
+  &--titleText {
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    justify-self: center;
+    align-self: flex-end;
+  }
+}
