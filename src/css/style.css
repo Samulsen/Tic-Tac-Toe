@@ -29,32 +29,29 @@ html {
   border-color: white;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  display: grid;
+  display: none;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
   grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
-
-.line-one-third {
-  background-color: #4fbdba; }
-  .line-one-third--upper {
-    grid-area: one; }
-  .line-one-third--lower {
-    grid-area: oneL; }
-
-.line-two-third {
-  background-color: #35858b; }
-  .line-two-third--upper {
-    grid-area: two; }
-  .line-two-third--lower {
-    grid-area: twoL; }
-
-.main-container {
-  background-color: #072227;
-  grid-area: main;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 26rem 36rem 20rem;
-  grid-template-areas: "titleSection" "previewSection" "menuSection"; }
+  .startpage__line-one-third {
+    background-color: #4fbdba; }
+    .startpage__line-one-third--upper {
+      grid-area: one; }
+    .startpage__line-one-third--lower {
+      grid-area: oneL; }
+  .startpage__line-two-third {
+    background-color: #35858b; }
+    .startpage__line-two-third--upper {
+      grid-area: two; }
+    .startpage__line-two-third--lower {
+      grid-area: twoL; }
+  .startpage__main-container {
+    background-color: #072227;
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 26rem 36rem 20rem;
+    grid-template-areas: "titleSection" "previewSection" "menuSection"; }
 
 .titleSection {
   grid-area: titleSection;
@@ -212,6 +209,30 @@ html {
     justify-self: start; }
   .buttonStart--multiplayer {
     justify-self: end; }
+
+.singleplayer {
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+  border-color: white;
+  border-width: 0.5rem;
+  border-radius: 0.7rem;
+  display: grid;
+  grid-template-rows: 1.5rem 82rem 1.5rem;
+  grid-template-columns: repeat(10, 6.5rem);
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
+  .singleplayer__line-one-third {
+    background-color: #56776c; }
+    .singleplayer__line-one-third--upper {
+      grid-area: one; }
+    .singleplayer__line-one-third--lower {
+      grid-area: oneL; }
+  .singleplayer__line-two-third {
+    background-color: #bfcba8; }
+    .singleplayer__line-two-third--upper {
+      grid-area: two; }
+    .singleplayer__line-two-third--lower {
+      grid-area: twoL; }
 
 .app {
   width: 65rem;

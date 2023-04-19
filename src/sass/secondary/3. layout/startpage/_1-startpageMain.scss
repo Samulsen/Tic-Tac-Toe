@@ -1,66 +1,20 @@
 .startpage {
-  //NOTE: depends uppon rem values in app
-  height: 100%;
-  width: 100%;
-  //SECTION_START: grid-dimensions defintion
-  border-style: solid;
-  // border-color: #b8621b;
-  border-color: white;
-  border-width: 0.5rem;
-  border-radius: 0.7rem;
+  @include basecontainer(none, white, #4fbdba, #35858b);
 
-  display: grid;
-  // display: none;
-  grid-template-rows: 1.5rem 82rem 1.5rem;
-  grid-template-columns: repeat(10, 6.5rem);
+  //SECTION_START: main container for dividing future child-grids, named accordingly in the area
 
-  //SECTION_START: template-area defintion
+  &__main-container {
+    background-color: #072227;
+    grid-area: main;
+    display: grid;
 
-  grid-template-areas:
-    "two two two two two two two one one one"
-    "main main main main main main main main main main"
-    "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL";
-}
+    grid-template-columns: 100%;
+    grid-template-rows: 26rem 36rem 20rem;
+    grid-template-areas: 
+    //NOTE: Is strictly not necessary because of natural grid flow, but implemented for safety reasons; get rid of when needed!
 
-//SECTION_START: upper and lower lines (total 4)
-
-.line-one-third {
-  background-color: #4fbdba;
-
-  &--upper {
-    grid-area: one;
+      "titleSection"
+      "previewSection"
+      "menuSection";
   }
-
-  &--lower {
-    grid-area: oneL;
-  }
-}
-
-.line-two-third {
-  background-color: #35858b;
-
-  &--upper {
-    grid-area: two;
-  }
-
-  &--lower {
-    grid-area: twoL;
-  }
-}
-
-//SECTION_START: main container for dividing future child-grids, named accordingly in the area
-
-.main-container {
-  background-color: #072227;
-  grid-area: main;
-  display: grid;
-
-  grid-template-columns: 100%;
-  grid-template-rows: 26rem 36rem 20rem;
-  grid-template-areas: 
-  //NOTE: Is strictly not necessary because of natural grid flow, but implemented for safety reasons; get rid of when needed!
-
-    "titleSection"
-    "previewSection"
-    "menuSection";
 }

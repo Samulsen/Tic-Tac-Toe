@@ -1,1 +1,43 @@
+@mixin basecontainer($switch, $border-col, $one-third-col, $two-third-col) {
+  //NOTE: depends uppon rem values in app
+  height: 100%;
+  width: 100%;
+  //SECTION_START: border styles
+  border-style: solid;
+  border-color: $border-col;
+  border-width: 0.5rem;
+  border-radius: 0.7rem;
+  //SECTION_START: grid-dimensions defintion
+  display: $switch;
+  grid-template-rows: 1.5rem 82rem 1.5rem;
+  grid-template-columns: repeat(10, 6.5rem);
+  //SECTION_START: template-area defintion
+  grid-template-areas:
+    "two two two two two two two one one one"
+    "main main main main main main main main main main"
+    "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL";
+  //SECTION_START: Outline upper and lower definition (four childs)
+  &__line-one-third {
+    background-color: $one-third-col;
 
+    &--upper {
+      grid-area: one;
+    }
+
+    &--lower {
+      grid-area: oneL;
+    }
+  }
+
+  &__line-two-third {
+    background-color: $two-third-col;
+
+    &--upper {
+      grid-area: two;
+    }
+
+    &--lower {
+      grid-area: twoL;
+    }
+  }
+}

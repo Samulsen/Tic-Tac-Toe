@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon and Title -->
     <link rel="shortcut icon" href="favicon.ico" />
-    <title>Tic Tac Toe Extreme</title>
+    <title>Tic Tac Toe</title>
     <!-- Fonts, CSS, JS -->
     <link rel="stylesheet" href="src/css/style.css" />
     <!-- FONT =  ROBOTO -->
@@ -22,11 +22,19 @@
   <body>
     <div class="app">
       <div class="startpage">
-        <div class="line-one-third line-one-third--upper"></div>
-        <div class="line-two-third line-two-third--upper"></div>
-        <div class="line-one-third line-one-third--lower"></div>
-        <div class="line-two-third line-two-third--lower"></div>
-        <div class="main-container">
+        <div
+          class="startpage__line-one-third startpage__line-one-third--upper"
+        ></div>
+        <div
+          class="startpage__line-two-third startpage__line-two-third--upper"
+        ></div>
+        <div
+          class="startpage__line-one-third startpage__line-one-third--lower"
+        ></div>
+        <div
+          class="startpage__line-two-third startpage__line-two-third--lower"
+        ></div>
+        <div class="startpage__main-container">
           <div class="titleSection">
             <div class="placeholder"></div>
             <div class="upper-head">
@@ -99,14 +107,24 @@
             ><a href="#" class="buttonStart buttonStart--multiplayer"
               >Multiplayer</a
             >
-            <!-- <div class="displayDateBox">
-              Play against the computer or with a friend!
-            </div> -->
           </div>
         </div>
       </div>
-      <div class="singleplayer"></div>
-      <div class="multiplayer"></div>
+      <div class="singleplayer">
+        <div
+          class="singleplayer__line-one-third singleplayer__line-one-third--upper"
+        ></div>
+        <div
+          class="singleplayer__line-one-third singleplayer__line-one-third--lower"
+        ></div>
+        <div
+          class="singleplayer__line-two-third singleplayer__line-two-third--upper"
+        ></div>
+        <div
+          class="singleplayer__line-two-third singleplayer__line-two-third--lower"
+        ></div>
+      </div>
+      <!-- <div class="multiplayer"></div> -->
     </div>
   </body>
 </html>
