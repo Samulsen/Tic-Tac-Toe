@@ -233,6 +233,13 @@ html {
       grid-area: two; }
     .singleplayer__line-two-third--lower {
       grid-area: twoL; }
+  .singleplayer__main-container {
+    background-color: #464f41;
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 16rem 36rem 30rem;
+    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
 
 .app {
   width: 65rem;

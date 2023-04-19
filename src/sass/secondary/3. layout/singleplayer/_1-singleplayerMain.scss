@@ -1,3 +1,19 @@
 .singleplayer {
   @include basecontainer(grid, white, #56776c, #bfcba8);
+
+  // SECTION_START: main container definition
+  &__main-container {
+    background-color: #464f41;
+    grid-area: main;
+    display: grid;
+
+    grid-template-columns: 100%;
+    grid-template-rows: 16rem 36rem 30rem;
+    grid-template-areas: 
+    //NOTE: Is strictly not necessary because of natural grid flow, but implemented for safety reasons; get rid of when needed!
+
+      "titleSection"
+      "gameSection"
+      "menuSection";
+  }
 }
