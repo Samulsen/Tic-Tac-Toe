@@ -16,4 +16,11 @@
       "gameSection"
       "menuSection";
   }
+
+  //NOTE: gameSection is child of main-container (above)
+
+  &__gameSection {
+    @include baseGameSection;
+    @include extensionGameSection;
+  }
 }
