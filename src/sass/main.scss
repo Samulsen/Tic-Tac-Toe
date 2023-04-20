@@ -1,34 +1,28 @@
-// ----------------------- START OF IMPORTS ----------------------
+//IMPORT_START:
 
-// ABSTRACTS IMPORTS ---------------------------------------------
+//SECTION: ABSTRACTS IMPORTS ---------------------------------------------
 
-@import "secondary/abstracts/functions";
-@import "secondary/abstracts/mixins";
-@import "secondary/abstracts/variables";
+@import "secondary/1. abstracts/mixins";
+@import "secondary/1. abstracts/variables";
 
-// BASE IMPORTS --------------------------------------------------
+//SECTION: BASE IMPORTS --------------------------------------------------
 
-@import "secondary/base/base";
-@import "secondary/base/animations";
-@import "secondary/base/typography";
-@import "secondary/base/utilities";
+@import "secondary/2. base/base";
+@import "secondary/2. base/animations";
+@import "secondary/2. base/typography";
+@import "secondary/2. base/utilities";
 
-// COMPONENTS IMPORTS --------------------------------------------
-
-// -
-// -
-// -
-
-// LAYOUT IMPORTS -----------------------------------------------
-
-// -
-// -
-// -
-
-// PAGES IMPORTS ------------------------------------------------
-
-// -
-// -
-// -
-
-// ----------------------- END OF IMPORTS -----------------------
+//SECTION: LAYOUT IMPORTS ------------------------------------------------
+//SUB_SECTION: STARTPAGE
+@import "secondary/3. layout/startpage/1-startpageMain";
+@import "secondary/3. layout/startpage/2-titleSection";
+@import "secondary/3. layout/startpage/3-previewSection";
+@import "secondary/3. layout/startpage/4-menuSection";
+//SUB_SECTION: SINGLEPLAYER
+@import "secondary/3. layout/singleplayer/1-singleplayerMain";
+//SUB_SECTION: MULTIPLAYER
+@import "secondary/3. layout/multiplayer/1-multiplayerMain";
+//SUB_SECTION: MAIN LAYOUT => Has to be loaded last!
+@import "secondary/3. layout/app";
+//
+//IMPORT_END:

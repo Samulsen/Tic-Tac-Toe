@@ -6,11 +6,358 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon and Title -->
     <link rel="shortcut icon" href="favicon.ico" />
-    <title>Tic Tac Toe Extreme</title>
+    <title>Tic Tac Toe</title>
     <!-- Fonts, CSS, JS -->
     <link rel="stylesheet" href="src/css/style.css" />
+    <!-- FONT =  ROBOTO -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <!-- Module during DEV, remove when shipping for prod! -->
     <script type="module" src="src/js/index.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="app">
+      <div class="startpage">
+        <div
+          class="startpage__line-one-third startpage__line-one-third--upper"
+        ></div>
+        <div
+          class="startpage__line-two-third startpage__line-two-third--upper"
+        ></div>
+        <div
+          class="startpage__line-one-third startpage__line-one-third--lower"
+        ></div>
+        <div
+          class="startpage__line-two-third startpage__line-two-third--lower"
+        ></div>
+        <div class="startpage__main-container">
+          <div class="titleSection">
+            <div class="placeholder"></div>
+            <div class="upper-head">
+              <div class="upper-head--hanger"></div>
+              <div class="upper-head--hanger-2"></div>
+              <div class="upper-head--line"></div>
+              <div class="upper-head--cross">
+                <img
+                  src="src/svg/startpage/title/cross-svgrepo-com.svg"
+                  alt="cross"
+                />
+              </div>
+            </div>
+            <div class="main-title">TIC TAC TOE</div>
+            <div class="lower-head">
+              <div class="lower-head--circle">
+                <img
+                  src="src/svg/startpage/title/circle-svgrepo-com.svg"
+                  alt="circle"
+                />
+              </div>
+              <div class="lower-head--line"></div>
+              <div class="lower-head--hanger"></div>
+              <div class="lower-head--hanger-2"></div>
+            </div>
+            <div class="message">*Now with Singleplayer!</div>
+          </div>
+          <div class="previewSection">
+            <div
+              class="previewSection__fieldline previewSection__fieldline__horizontal--1"
+            ></div>
+            <div
+              class="previewSection__fieldline previewSection__fieldline__horizontal--2"
+            ></div>
+            <div
+              class="previewSection__fieldline previewSection__fieldline__vertical--1"
+            ></div>
+            <div
+              class="previewSection__fieldline previewSection__fieldline__vertical--2"
+            ></div>
+            <img
+              class="previewSection__cross previewSection__cross--1"
+              src="src/svg/startpage/preview/cross-svgrepo-com.svg"
+              alt="cross"
+            />
+            <img
+              class="previewSection__cross previewSection__cross--2"
+              src="src/svg/startpage/preview/cross-svgrepo-com.svg"
+              alt="cross"
+            />
+            <img
+              class="previewSection__cross previewSection__cross--3"
+              src="src/svg/startpage/preview/cross-svgrepo-com.svg"
+              alt="cross"
+            />
+            <img
+              class="previewSection__circle previewSection__circle--1"
+              src="src/svg/startpage/preview/circle-svgrepo-com.svg"
+              alt="circle"
+            />
+            <img
+              class="previewSection__circle previewSection__circle--2"
+              src="src/svg/startpage/preview/circle-svgrepo-com.svg"
+              alt="circle"
+            />
+          </div>
+          <div class="menuSection">
+            <a href="#" class="buttonStart buttonStart--singleplayer"
+              >Singleplayer</a
+            ><a href="#" class="buttonStart buttonStart--multiplayer"
+              >Multiplayer</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="singleplayer">
+        <div
+          class="singleplayer__line-one-third singleplayer__line-one-third--upper"
+        ></div>
+        <div
+          class="singleplayer__line-one-third singleplayer__line-one-third--lower"
+        ></div>
+        <div
+          class="singleplayer__line-two-third singleplayer__line-two-third--upper"
+        ></div>
+        <div
+          class="singleplayer__line-two-third singleplayer__line-two-third--lower"
+        ></div>
+        <div class="singleplayer__main-container">
+          <div class="singleplayer__titleSection">
+            <div
+              class="singleplayer__titleSection--line singleplayer__titleSection--line--upper"
+            ></div>
+            <div class="singleplayer__titleSection--titleText">
+              Mode: Singleplayer
+            </div>
+            <div
+              class="singleplayer__titleSection--line singleplayer__titleSection--line--lower"
+            ></div>
+          </div>
+          <div class="singleplayer__gameSection">
+            <div
+              class="singleplayer__gameSection__fieldline singleplayer__gameSection__fieldline__vertical--1"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldline singleplayer__gameSection__fieldline__vertical--2"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldline singleplayer__gameSection__fieldline__horizontal--1"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldline singleplayer__gameSection__fieldline__horizontal--2"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--1"
+            >
+              <img
+                src="/src/svg/singleplayer/cross.svg"
+                alt="croSin"
+                class="singleplayer__gameSection__cross"
+              />
+            </div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--2"
+            >
+              <img
+                src="/src/svg/singleplayer/circle.svg"
+                alt="cirSin"
+                class="singleplayer__gameSection__circle"
+              />
+            </div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--3"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--4"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--5"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--6"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--7"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--8"
+            ></div>
+            <div
+              class="singleplayer__gameSection__fieldBox singleplayer__gameSection__fieldBox--9"
+            ></div>
+          </div>
+          <div class="singleplayer__menuSection">
+            <div class="singleplayer__menuSection__display">
+              <div
+                class="singleplayer__menuSection__display__line singleplayer__menuSection__display__line--1"
+              ></div>
+              <div
+                class="singleplayer__menuSection__display__line singleplayer__menuSection__display__line--2"
+              ></div>
+              <div
+                class="singleplayer__menuSection__display__line singleplayer__menuSection__display__line--3"
+              ></div>
+              <div
+                class="singleplayer__menuSection__display__line singleplayer__menuSection__display__line--4"
+              ></div>
+              <div class="singleplayer__menuSection__display__message">
+                Choose your symbol!
+              </div>
+            </div>
+            <div class="singleplayer__menuSection__control">
+              <a
+                href="#"
+                class="singleplayer__menuSection__control--replayButton"
+                >Replay</a
+              >
+              <div class="singleplayer__menuSection__control--firstCount">
+                Player: 00
+              </div>
+              <div class="singleplayer__menuSection__control--secondCount">
+                Computer: 00
+              </div>
+            </div>
+            <div class="singleplayer__menuSection__options">
+              <a
+                href="#"
+                class="singleplayer__menuSection__options__button singleplayer__menuSection__options__button--home"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="singleplayer__menuSection__options__button singleplayer__menuSection__options__button--mode"
+                >Singleplayer</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="multiplayer">
+        <div
+          class="multiplayer__line-one-third multiplayer__line-one-third--upper"
+        ></div>
+        <div
+          class="multiplayer__line-one-third multiplayer__line-one-third--lower"
+        ></div>
+        <div
+          class="multiplayer__line-two-third multiplayer__line-two-third--upper"
+        ></div>
+        <div
+          class="multiplayer__line-two-third multiplayer__line-two-third--lower"
+        ></div>
+        <div class="multiplayer__main-container">
+          <div class="multiplayer__titleSection">
+            <div
+              class="multiplayer__titleSection--line multiplayer__titleSection--line--upper"
+            ></div>
+            <div class="multiplayer__titleSection--titleText">
+              Mode: Multiplayer
+            </div>
+            <div
+              class="multiplayer__titleSection--line multiplayer__titleSection--line--lower"
+            ></div>
+          </div>
+          <div class="multiplayer__gameSection">
+            <div
+              class="multiplayer__gameSection__fieldline multiplayer__gameSection__fieldline__vertical--1"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldline multiplayer__gameSection__fieldline__vertical--2"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldline multiplayer__gameSection__fieldline__horizontal--1"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldline multiplayer__gameSection__fieldline__horizontal--2"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--1"
+            >
+              <img
+                src="src/svg/multiplayer/cross.svg"
+                alt="croMul"
+                class="multiplayer__gameSection__cross"
+              />
+            </div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--2"
+            >
+              <img
+                src="src/svg/multiplayer/circle.svg"
+                alt="cirMul"
+                class="multiplayer__gameSection__circle"
+              />
+            </div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--3"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--4"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--5"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--6"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--7"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--8"
+            ></div>
+            <div
+              class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--9"
+            ></div>
+          </div>
+          <div class="multiplayer__menuSection">
+            <div class="multiplayer__menuSection__display">
+              <div
+                class="multiplayer__menuSection__display__line multiplayer__menuSection__display__line--1"
+              ></div>
+              <div
+                class="multiplayer__menuSection__display__line multiplayer__menuSection__display__line--2"
+              ></div>
+              <div
+                class="multiplayer__menuSection__display__line multiplayer__menuSection__display__line--3"
+              ></div>
+              <div
+                class="multiplayer__menuSection__display__line multiplayer__menuSection__display__line--4"
+              ></div>
+              <div class="multiplayer__menuSection__display__message">
+                Choose your symbol!
+              </div>
+            </div>
+            <div class="multiplayer__menuSection__control">
+              <a
+                href="#"
+                class="multiplayer__menuSection__control--replayButton"
+                >Replay</a
+              >
+              <div class="multiplayer__menuSection__control--firstCount">
+                Player: 00
+              </div>
+              <div class="multiplayer__menuSection__control--secondCount">
+                Computer: 00
+              </div>
+            </div>
+            <div class="multiplayer__menuSection__options">
+              <a
+                href="#"
+                class="multiplayer__menuSection__options__button multiplayer__menuSection__options__button--home"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="multiplayer__menuSection__options__button multiplayer__menuSection__options__button--mode"
+                >Multiplayer</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

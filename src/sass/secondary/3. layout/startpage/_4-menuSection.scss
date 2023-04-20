@@ -1,0 +1,44 @@
+.menuSection {
+  grid-area: menuSection;
+  display: grid;
+  justify-content: space-around;
+  align-content: center;
+  grid-template-columns: repeat(2, 43%);
+  // grid-template-rows: 45% 40%;
+  grid-template-rows: 45%;
+  // margin-top: 5rem;
+}
+
+.buttonStart {
+  font-weight: 400;
+  font-size: 3rem;
+  border-style: solid;
+  border-width: 0.75rem;
+  border-color: #b8621b;
+  padding: 2rem 3rem;
+  border-radius: 10rem;
+  justify-self: center;
+  align-self: start;
+  text-decoration: none;
+
+  &--singleplayer {
+    justify-self: start;
+  }
+
+  &--multiplayer {
+    justify-self: end;
+  }
+  &:visited {
+    color: white;
+  }
+}
+
+// .displayDateBox {
+//   grid-column: 1 / 3;
+//   color: white;
+//   font-size: 2rem;
+//   border-style: solid;
+//   padding: 2rem 2rem;
+//   align-self: end;
+//   text-align: center;
+// }
