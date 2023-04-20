@@ -47,7 +47,7 @@
 //SECTION: Main Container of ONLY the Singleplayer and Multiplayer
 
 @mixin mainContainer($container-col) {
-  background-color: #464f41;
+  background-color: $container-col;
   grid-area: main;
   display: grid;
 

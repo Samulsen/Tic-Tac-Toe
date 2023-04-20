@@ -405,6 +405,197 @@ html {
         .singleplayer__menuSection__options__button:visited {
           color: white; }
 
+.multiplayer {
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+  border-color: white;
+  border-width: 0.5rem;
+  border-radius: 0.7rem;
+  display: none;
+  grid-template-rows: 1.5rem 82rem 1.5rem;
+  grid-template-columns: repeat(10, 6.5rem);
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
+  .multiplayer__line-one-third {
+    background-color: #e7f6f2; }
+    .multiplayer__line-one-third--upper {
+      grid-area: one; }
+    .multiplayer__line-one-third--lower {
+      grid-area: oneL; }
+  .multiplayer__line-two-third {
+    background-color: #a5c9ca; }
+    .multiplayer__line-two-third--upper {
+      grid-area: two; }
+    .multiplayer__line-two-third--lower {
+      grid-area: twoL; }
+  .multiplayer__main-container {
+    background-color: #395b64;
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 16rem 36rem 30rem;
+    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
+  .multiplayer__gameSection {
+    grid-area: gameSection;
+    display: grid;
+    grid-template-columns: repeat(32, 1rem);
+    grid-template-rows: repeat(32, 1rem);
+    justify-content: center;
+    align-content: center; }
+    .multiplayer__gameSection__fieldline {
+      background-color: white;
+      border-radius: 1rem; }
+      .multiplayer__gameSection__fieldline__horizontal--1 {
+        grid-row: 11/11;
+        grid-column: 1 / -1; }
+      .multiplayer__gameSection__fieldline__horizontal--2 {
+        grid-row: 22/22;
+        grid-column: 1 / -1; }
+      .multiplayer__gameSection__fieldline__vertical--1 {
+        grid-column: 11/11;
+        grid-row: 1 / -1; }
+      .multiplayer__gameSection__fieldline__vertical--2 {
+        grid-column: 22/22;
+        grid-row: 1 / -1; }
+    .multiplayer__gameSection__fieldBox--1 {
+      grid-row: 1/11;
+      grid-column: 1/11; }
+    .multiplayer__gameSection__fieldBox--2 {
+      grid-row: 1/11;
+      grid-column: 12/22; }
+    .multiplayer__gameSection__fieldBox--3 {
+      grid-row: 1/11;
+      grid-column: 23/33; }
+    .multiplayer__gameSection__fieldBox--4 {
+      grid-row: 12/22;
+      grid-column: 1/11; }
+    .multiplayer__gameSection__fieldBox--5 {
+      grid-row: 12/22;
+      grid-column: 12/22; }
+    .multiplayer__gameSection__fieldBox--6 {
+      grid-row: 12/22;
+      grid-column: 23/33; }
+    .multiplayer__gameSection__fieldBox--7 {
+      grid-row: 23/33;
+      grid-column: 1/11; }
+    .multiplayer__gameSection__fieldBox--8 {
+      grid-row: 23/33;
+      grid-column: 12/22; }
+    .multiplayer__gameSection__fieldBox--9 {
+      grid-row: 23/33;
+      grid-column: 23/33; }
+    .multiplayer__gameSection__circle {
+      padding: 1.2rem; }
+  .multiplayer__titleSection {
+    grid-area: titleSection;
+    display: grid;
+    grid-template-rows: 3rem 5rem 3rem;
+    grid-template-columns: 100%;
+    align-content: center; }
+    .multiplayer__titleSection--line {
+      background-color: #e7f6f2;
+      height: 1.1rem;
+      width: 32rem;
+      justify-self: center;
+      border-radius: 10rem;
+      align-self: center; }
+    .multiplayer__titleSection--titleText {
+      color: white;
+      font-size: 4rem;
+      font-weight: 700;
+      justify-self: center;
+      align-self: flex-end; }
+  .multiplayer__menuSection {
+    padding-top: 1rem;
+    grid-area: menuSection;
+    display: grid;
+    justify-content: center;
+    align-content: flex-start;
+    grid-template-columns: 32rem;
+    gap: 1.5rem;
+    grid-template-rows: 7rem 9rem 7rem; }
+    .multiplayer__menuSection__display {
+      display: grid;
+      grid-template-rows: 1rem 5rem 1rem;
+      grid-template-columns: 1rem 30rem 1rem; }
+      .multiplayer__menuSection__display__line {
+        background-color: #e7f6f2; }
+        .multiplayer__menuSection__display__line--1 {
+          grid-column: 1 / 1;
+          grid-row: 1 / -1;
+          border-top-right-radius: 1rem;
+          border-top-left-radius: 1rem;
+          border-bottom-left-radius: 1rem; }
+        .multiplayer__menuSection__display__line--2 {
+          grid-column: 3 / 3;
+          grid-row: 1 / -1;
+          border-bottom-left-radius: 1rem;
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem; }
+        .multiplayer__menuSection__display__line--3 {
+          grid-column: 2/2;
+          grid-row: 1/1;
+          width: 6rem;
+          justify-self: right;
+          border-bottom-left-radius: 1rem;
+          border-top-left-radius: 1rem; }
+        .multiplayer__menuSection__display__line--4 {
+          grid-column: 2/2;
+          grid-row: 3/3;
+          width: 6rem;
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem; }
+      .multiplayer__menuSection__display__message {
+        grid-column: 2/2;
+        grid-row: 2/2;
+        font-size: 2.5rem;
+        justify-self: center;
+        align-self: center;
+        padding-bottom: 0.4rem; }
+    .multiplayer__menuSection__control {
+      display: grid;
+      grid-template-rows: 4.5rem 4.5rem;
+      grid-template-columns: 16rem 16rem;
+      grid-template-areas: "button firstCount" "button secondCount";
+      justify-items: right;
+      align-items: center;
+      font-size: 2rem; }
+      .multiplayer__menuSection__control--replayButton {
+        font-weight: 700;
+        font-size: 2.5rem;
+        grid-area: button;
+        border-color: #2c3333;
+        border-style: solid;
+        border-width: 0.6rem;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        justify-self: left; }
+        .multiplayer__menuSection__control--replayButton:visited {
+          color: white; }
+      .multiplayer__menuSection__control--firstCount {
+        grid-area: firstCount; }
+      .multiplayer__menuSection__control--secondCount {
+        grid-area: secondCount; }
+    .multiplayer__menuSection__options {
+      display: grid;
+      grid-template-rows: 100%;
+      grid-template-columns: 30% 70%;
+      align-items: center;
+      font-weight: 700;
+      font-size: 2.2rem; }
+      .multiplayer__menuSection__options__button {
+        border-color: #e7f6f2;
+        border-style: solid;
+        border-width: 0.6rem;
+        padding: 1rem 1.5rem;
+        border-radius: 3rem; }
+        .multiplayer__menuSection__options__button--home {
+          justify-self: left; }
+        .multiplayer__menuSection__options__button--mode {
+          justify-self: right; }
+        .multiplayer__menuSection__options__button:visited {
+          color: white; }
+
 .app {
   width: 65rem;
   height: 85rem; }

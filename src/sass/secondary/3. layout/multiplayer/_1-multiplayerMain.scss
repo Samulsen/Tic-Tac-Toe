@@ -1,0 +1,41 @@
+.multiplayer {
+  @include baseContainer(none, rgb(255, 255, 255), #e7f6f2, #a5c9ca);
+
+  &__main-container {
+    @include mainContainer(#395b64);
+  }
+
+  &__gameSection {
+    @include baseGameSection;
+    @include extensionGameSection;
+  }
+
+  &__titleSection {
+    @include titleSection(#e7f6f2);
+  }
+
+  &__menuSection {
+    @include menuSection(#e7f6f2, #2c3333);
+  }
+}
+
+// .multiplayer {
+//   @include baseContainer(grid, white, #56776c, #bfcba8);
+
+//   &__main-container {
+//     @include mainContainer(#464f41);
+//   }
+
+//   &__gameSection {
+//     @include baseGameSection;
+//     @include extensionGameSection;
+//   }
+
+//   &__titleSection {
+//     @include titleSection(#5b8a72);
+//   }
+
+//   &__menuSection {
+//     @include menuSection(#56776c, #bfcba8);
+//   }
+// }
