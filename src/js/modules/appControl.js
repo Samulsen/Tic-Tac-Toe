@@ -1,19 +1,24 @@
 // IMPORT_START:
-import controlStartpage from "./pageControlls/controlStartpage";
+import menuButtons from "./menuButtons";
 // IMPORT_END:
 
 const appControl = function () {
   //SECTION: Root Element Selection => passed down as root Arguement inside controlfunction
+
   const startpageElement = document.querySelector(".startpage");
   const singleplayerElement = document.querySelector(".singleplayer");
   const multiplayerElement = document.querySelector(".multiplayer");
-  const rootArrayArg = [
+
+  //NOTE: Comprehended Arguements Array that spreads inside the functions below
+
+  const rootArrayArgs = [
     startpageElement,
     singleplayerElement,
     multiplayerElement,
   ];
+
   //SECTION: calling controlfunctions
-  controlStartpage(...rootArrayArg);
+  menuButtons(...rootArrayArgs);
 };
 
 export default appControl;
