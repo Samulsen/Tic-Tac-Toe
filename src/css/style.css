@@ -37,7 +37,7 @@ html {
   display: grid;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
-  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
   .startpage__line-one-third {
     background-color: #4fbdba; }
     .startpage__line-one-third--upper {
@@ -56,7 +56,7 @@ html {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 26rem 36rem 20rem;
-    grid-template-areas: "titleSection" "previewSection" "menuSection"; }
+    grid-template-areas: "titleSection" "previewSection" "menuSection"; }
 
 .titleSection {
   grid-area: titleSection;
@@ -197,7 +197,7 @@ html {
   grid-template-rows: 45%; }
 
 .buttonStart {
-  font-weight: 400;
+  font-weight: 700;
   font-size: 3rem;
   border-style: solid;
   border-width: 0.75rem;
@@ -224,7 +224,7 @@ html {
   display: none;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
-  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
   .singleplayer__line-one-third {
     background-color: #56776c; }
     .singleplayer__line-one-third--upper {
@@ -243,7 +243,7 @@ html {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 16rem 36rem 30rem;
-    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
+    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
   .singleplayer__gameSection {
     grid-area: gameSection;
     display: grid;
@@ -365,7 +365,7 @@ html {
       display: grid;
       grid-template-rows: 4.5rem 4.5rem;
       grid-template-columns: 16rem 16rem;
-      grid-template-areas: "button firstCount" "button secondCount";
+      grid-template-areas: "button firstCount" "button secondCount";
       justify-items: right;
       align-items: center;
       font-size: 2rem; }
@@ -415,7 +415,7 @@ html {
   display: none;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
-  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
+  grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
   .multiplayer__line-one-third {
     background-color: #e7f6f2; }
     .multiplayer__line-one-third--upper {
@@ -434,7 +434,7 @@ html {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 16rem 36rem 30rem;
-    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
+    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
   .multiplayer__gameSection {
     grid-area: gameSection;
     display: grid;
@@ -556,7 +556,7 @@ html {
       display: grid;
       grid-template-rows: 4.5rem 4.5rem;
       grid-template-columns: 16rem 16rem;
-      grid-template-areas: "button firstCount" "button secondCount";
+      grid-template-areas: "button firstCount" "button secondCount";
       justify-items: right;
       align-items: center;
       font-size: 2rem; }

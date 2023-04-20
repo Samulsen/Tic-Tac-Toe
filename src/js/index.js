@@ -13,12 +13,10 @@ import { async } from "regenerator-runtime";
 // -
 
 // ---- Internal Modules ------------------------------------------
-// import dateDisplay from "./modules/dateDisplay";
+import appControl from "./modules/appControl";
 // -
 // -
 
 // ----------------------- END OF IMPORTS -------------------------
 
-// setInterval(() => {
-//   dateDisplay();
-// }, 1000);
+appControl();
