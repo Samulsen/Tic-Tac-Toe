@@ -10,7 +10,6 @@
 }
 
 .buttonStart {
-  color: white;
   font-weight: 400;
   font-size: 3rem;
   border-style: solid;
@@ -28,6 +27,9 @@
 
   &--multiplayer {
     justify-self: end;
+  }
+  &:visited {
+    color: white;
   }
 }
 

@@ -1,52 +1,28 @@
-// ----------------------- START OF IMPORTS ----------------------
+//IMPORT_START:
 
-// ABSTRACTS IMPORTS ---------------------------------------------
+//SECTION: ABSTRACTS IMPORTS ---------------------------------------------
 
-@import "secondary/1. abstracts/functions";
 @import "secondary/1. abstracts/mixins";
 @import "secondary/1. abstracts/variables";
 
-// BASE IMPORTS --------------------------------------------------
+//SECTION: BASE IMPORTS --------------------------------------------------
 
 @import "secondary/2. base/base";
 @import "secondary/2. base/animations";
 @import "secondary/2. base/typography";
 @import "secondary/2. base/utilities";
 
-// LAYOUT IMPORTS -----------------------------------------------
-//IMPORT_START:STARTPAGE
-//-
+//SECTION: LAYOUT IMPORTS ------------------------------------------------
+//SUB_SECTION: STARTPAGE
 @import "secondary/3. layout/startpage/1-startpageMain";
 @import "secondary/3. layout/startpage/2-titleSection";
 @import "secondary/3. layout/startpage/3-previewSection";
 @import "secondary/3. layout/startpage/4-menuSection";
-//-
-//IMPORT_START:SINGLEPLAYER
-//-
+//SUB_SECTION: SINGLEPLAYER
 @import "secondary/3. layout/singleplayer/1-singleplayerMain";
-@import "secondary/3. layout/singleplayer/2-titleSingleplayer";
-@import "secondary/3. layout/singleplayer/3-gamefieldSingleplayer";
-@import "secondary/3. layout/singleplayer/4-menuSingleplayer";
-//-
-//IMPORT_START:MULTIPLAYER
-//-
+//SUB_SECTION: MULTIPLAYER
 @import "secondary/3. layout/multiplayer/1-multiplayerMain";
-@import "secondary/3. layout/multiplayer/2-titleMultiplayer";
-@import "secondary/3. layout/multiplayer/3-gamefieldMultiplayer";
-@import "secondary/3. layout/multiplayer/4-menuMultiplayer";
-
-//IMPORT_END: NOTE: SUB_END
-
-//-
-// COMPONENTS IMPORTS --------------------------------------------
-// -
-// -
-// -
-// PAGES IMPORTS ------------------------------------------------
-// -
-// -
-// -
-//IMPORT_START: MAIN LAYOUT => Has to be loaded last!
+//SUB_SECTION: MAIN LAYOUT => Has to be loaded last!
 @import "secondary/3. layout/app";
-
-// ----------------------- END OF IMPORTS -----------------------
+//
+//IMPORT_END:

@@ -23,7 +23,9 @@ a {
 
 html {
   font-family: "Roboto Mono", monospace;
-  font-weight: 400; }
+  font-weight: 400;
+  text-transform: uppercase;
+  color: white; }
 
 .startpage {
   height: 100%;
@@ -32,7 +34,7 @@ html {
   border-color: white;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  display: none;
+  display: grid;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
   grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
@@ -63,7 +65,6 @@ html {
   grid-template-rows: 2.2rem 4.4rem 8.8rem 4.4rem 6.2rem; }
 
 .main-title {
-  color: white;
   font-size: 6rem;
   font-weight: 700;
   text-align: center;
@@ -142,7 +143,6 @@ html {
     justify-self: center; }
 
 .message {
-  color: white;
   font-style: italic;
   font-size: 1rem;
   padding-left: 12.8rem;
@@ -197,7 +197,6 @@ html {
   grid-template-rows: 45%; }
 
 .buttonStart {
-  color: white;
   font-weight: 400;
   font-size: 3rem;
   border-style: solid;
@@ -212,6 +211,8 @@ html {
     justify-self: start; }
   .buttonStart--multiplayer {
     justify-self: end; }
+  .buttonStart:visited {
+    color: white; }
 
 .singleplayer {
   height: 100%;
@@ -220,7 +221,7 @@ html {
   border-color: white;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  display: grid;
+  display: none;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
   grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
@@ -242,7 +243,7 @@ html {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 16rem 36rem 30rem;
-    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
+    grid-template-areas: "titleSection" "gameSection" "menuSection"; }
   .singleplayer__gameSection {
     grid-area: gameSection;
     display: grid;
@@ -294,123 +295,115 @@ html {
       grid-column: 23/33; }
     .singleplayer__gameSection__circle {
       padding: 1.2rem; }
-
-.singleplayer__titleSection {
-  grid-area: titleSection;
-  display: grid;
-  grid-template-rows: 3rem 5rem 3rem;
-  grid-template-columns: 100%;
-  align-content: center; }
-  .singleplayer__titleSection--line {
-    background-color: #5b8a72;
-    height: 1.1rem;
-    width: 32rem;
-    justify-self: center;
-    border-radius: 10rem;
-    align-self: center; }
-  .singleplayer__titleSection--titleText {
-    color: white;
-    font-size: 4rem;
-    font-weight: 700;
-    justify-self: center;
-    align-self: flex-end; }
-
-.singleplayer__menuSection {
-  padding-top: 1rem;
-  grid-area: menuSection;
-  display: grid;
-  justify-content: center;
-  align-content: flex-start;
-  grid-template-columns: 32rem;
-  gap: 1.5rem;
-  grid-template-rows: 7rem 9rem 7rem; }
-  .singleplayer__menuSection__display {
+  .singleplayer__titleSection {
+    grid-area: titleSection;
     display: grid;
-    grid-template-rows: 1rem 5rem 1rem;
-    grid-template-columns: 1rem 30rem 1rem; }
-    .singleplayer__menuSection__display__line {
-      background-color: #56776c; }
-      .singleplayer__menuSection__display__line--1 {
-        grid-column: 1 / 1;
-        grid-row: 1 / -1;
-        border-top-right-radius: 1rem;
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem; }
-      .singleplayer__menuSection__display__line--2 {
-        grid-column: 3 / 3;
-        grid-row: 1 / -1;
-        border-bottom-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-        border-top-right-radius: 1rem; }
-      .singleplayer__menuSection__display__line--3 {
-        grid-column: 2/2;
-        grid-row: 1/1;
-        width: 6rem;
-        justify-self: right;
-        border-bottom-left-radius: 1rem;
-        border-top-left-radius: 1rem; }
-      .singleplayer__menuSection__display__line--4 {
-        grid-column: 2/2;
-        grid-row: 3/3;
-        width: 6rem;
-        border-bottom-right-radius: 1rem;
-        border-top-right-radius: 1rem; }
-    .singleplayer__menuSection__display__message {
-      grid-column: 2/2;
-      grid-row: 2/2;
+    grid-template-rows: 3rem 5rem 3rem;
+    grid-template-columns: 100%;
+    align-content: center; }
+    .singleplayer__titleSection--line {
+      background-color: #5b8a72;
+      height: 1.1rem;
+      width: 32rem;
+      justify-self: center;
+      border-radius: 10rem;
+      align-self: center; }
+    .singleplayer__titleSection--titleText {
       color: white;
-      font-size: 2.5rem;
+      font-size: 4rem;
       font-weight: 700;
       justify-self: center;
-      align-self: center;
-      padding-bottom: 0.4rem; }
-  .singleplayer__menuSection__controll {
+      align-self: flex-end; }
+  .singleplayer__menuSection {
+    padding-top: 1rem;
+    grid-area: menuSection;
     display: grid;
-    grid-template-rows: 4.5rem 4.5rem;
-    grid-template-columns: 16rem 16rem;
-    grid-template-areas: "button firstCount" "button secondCount";
-    justify-items: right;
-    align-items: center;
-    color: white;
-    font-size: 2rem; }
-    .singleplayer__menuSection__controll--replayButton {
-      font-size: 2.5rem;
-      text-align: center;
-      grid-area: button;
-      border-color: #bfcba8;
-      border-style: solid;
-      border-width: 0.4rem;
-      padding: 0.5rem;
-      justify-self: left; }
-      .singleplayer__menuSection__controll--replayButton:visited {
-        color: white; }
-    .singleplayer__menuSection__controll--firstCount {
-      grid-area: firstCount; }
-    .singleplayer__menuSection__controll--secondCount {
-      grid-area: secondCount; }
-  .singleplayer__menuSection__options {
-    display: grid;
-    grid-template-rows: 100%;
-    grid-template-columns: 30% 70%;
-    color: white;
-    align-items: center;
-    font-size: 2.4rem; }
-    .singleplayer__menuSection__options--homeButton {
-      border-color: #bfcba8;
-      border-style: solid;
-      border-width: 0.4rem;
-      padding: 0.5rem;
-      justify-self: left; }
-      .singleplayer__menuSection__options--homeButton:visited {
-        color: white; }
-    .singleplayer__menuSection__options--modeButton {
-      border-color: #bfcba8;
-      border-style: solid;
-      border-width: 0.4rem;
-      padding: 0.5rem;
-      justify-self: right; }
-      .singleplayer__menuSection__options--modeButton:visited {
-        color: white; }
+    justify-content: center;
+    align-content: flex-start;
+    grid-template-columns: 32rem;
+    gap: 1.5rem;
+    grid-template-rows: 7rem 9rem 7rem; }
+    .singleplayer__menuSection__display {
+      display: grid;
+      grid-template-rows: 1rem 5rem 1rem;
+      grid-template-columns: 1rem 30rem 1rem; }
+      .singleplayer__menuSection__display__line {
+        background-color: #56776c; }
+        .singleplayer__menuSection__display__line--1 {
+          grid-column: 1 / 1;
+          grid-row: 1 / -1;
+          border-top-right-radius: 1rem;
+          border-top-left-radius: 1rem;
+          border-bottom-left-radius: 1rem; }
+        .singleplayer__menuSection__display__line--2 {
+          grid-column: 3 / 3;
+          grid-row: 1 / -1;
+          border-bottom-left-radius: 1rem;
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem; }
+        .singleplayer__menuSection__display__line--3 {
+          grid-column: 2/2;
+          grid-row: 1/1;
+          width: 6rem;
+          justify-self: right;
+          border-bottom-left-radius: 1rem;
+          border-top-left-radius: 1rem; }
+        .singleplayer__menuSection__display__line--4 {
+          grid-column: 2/2;
+          grid-row: 3/3;
+          width: 6rem;
+          border-bottom-right-radius: 1rem;
+          border-top-right-radius: 1rem; }
+      .singleplayer__menuSection__display__message {
+        grid-column: 2/2;
+        grid-row: 2/2;
+        font-size: 2.5rem;
+        justify-self: center;
+        align-self: center;
+        padding-bottom: 0.4rem; }
+    .singleplayer__menuSection__control {
+      display: grid;
+      grid-template-rows: 4.5rem 4.5rem;
+      grid-template-columns: 16rem 16rem;
+      grid-template-areas: "button firstCount" "button secondCount";
+      justify-items: right;
+      align-items: center;
+      font-size: 2rem; }
+      .singleplayer__menuSection__control--replayButton {
+        font-weight: 700;
+        font-size: 2.5rem;
+        grid-area: button;
+        border-color: #bfcba8;
+        border-style: solid;
+        border-width: 0.6rem;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        justify-self: left; }
+        .singleplayer__menuSection__control--replayButton:visited {
+          color: white; }
+      .singleplayer__menuSection__control--firstCount {
+        grid-area: firstCount; }
+      .singleplayer__menuSection__control--secondCount {
+        grid-area: secondCount; }
+    .singleplayer__menuSection__options {
+      display: grid;
+      grid-template-rows: 100%;
+      grid-template-columns: 30% 70%;
+      align-items: center;
+      font-weight: 700;
+      font-size: 2.2rem; }
+      .singleplayer__menuSection__options__button {
+        border-color: #56776c;
+        border-style: solid;
+        border-width: 0.6rem;
+        padding: 1rem 1.5rem;
+        border-radius: 3rem; }
+        .singleplayer__menuSection__options__button--home {
+          justify-self: left; }
+        .singleplayer__menuSection__options__button--mode {
+          justify-self: right; }
+        .singleplayer__menuSection__options__button:visited {
+          color: white; }
 
 .app {
   width: 65rem;
