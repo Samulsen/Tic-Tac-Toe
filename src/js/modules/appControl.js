@@ -1,4 +1,5 @@
 // IMPORT_START:
+import gameMultiplayer from "./gameMultiplayer";
 import menuButtons from "./menuButtons";
 // IMPORT_END:
 
@@ -19,6 +20,7 @@ const appControl = function () {
 
   //SECTION: calling controlfunctions
   menuButtons(...rootArrayArgs);
+  gameMultiplayer(multiplayerElement);
 };
 
 export default appControl;
