@@ -68,8 +68,12 @@ const gameMultiplayer = function (multiplayerElement) {
         return false;
       }
     }
-    testLog() {
-      console.log(this);
+
+    reset() {
+      this.attachedField.innerHTML = "";
+      this.pollution = "";
+      this.polutted = false;
+      this.value = 0;
     }
   };
 
@@ -142,7 +146,6 @@ const gameMultiplayer = function (multiplayerElement) {
     handleMove(fieldNum) {
       this.place(fieldNum);
       this.switchStatus();
-      return this;
     },
     updateMessage(winner) {
       if (this.gameStatus === "ongoing") {
@@ -160,7 +163,9 @@ const gameMultiplayer = function (multiplayerElement) {
       }
     },
     start() {
-      this.switchStatus();
+      this.currentPlayer = this.Player1;
+      this.gameStatus = "ongoing";
+      this.updateMessage();
       this.buildField();
     },
     checkDraw() {
@@ -206,6 +211,8 @@ const gameMultiplayer = function (multiplayerElement) {
   MultiplayerGame.start();
 
   //SECTION: Event handling
+
+  //SUB_SECTION: Handle Placements Reqs!
   gamefieldParent.addEventListener("click", (event) => {
     if (event.target.classList[0].includes("fieldBox")) {
       //SECTION: Insert correct object and switch to other player
@@ -229,6 +236,14 @@ const gameMultiplayer = function (multiplayerElement) {
         }
       }
     }
+  });
+
+  //SUB_SECTION: Handle Replays Reqs!
+  replayButton.addEventListener("click", () => {
+    MultiplayerGame.field.forEach((sField) => {
+      sField.reset();
+    });
+    MultiplayerGame.start();
   });
 };
 
