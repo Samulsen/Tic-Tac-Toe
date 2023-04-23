@@ -19,4 +19,7 @@ import appControl from "./modules/appControl";
 
 // ----------------------- END OF IMPORTS -------------------------
 
+// if (module.hot) {
+//   module.hot.accept();
+// }
 appControl();
