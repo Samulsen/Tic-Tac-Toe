@@ -104,6 +104,7 @@ const gameMultiplayer = function (multiplayerElement) {
     resetCount() {}
   };
 
+  //SECTION: GAME LOGIC
   const MultiplayerGame = {
     field: [],
     checkOptions: {
@@ -126,6 +127,7 @@ const gameMultiplayer = function (multiplayerElement) {
     Player2: new Player(2, Circle),
     currentPlayer: "this.Player1",
     gameStatus: "ongoing",
+    stepStatus: 0,
 
     buildField() {
       field = [];
@@ -165,20 +167,15 @@ const gameMultiplayer = function (multiplayerElement) {
     start() {
       this.currentPlayer = this.Player1;
       this.gameStatus = "ongoing";
+      this.stepStatus = 0;
       this.updateMessage();
       this.buildField();
     },
     checkDraw() {
-      let isDraw;
-      const pollution = [];
-      for (const sField of this.field) {
-        pollution.push(sField.polutted);
-      }
-      if (pollution.includes(false)) {
-        isDraw = false;
-      } else {
-        isDraw = true;
-      }
+      let isDraw = false;
+      this.stepStatus++;
+      console.log(this.stepStatus);
+      if (this.stepStatus === 9) isDraw = true;
       return isDraw;
     },
     checkWin() {
@@ -212,8 +209,15 @@ const gameMultiplayer = function (multiplayerElement) {
 
   //SECTION: Event handling
 
-  //SUB_SECTION: Handle Placements Reqs!
-  gamefieldParent.addEventListener("click", (event) => {
+  //SUB_SECTION: Handler Function defintions
+
+  //NOTE: Both functions have to be declarations because of calling order!
+
+  function removeClickability() {
+    gamefieldParent.removeEventListener("click", handleGamelogic);
+  }
+
+  function handleGamelogic(event) {
     if (event.target.classList[0].includes("fieldBox")) {
       //SECTION: Insert correct object and switch to other player
       const field = parseInt(event.target.classList[1].slice(-1), 10);
@@ -225,25 +229,34 @@ const gameMultiplayer = function (multiplayerElement) {
         MultiplayerGame.gameStatus = "won";
         MultiplayerGame.updateMessage(winCheck);
         winCheck.increaseCount();
+        removeClickability();
+        // gamefieldParent.remove
       } else {
         if (MultiplayerGame.checkDraw()) {
           console.log("DRAW!");
           MultiplayerGame.gameStatus = "draw";
           MultiplayerGame.updateMessage();
+          removeClickability();
         } else {
           console.log("CONTINUE!");
           MultiplayerGame.updateMessage();
         }
       }
     }
-  });
+  }
+
+  //SUB_SECTION: Handle Placements Reqs!
+
+  gamefieldParent.addEventListener("click", handleGamelogic);
 
   //SUB_SECTION: Handle Replays Reqs!
+
   replayButton.addEventListener("click", () => {
     MultiplayerGame.field.forEach((sField) => {
       sField.reset();
     });
     MultiplayerGame.start();
+    gamefieldParent.addEventListener("click", handleGamelogic);
   });
 };
 
