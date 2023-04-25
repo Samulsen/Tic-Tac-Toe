@@ -23,6 +23,9 @@ const gameSingpleplayer = function (singleplayerElement) {
   const selector = optionBox.querySelector(
     ".singleplayer__gameSection__optionBox--selector"
   );
+  const confirmButton = optionBox.querySelector(
+    ".singleplayer__gameSection__optionBox--confirm"
+  );
   const gameMessage = singleplayerElement.querySelector(
     ".singleplayer__menuSection__display__message"
   );
@@ -120,7 +123,9 @@ const gameSingpleplayer = function (singleplayerElement) {
       ],
     },
     startingEntity: "",
-    gameStatus: "ongoing",
+    secondEntity: "",
+    currentEntity: "",
+    gameStatus: "choice",
     stepStatus: 0,
 
     buildField() {
@@ -129,22 +134,61 @@ const gameSingpleplayer = function (singleplayerElement) {
         this.field.push(new Field(i));
       }
     },
-    checkStart() {
+    prepStart() {
       if (this.startingEntity === Player) {
+        gameMessage.textContent = "Turn: Player!";
       }
 
       if (this.startingEntity === Computer) {
+        gameMessage.textContent = "Turn: Computer!";
       }
+    },
+    start() {
+      this.stepStatus = 0;
+      this.gameStatus = "ongoing";
+      this.prepStart();
+    },
+    handleMove() {},
+    playerMove() {},
+    computerMove() {},
+    checkDraw() {
+      let isDraw = false;
+      this.stepStatus++;
+      console.log(this.stepStatus);
+      if (this.stepStatus === 9) isDraw = true;
+      return isDraw;
+    },
+    checkWin() {
+      let winner;
+      for (const direction in this.checkOptions) {
+        const options = this.checkOptions[direction];
+        options.forEach((singleOption) => {
+          let value = 0;
+          singleOption.forEach((num) => {
+            const index = num - 1;
+            const fieldValue = this.field[index].value;
+            value = value + fieldValue;
+            if (value === 12) {
+              console.log(`${this.startingEntity} WON!`);
+              winner = this.startingEntity;
+            }
+            if (value === 3) {
+              console.log(`${this.secondEntity} WON!`);
+              winner = this.secondEntity;
+            }
+          });
+        });
+      }
+      return winner || false;
     },
   };
 
   //SECTION: Event handling
 
+  //SUB_SECTION: Options selection handling
+
   gameMessage.addEventListener("click", () => {
-    let state = optionBox.style.display;
-    if (state === "") optionBox.style.display = "grid";
-    if (state === "none") optionBox.style.display = "grid";
-    if (state === "grid") optionBox.style.display = "none";
+    optionBox.style.display = "grid";
   });
 
   circleOption.addEventListener("click", () => {
@@ -152,12 +196,37 @@ const gameSingpleplayer = function (singleplayerElement) {
     Player.AssignedSymbol = Circle;
     Computer.AssignedSymbol = Cross;
     Game.startingEntity = Computer;
+    Game.secondEntity = Player;
   });
   crossOption.addEventListener("click", () => {
     selector.style.gridArea = "cro-s";
     Player.AssignedSymbol = Cross;
     Computer.AssignedSymbol = Circle;
     Game.startingEntity = Player;
+    Game.startingEntity = Computer;
+  });
+
+  confirmButton.addEventListener("click", () => {
+    Game.gameStatus = "ongoing";
+    optionBox.style.display = "none";
+    //START FUNCTION
+    Game.prepStart();
+  });
+
+  //SUB_SECTION: Game logic handling, after selection
+
+  //NOTE: Function declaration
+
+  //NOTE: event listening
+
+  gamefieldParent.addEventListener("click", console.log);
+
+  //SUB_SECTION: Replay handling
+
+  replayButton.addEventListener("click", () => {
+    Game.field.forEach((sField) => {
+      sField.reset();
+    });
   });
 };
 
