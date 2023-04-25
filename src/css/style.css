@@ -325,15 +325,15 @@ html {
       border-radius: 1rem;
       border-style: solid;
       border-color: white;
-      padding: 2rem;
+      padding: 1rem 2rem;
       display: none;
       justify-content: center;
       align-content: center;
       justify-items: center;
       align-items: center;
-      grid-template-rows: 15% 30% 30% 10%;
+      grid-template-rows: 15% 28% 30% 10% 17%;
       grid-template-columns: 49% 2% 49%;
-      grid-template-areas: "title title title" "note note note" "circle gap cross" "cir-s gap cro-s"; }
+      grid-template-areas: "title title title" "note note note" "circle gap cross" "cir-s gap cro-s" "row row row"; }
       .singleplayer__gameSection__optionBox--title {
         grid-area: title;
         font-size: 2.5rem;
@@ -362,6 +362,16 @@ html {
       .singleplayer__gameSection__optionBox--selector {
         padding: 5rem;
         grid-area: cir-s; }
+      .singleplayer__gameSection__optionBox--confirm {
+        align-self: flex-end;
+        font-size: 1.4rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem;
+        cursor: pointer;
+        grid-area: row; }
   .singleplayer__menuSection {
     padding-top: 1rem;
     grid-area: menuSection;

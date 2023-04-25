@@ -92,10 +92,51 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   // SECTION: Game logic and state
 
-  const Player = {};
-  const Computer = {};
+  const Player = {
+    AssignedSymbol: Circle,
+    WinCount: 0,
+  };
+  const Computer = {
+    AssignedSymbol: Cross,
+    WinCount: 0,
+  };
 
-  const currentPlayer = {};
+  const Game = {
+    field: [],
+    checkOptions: {
+      hor: [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ],
+      ver: [
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+      ],
+      dia: [
+        [1, 5, 9],
+        [3, 5, 7],
+      ],
+    },
+    startingEntity: "",
+    gameStatus: "ongoing",
+    stepStatus: 0,
+
+    buildField() {
+      field = [];
+      for (let i = 1; i < 10; i++) {
+        this.field.push(new Field(i));
+      }
+    },
+    checkStart() {
+      if (this.startingEntity === Player) {
+      }
+
+      if (this.startingEntity === Computer) {
+      }
+    },
+  };
 
   //SECTION: Event handling
 
@@ -108,9 +149,15 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   circleOption.addEventListener("click", () => {
     selector.style.gridArea = "cir-s";
+    Player.AssignedSymbol = Circle;
+    Computer.AssignedSymbol = Cross;
+    Game.startingEntity = Computer;
   });
   crossOption.addEventListener("click", () => {
     selector.style.gridArea = "cro-s";
+    Player.AssignedSymbol = Cross;
+    Computer.AssignedSymbol = Circle;
+    Game.startingEntity = Player;
   });
 };
 

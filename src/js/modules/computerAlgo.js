@@ -1,5 +1,5 @@
 const computer = function () {
-  console.log("test");
+  return 4;
 };
 
 export default computer;
