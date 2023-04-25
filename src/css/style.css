@@ -244,57 +244,6 @@ html {
     grid-template-columns: 100%;
     grid-template-rows: 16rem 36rem 30rem;
     grid-template-areas: "titleSection" "gameSection" "menuSection"; }
-  .singleplayer__gameSection {
-    grid-area: gameSection;
-    display: grid;
-    grid-template-columns: repeat(32, 1rem);
-    grid-template-rows: repeat(32, 1rem);
-    justify-content: center;
-    align-content: center; }
-    .singleplayer__gameSection__fieldline {
-      background-color: white;
-      border-radius: 1rem; }
-      .singleplayer__gameSection__fieldline__horizontal--1 {
-        grid-row: 11/11;
-        grid-column: 1 / -1; }
-      .singleplayer__gameSection__fieldline__horizontal--2 {
-        grid-row: 22/22;
-        grid-column: 1 / -1; }
-      .singleplayer__gameSection__fieldline__vertical--1 {
-        grid-column: 11/11;
-        grid-row: 1 / -1; }
-      .singleplayer__gameSection__fieldline__vertical--2 {
-        grid-column: 22/22;
-        grid-row: 1 / -1; }
-    .singleplayer__gameSection__fieldBox--1 {
-      grid-row: 1/11;
-      grid-column: 1/11; }
-    .singleplayer__gameSection__fieldBox--2 {
-      grid-row: 1/11;
-      grid-column: 12/22; }
-    .singleplayer__gameSection__fieldBox--3 {
-      grid-row: 1/11;
-      grid-column: 23/33; }
-    .singleplayer__gameSection__fieldBox--4 {
-      grid-row: 12/22;
-      grid-column: 1/11; }
-    .singleplayer__gameSection__fieldBox--5 {
-      grid-row: 12/22;
-      grid-column: 12/22; }
-    .singleplayer__gameSection__fieldBox--6 {
-      grid-row: 12/22;
-      grid-column: 23/33; }
-    .singleplayer__gameSection__fieldBox--7 {
-      grid-row: 23/33;
-      grid-column: 1/11; }
-    .singleplayer__gameSection__fieldBox--8 {
-      grid-row: 23/33;
-      grid-column: 12/22; }
-    .singleplayer__gameSection__fieldBox--9 {
-      grid-row: 23/33;
-      grid-column: 23/33; }
-    .singleplayer__gameSection__circle {
-      padding: 1.2rem; }
   .singleplayer__titleSection {
     grid-area: titleSection;
     display: grid;
@@ -314,6 +263,103 @@ html {
       font-weight: 700;
       justify-self: center;
       align-self: flex-end; }
+  .singleplayer__gameSection {
+    grid-area: gameSection;
+    display: grid;
+    grid-template-columns: repeat(32, 1rem);
+    grid-template-rows: repeat(32, 1rem);
+    justify-content: center;
+    align-content: center; }
+    .singleplayer__gameSection__fieldline {
+      background-color: white;
+      border-radius: 1rem;
+      z-index: 1; }
+      .singleplayer__gameSection__fieldline__horizontal--1 {
+        grid-row: 11/11;
+        grid-column: 1 / -1; }
+      .singleplayer__gameSection__fieldline__horizontal--2 {
+        grid-row: 22/22;
+        grid-column: 1 / -1; }
+      .singleplayer__gameSection__fieldline__vertical--1 {
+        grid-column: 11/11;
+        grid-row: 1 / -1; }
+      .singleplayer__gameSection__fieldline__vertical--2 {
+        grid-column: 22/22;
+        grid-row: 1 / -1; }
+    .singleplayer__gameSection__fieldBox {
+      z-index: 1; }
+      .singleplayer__gameSection__fieldBox--1 {
+        grid-row: 1/11;
+        grid-column: 1/11; }
+      .singleplayer__gameSection__fieldBox--2 {
+        grid-row: 1/11;
+        grid-column: 12/22; }
+      .singleplayer__gameSection__fieldBox--3 {
+        grid-row: 1/11;
+        grid-column: 23/33; }
+      .singleplayer__gameSection__fieldBox--4 {
+        grid-row: 12/22;
+        grid-column: 1/11; }
+      .singleplayer__gameSection__fieldBox--5 {
+        grid-row: 12/22;
+        grid-column: 12/22; }
+      .singleplayer__gameSection__fieldBox--6 {
+        grid-row: 12/22;
+        grid-column: 23/33; }
+      .singleplayer__gameSection__fieldBox--7 {
+        grid-row: 23/33;
+        grid-column: 1/11; }
+      .singleplayer__gameSection__fieldBox--8 {
+        grid-row: 23/33;
+        grid-column: 12/22; }
+      .singleplayer__gameSection__fieldBox--9 {
+        grid-row: 23/33;
+        grid-column: 23/33; }
+    .singleplayer__gameSection__circle {
+      padding: 1.2rem; }
+    .singleplayer__gameSection__optionBox {
+      background-color: #5b8a72;
+      z-index: 2;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      border-radius: 1rem;
+      border-style: solid;
+      border-color: white;
+      padding: 2rem;
+      display: none;
+      justify-content: center;
+      align-content: center;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 15% 30% 30% 10%;
+      grid-template-columns: 49% 2% 49%;
+      grid-template-areas: "title title title" "note note note" "circle gap cross" "cir-s gap cro-s"; }
+      .singleplayer__gameSection__optionBox--title {
+        grid-area: title;
+        font-size: 2.5rem;
+        font-weight: 700; }
+      .singleplayer__gameSection__optionBox--note {
+        grid-area: note;
+        font-size: 2rem;
+        font-weight: 100;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word; }
+      .singleplayer__gameSection__optionBox--circle {
+        grid-area: circle;
+        padding: 3.2rem; }
+      .singleplayer__gameSection__optionBox--cross {
+        grid-area: cross;
+        padding: 2.5rem; }
+      .singleplayer__gameSection__optionBox--divider {
+        grid-row: 3/4;
+        grid-column: 2/3;
+        background-color: white;
+        justify-self: stretch;
+        align-self: stretch; }
+      .singleplayer__gameSection__optionBox--selector {
+        padding: 5rem;
+        grid-area: cir-s; }
   .singleplayer__menuSection {
     padding-top: 1rem;
     grid-area: menuSection;
@@ -444,7 +490,8 @@ html {
     align-content: center; }
     .multiplayer__gameSection__fieldline {
       background-color: white;
-      border-radius: 1rem; }
+      border-radius: 1rem;
+      z-index: 1; }
       .multiplayer__gameSection__fieldline__horizontal--1 {
         grid-row: 11/11;
         grid-column: 1 / -1; }
@@ -457,33 +504,35 @@ html {
       .multiplayer__gameSection__fieldline__vertical--2 {
         grid-column: 22/22;
         grid-row: 1 / -1; }
-    .multiplayer__gameSection__fieldBox--1 {
-      grid-row: 1/11;
-      grid-column: 1/11; }
-    .multiplayer__gameSection__fieldBox--2 {
-      grid-row: 1/11;
-      grid-column: 12/22; }
-    .multiplayer__gameSection__fieldBox--3 {
-      grid-row: 1/11;
-      grid-column: 23/33; }
-    .multiplayer__gameSection__fieldBox--4 {
-      grid-row: 12/22;
-      grid-column: 1/11; }
-    .multiplayer__gameSection__fieldBox--5 {
-      grid-row: 12/22;
-      grid-column: 12/22; }
-    .multiplayer__gameSection__fieldBox--6 {
-      grid-row: 12/22;
-      grid-column: 23/33; }
-    .multiplayer__gameSection__fieldBox--7 {
-      grid-row: 23/33;
-      grid-column: 1/11; }
-    .multiplayer__gameSection__fieldBox--8 {
-      grid-row: 23/33;
-      grid-column: 12/22; }
-    .multiplayer__gameSection__fieldBox--9 {
-      grid-row: 23/33;
-      grid-column: 23/33; }
+    .multiplayer__gameSection__fieldBox {
+      z-index: 1; }
+      .multiplayer__gameSection__fieldBox--1 {
+        grid-row: 1/11;
+        grid-column: 1/11; }
+      .multiplayer__gameSection__fieldBox--2 {
+        grid-row: 1/11;
+        grid-column: 12/22; }
+      .multiplayer__gameSection__fieldBox--3 {
+        grid-row: 1/11;
+        grid-column: 23/33; }
+      .multiplayer__gameSection__fieldBox--4 {
+        grid-row: 12/22;
+        grid-column: 1/11; }
+      .multiplayer__gameSection__fieldBox--5 {
+        grid-row: 12/22;
+        grid-column: 12/22; }
+      .multiplayer__gameSection__fieldBox--6 {
+        grid-row: 12/22;
+        grid-column: 23/33; }
+      .multiplayer__gameSection__fieldBox--7 {
+        grid-row: 23/33;
+        grid-column: 1/11; }
+      .multiplayer__gameSection__fieldBox--8 {
+        grid-row: 23/33;
+        grid-column: 12/22; }
+      .multiplayer__gameSection__fieldBox--9 {
+        grid-row: 23/33;
+        grid-column: 23/33; }
     .multiplayer__gameSection__circle {
       padding: 1.2rem; }
   .multiplayer__titleSection {

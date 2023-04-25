@@ -75,6 +75,7 @@
   &__fieldline {
     background-color: white;
     border-radius: 1rem;
+    z-index: 1;
 
     &__horizontal {
       &--1 {
@@ -106,6 +107,7 @@
   &__fieldBox {
     // background-color: rgba(128, 128, 128, 0.244);
     //SECTION_START: First Row
+    z-index: 1;
     &--1 {
       grid-row: 1/11;
       grid-column: 1/11;

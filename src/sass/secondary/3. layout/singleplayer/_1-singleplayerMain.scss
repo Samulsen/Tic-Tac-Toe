@@ -5,13 +5,81 @@
     @include mainContainer(#464f41);
   }
 
+  &__titleSection {
+    @include titleSection(#5b8a72);
+  }
+
   &__gameSection {
     @include baseGameSection;
     @include extensionGameSection;
-  }
 
-  &__titleSection {
-    @include titleSection(#5b8a72);
+    &__optionBox {
+      // SECTION: Style Settings
+
+      background-color: #5b8a72;
+      z-index: 2;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      border-radius: 1rem;
+      border-style: solid;
+      border-color: white;
+      padding: 2rem;
+
+      //SECTION: Gridsettings
+
+      display: none;
+      justify-content: center;
+      align-content: center;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 15% 30% 30% 10%;
+      grid-template-columns: 49% 2% 49%;
+      grid-template-areas:
+        "title title title"
+        "note note note"
+        "circle gap cross"
+        "cir-s gap cro-s";
+
+      //SECTION: Childselection
+
+      &--title {
+        grid-area: title;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      &--note {
+        grid-area: note;
+        font-size: 2rem;
+        font-weight: 100;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      &--circle {
+        grid-area: circle;
+        padding: 3.2rem;
+      }
+
+      &--cross {
+        grid-area: cross;
+        padding: 2.5rem;
+      }
+
+      &--divider {
+        grid-row: 3/4;
+        grid-column: 2/3;
+        background-color: white;
+        justify-self: stretch;
+        align-self: stretch;
+      }
+
+      &--selector {
+        padding: 5rem;
+        grid-area: cir-s;
+      }
+    }
   }
 
   &__menuSection {
