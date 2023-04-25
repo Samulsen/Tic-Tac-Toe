@@ -1,34 +1,35 @@
 //IMPORT_START:
 
-import mulCircle from "../../svg/multiplayer/mulCircle.svg";
-import mulCross from "../../svg/multiplayer/mulCross.svg";
+import computer from "./computerAlgo";
+import sinCircle from "../../svg/singleplayer/sinCircle.svg";
+import sinCross from "../../svg/singleplayer/sinCross.svg";
 
 //IMPORT_END:
 
-const gameMultiplayer = function (multiplayerElement) {
+const gameSingpleplayer = function (singleplayerElement) {
   //SECTION: OBJECT SELECTION
-  const gamefieldParent = multiplayerElement.querySelector(
-    ".multiplayer__gameSection"
+  const gamefieldParent = singleplayerElement.querySelector(
+    ".singleplayer__gameSection"
   );
-  const gameMessage = multiplayerElement.querySelector(
-    ".multiplayer__menuSection__display__message"
+  const gameMessage = singleplayerElement.querySelector(
+    ".singleplayer__menuSection__display__message"
   );
-  const countPlayer1 = multiplayerElement.querySelector(
-    ".multiplayer__menuSection__control--firstCount"
+  const countPlayer1 = singleplayerElement.querySelector(
+    ".singleplayer__menuSection__control--firstCount"
   );
-  const countPlayer2 = multiplayerElement.querySelector(
-    ".multiplayer__menuSection__control--secondCount"
+  const countPlayer2 = singleplayerElement.querySelector(
+    ".singleplayer__menuSection__control--secondCount"
   );
-  const replayButton = multiplayerElement.querySelector(
-    ".multiplayer__menuSection__control--replayButton"
+  const replayButton = singleplayerElement.querySelector(
+    ".singleplayer__menuSection__control--replayButton"
   );
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
     constructor() {
       const newCross = document.createElement("img");
-      newCross.classList.add("multiplayer__gameSection__cross");
-      newCross.src = mulCross;
+      newCross.classList.add("singleplayer__gameSection__cross");
+      newCross.src = sinCross;
       newCross.alt = "mulCross";
       return [newCross, 4];
     }
@@ -37,9 +38,9 @@ const gameMultiplayer = function (multiplayerElement) {
   const Circle = class {
     constructor() {
       const newCircle = document.createElement("img");
-      newCircle.classList.add("multiplayer__gameSection__circle");
-      newCircle.src = mulCircle;
-      newCircle.alt = "mulCircle";
+      newCircle.classList.add("singleplayer__gameSection__circle");
+      newCircle.src = sinCircle;
+      newCircle.alt = "sinCircle";
       return [newCircle, 1];
     }
   };
@@ -48,7 +49,7 @@ const gameMultiplayer = function (multiplayerElement) {
     constructor(fieldNum) {
       this.fieldNum = fieldNum;
       this.attachedField = document.querySelector(
-        `.multiplayer__gameSection__fieldBox--${this.fieldNum}`
+        `.singleplayer__gameSection__fieldBox--${this.fieldNum}`
       );
       this.polutted = false;
       this.pollution = "";
@@ -92,10 +93,10 @@ const gameMultiplayer = function (multiplayerElement) {
       this.WinCount = this.WinCount + 1;
       const paddedValue = this.WinCount.toString().padStart(2, "0");
       if (this.PlayerNum === 1) {
-        countPlayer1.textContent = `Player 1: ${paddedValue}`;
+        countPlayer1.textContent = `PLAYER: ${paddedValue}`;
       }
       if (this.PlayerNum === 2) {
-        countPlayer2.textContent = `Player 2: ${paddedValue}`;
+        countPlayer2.textContent = `COMPUTER: ${paddedValue}`;
       } else {
         console.log(this.PlayerNum);
       }
@@ -260,4 +261,4 @@ const gameMultiplayer = function (multiplayerElement) {
   });
 };
 
-export default gameMultiplayer;
+export default gameSingpleplayer;
