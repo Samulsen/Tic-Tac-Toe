@@ -221,7 +221,7 @@ html {
   border-color: white;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  display: none;
+  display: grid;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
   grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }
@@ -412,7 +412,7 @@ html {
   border-color: white;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  display: grid;
+  display: none;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
   grid-template-areas: "two two two two two two two one one one" "main main main main main main main main main main" "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL"; }

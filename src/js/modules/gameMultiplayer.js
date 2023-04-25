@@ -1,8 +1,8 @@
 //IMPORT_START:
 
-import { multiply } from "lodash";
 import mulCircle from "../../svg/multiplayer/mulCircle.svg";
 import mulCross from "../../svg/multiplayer/mulCross.svg";
+
 //IMPORT_END:
 
 const gameMultiplayer = function (multiplayerElement) {

@@ -1,5 +1,5 @@
 .singleplayer {
-  @include baseContainer(none, white, #56776c, #bfcba8);
+  @include baseContainer(grid, white, #56776c, #bfcba8);
 
   &__main-container {
     @include mainContainer(#464f41);

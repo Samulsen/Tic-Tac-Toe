@@ -1,5 +1,5 @@
 .multiplayer {
-  @include baseContainer(grid, rgb(255, 255, 255), #e7f6f2, #a5c9ca);
+  @include baseContainer(none, rgb(255, 255, 255), #e7f6f2, #a5c9ca);
 
   &__main-container {
     @include mainContainer(#395b64);
