@@ -347,10 +347,12 @@ html {
         overflow-wrap: break-word; }
       .singleplayer__gameSection__optionBox--circle {
         grid-area: circle;
-        padding: 3.2rem; }
+        padding: 3.2rem;
+        cursor: pointer; }
       .singleplayer__gameSection__optionBox--cross {
         grid-area: cross;
-        padding: 2.5rem; }
+        padding: 2.5rem;
+        cursor: pointer; }
       .singleplayer__gameSection__optionBox--divider {
         grid-row: 3/4;
         grid-column: 2/3;
@@ -406,7 +408,8 @@ html {
         font-size: 2.5rem;
         justify-self: center;
         align-self: center;
-        padding-bottom: 0.4rem; }
+        padding-bottom: 0.4rem;
+        cursor: pointer; }
     .singleplayer__menuSection__control {
       display: grid;
       grid-template-rows: 4.5rem 4.5rem;
@@ -600,7 +603,8 @@ html {
         font-size: 2.5rem;
         justify-self: center;
         align-self: center;
-        padding-bottom: 0.4rem; }
+        padding-bottom: 0.4rem;
+        cursor: pointer; }
     .multiplayer__menuSection__control {
       display: grid;
       grid-template-rows: 4.5rem 4.5rem;

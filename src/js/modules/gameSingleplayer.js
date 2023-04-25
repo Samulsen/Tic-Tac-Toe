@@ -11,6 +11,18 @@ const gameSingpleplayer = function (singleplayerElement) {
   const gamefieldParent = singleplayerElement.querySelector(
     ".singleplayer__gameSection"
   );
+  const optionBox = gamefieldParent.querySelector(
+    ".singleplayer__gameSection__optionBox"
+  );
+  const circleOption = optionBox.querySelector(
+    ".singleplayer__gameSection__optionBox--circle"
+  );
+  const crossOption = optionBox.querySelector(
+    ".singleplayer__gameSection__optionBox--cross"
+  );
+  const selector = optionBox.querySelector(
+    ".singleplayer__gameSection__optionBox--selector"
+  );
   const gameMessage = singleplayerElement.querySelector(
     ".singleplayer__menuSection__display__message"
   );
@@ -77,6 +89,29 @@ const gameSingpleplayer = function (singleplayerElement) {
       this.value = 0;
     }
   };
+
+  // SECTION: Game logic and state
+
+  const Player = {};
+  const Computer = {};
+
+  const currentPlayer = {};
+
+  //SECTION: Event handling
+
+  gameMessage.addEventListener("click", () => {
+    let state = optionBox.style.display;
+    if (state === "") optionBox.style.display = "grid";
+    if (state === "none") optionBox.style.display = "grid";
+    if (state === "grid") optionBox.style.display = "none";
+  });
+
+  circleOption.addEventListener("click", () => {
+    selector.style.gridArea = "cir-s";
+  });
+  crossOption.addEventListener("click", () => {
+    selector.style.gridArea = "cro-s";
+  });
 };
 
 export default gameSingpleplayer;
