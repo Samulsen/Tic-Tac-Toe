@@ -122,8 +122,8 @@ const gameSingpleplayer = function (singleplayerElement) {
         [3, 5, 7],
       ],
     },
-    startingEntity: "",
-    secondEntity: "",
+    startingEntity: Computer,
+    secondEntity: Player,
     currentEntity: "",
     gameStatus: "choice",
     stepStatus: 0,
@@ -203,7 +203,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     Player.AssignedSymbol = Cross;
     Computer.AssignedSymbol = Circle;
     Game.startingEntity = Player;
-    Game.startingEntity = Computer;
+    Game.secondEntity = Computer;
   });
 
   confirmButton.addEventListener("click", () => {
