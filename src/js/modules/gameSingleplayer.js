@@ -200,19 +200,19 @@ const gameSingpleplayer = function (singleplayerElement) {
             const index = num - 1;
             const fieldValue = this.field[index].value;
             value = value + fieldValue;
-            //NOTE: Check if CROSS won!
-            if (value === 12) {
-              gameMessage.textContent = `${this.startingEntity.Name} WON!`;
-              winner = this.startingEntity;
-              // console.warn(`Cross WON ---- ${this.startingEntity.Name}`);
-            }
-            //NOTE: Check if CIRCLE won!
-            if (value === 3) {
-              gameMessage.textContent = `${this.secondEntity.Name} WON!`;
-              winner = this.secondEntity;
-              // console.warn(`Circle WON ---- ${this.secondEntity.Name}`);
-            }
           });
+          //NOTE: Check if CROSS won!
+          if (value === 12) {
+            gameMessage.textContent = `${this.startingEntity.Name} WON!`;
+            winner = this.startingEntity;
+            // console.warn(`Cross WON ---- ${this.startingEntity.Name}`);
+          }
+          //NOTE: Check if CIRCLE won!
+          if (value === 3) {
+            gameMessage.textContent = `${this.secondEntity.Name} WON!`;
+            winner = this.secondEntity;
+            // console.warn(`Circle WON ---- ${this.secondEntity.Name}`);
+          }
         });
       }
       return winner || false;

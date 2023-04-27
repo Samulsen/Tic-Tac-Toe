@@ -1,14 +1,14 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, identity } from "lodash";
 
-let moves = [1, 2, 3, 7];
+let moves = [1, 5, 9];
 
 const computerAlgo = function (field, computerObject) {
-  let calculatedMove = 1;
+  let calculatedMove = 9;
   //SECTION: Resolve Identity;
 
   const Identity = {
-    identCross: { name: "Cross", value: 4 },
-    identCircle: { name: "Circle", value: 1 },
+    identCross: { name: "Cross", value: 4, winValue: 12 },
+    identCircle: { name: "Circle", value: 1, winValue: 3 },
     computer: "",
     player: "",
     resolveIdentity() {
@@ -113,7 +113,22 @@ const computerAlgo = function (field, computerObject) {
 
   const Simulation = {
     //SECTION: Simulation States
-
+    checkOptions: {
+      hor: [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ],
+      ver: [
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+      ],
+      dia: [
+        [1, 5, 9],
+        [3, 5, 7],
+      ],
+    },
     possibleWin: false,
     possibleLoose: false,
     possibleDraw: false,
@@ -141,14 +156,36 @@ const computerAlgo = function (field, computerObject) {
             const choosenField = this.copyFieldArr[fieldIndex];
             choosenField.polutted = true;
             choosenField.value = Identity.computer.value;
-            //NOTE: Debugging log;
-            console.log(this.copyFieldArr);
-            console.warn(field);
           },
-          check() {},
+          check() {
+            for (const direction in Simulation.checkOptions) {
+              const options = Simulation.checkOptions[direction];
+              for (const singleOption of options) {
+                let value = 0;
+                for (const fieldNum of singleOption) {
+                  const index = fieldNum - 1;
+                  const fieldValue = this.copyFieldArr[index].value;
+                  value = value + fieldValue;
+                }
+                if (value === Identity.computer.winValue) {
+                  console.log(
+                    `The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`
+                  );
+                  calculatedMove = moveVal.fieldVal;
+                  return true;
+                } else
+                  console.log(
+                    `The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
+                  );
+              }
+            }
+            return false;
+          },
         };
         simulator.insert();
+        if (simulator.check()) break;
       }
+      console.log("Finished my check!");
     },
     checkForLoose() {
       console.log("COMPUTER: Checking for = LOOSE");
