@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash";
+
 let moves = [1, 2, 3, 7];
 
 const computerAlgo = function (field, computerObject) {
@@ -123,6 +125,30 @@ const computerAlgo = function (field, computerObject) {
 
     checkForWin() {
       console.log("COMPUTER: Checking for = WIN");
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      // console.log(...Object.entries(unconvertedMoves[0][1]));
+      const availableMoves = [
+        ...Object.entries(unconvertedMoves[0][1]),
+        ...Object.entries(unconvertedMoves[1][1]),
+        ...Object.entries(unconvertedMoves[2][1]),
+      ];
+      console.log(availableMoves);
+      for (const [moveKey, moveVal] of availableMoves) {
+        const simulator = {
+          copyFieldArr: cloneDeep(field),
+          insert() {
+            const fieldIndex = moveVal.fieldVal - 1;
+            const choosenField = this.copyFieldArr[fieldIndex];
+            choosenField.polutted = true;
+            choosenField.value = Identity.computer.value;
+            //NOTE: Debugging log;
+            console.log(this.copyFieldArr);
+            console.warn(field);
+          },
+          check() {},
+        };
+        simulator.insert();
+      }
     },
     checkForLoose() {
       console.log("COMPUTER: Checking for = LOOSE");
