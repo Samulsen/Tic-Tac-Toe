@@ -1,7 +1,9 @@
-let moves = [5, 9, 4];
+let moves = [1, 2, 3, 7];
 
 const computerAlgo = function (field, computerObject) {
+  let calculatedMove = 1;
   //SECTION: Resolve Identity;
+
   const Identity = {
     identCross: { name: "Cross", value: 4 },
     identCircle: { name: "Circle", value: 1 },
@@ -26,12 +28,15 @@ const computerAlgo = function (field, computerObject) {
 
   //SECTION: Map Field Pollution
   const Pollution = {
-    pollutionStatus: false,
-    pollutionEdges: false,
-    pollutionSides: false,
-    pollutionMiddle: false,
+    //SECTION: Pollution States
 
-    //SECTION: Field destructuring
+    pollutionStatus: false,
+    // pollutionEdges: false,
+    // pollutionSides: false,
+    // pollutionMiddle: false,
+
+    //SECTION: Field destructuring of pollution
+
     generalPollutionMap: {
       Edge: {
         topLeft: { polVal: field[0].value, fieldVal: field[0].fieldNum },
@@ -59,7 +64,6 @@ const computerAlgo = function (field, computerObject) {
       Side: {},
       Middle: {},
     },
-
     unpollutedFieldsMap: {
       Edge: {},
       Side: {},
@@ -81,15 +85,15 @@ const computerAlgo = function (field, computerObject) {
     },
     checkRegion(place) {
       const edgesArr = Object.entries(this.generalPollutionMap[place]);
-      edgesArr.forEach(([edgeKey, edgeVal]) => {
-        const argArr = [place, [edgeKey, edgeVal]];
-        if (edgeVal.polVal === Identity.computer.value) {
+      edgesArr.forEach(([key, val]) => {
+        const argArr = [place, [key, val]];
+        if (val.polVal === Identity.computer.value) {
           this.addToMap(this.computerPollutionMap, ...argArr);
         }
-        if (edgeVal.polVal === Identity.player.value) {
+        if (val.polVal === Identity.player.value) {
           this.addToMap(this.playerPollutionMap, ...argArr);
         }
-        if (edgeVal.polVal === 0) {
+        if (val.polVal === 0) {
           this.addToMap(this.unpollutedFieldsMap, ...argArr);
         }
       });
@@ -105,12 +109,67 @@ const computerAlgo = function (field, computerObject) {
     },
   };
 
-  //SECTION: Testcalls
+  const Simulation = {
+    //SECTION: Simulation States
+
+    possibleWin: false,
+    possibleLoose: false,
+    possibleDraw: false,
+    possibleStrategy: true,
+
+    //SECTION: Methods
+
+    //SUB_SECTION: regular Checks
+
+    checkForWin() {
+      console.log("COMPUTER: Checking for = WIN");
+    },
+    checkForLoose() {
+      console.log("COMPUTER: Checking for = LOOSE");
+    },
+    checkForDraw() {
+      console.log("COMPUTER: Checking for = DRAW");
+    },
+
+    //SUB_SECTION: Strategies
+
+    checkForStrategy() {
+      console.log("COMPUTER: Checking for = STRATEGY");
+    },
+
+    //NOTE: Bundler Function
+    calcMove() {
+      //
+      if (this.possibleWin === true) this.checkForWin();
+
+      if (this.possibleLoose === true) this.checkForLoose();
+
+      if (this.possibleDraw === true) this.checkForDraw();
+
+      if (this.possibleStrategy === true) this.checkForStrategy();
+
+      return calculatedMove;
+    },
+  };
 
   Identity.resolveIdentity();
-  Pollution.checkEdges();
-  Pollution.checkSides();
-  Pollution.checkMiddle();
+  // Pollution.checkGeneral();
+  //NOTE: Short circuiting for now checkGeneral
+  Pollution.pollutionStatus = true;
+
+  if (Pollution.pollutionStatus) {
+    //NOTE: Evaluate field for upcoming Simulations
+    Pollution.checkEdges();
+    Pollution.checkSides();
+    Pollution.checkMiddle();
+    //NOTE: Switch Simulation chain
+    Simulation.possibleStrategy = false;
+    Simulation.possibleWin = true;
+  }
+
+  // if ()
+
+  //SECTION: Testcalls
 
   //NOTE: Debug logs
   console.log("----------------------Computer---------------------");
@@ -121,6 +180,7 @@ const computerAlgo = function (field, computerObject) {
   console.log(Pollution.unpollutedFieldsMap);
 
   //NOTE: Temp return for testing;
+  console.warn("My calculated move= " + Simulation.calcMove());
   return moves.pop();
 };
 
