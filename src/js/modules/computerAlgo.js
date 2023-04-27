@@ -1,4 +1,4 @@
-let moves = [5, 9];
+let moves = [5, 9, 4];
 
 const computerAlgo = function (field, computerObject) {
   //SECTION: Resolve Identity;
@@ -45,7 +45,9 @@ const computerAlgo = function (field, computerObject) {
         left: { polVal: field[3].value, fieldVal: field[3].fieldNum },
         right: { polVal: field[5].value, fieldVal: field[5].fieldNum },
       },
-      Middle: { polVal: field[4].value, fieldVal: field[4].fieldNum },
+      Middle: {
+        Middle: { polVal: field[4].value, fieldVal: field[4].fieldNum },
+      },
     },
     computerPollutionMap: {
       Edge: {},
@@ -77,33 +79,46 @@ const computerAlgo = function (field, computerObject) {
     addToMap(map, place, objectArr) {
       map[place][objectArr[0]] = objectArr[1];
     },
-    checkEdges() {
-      const edgesArr = Object.entries(this.generalPollutionMap.Edge);
+    checkRegion(place) {
+      const edgesArr = Object.entries(this.generalPollutionMap[place]);
       edgesArr.forEach(([edgeKey, edgeVal]) => {
-        // console.log(edgeKey, edgeVal);
+        const argArr = [place, [edgeKey, edgeVal]];
         if (edgeVal.polVal === Identity.computer.value) {
-          this.addToMap(this.computerPollutionMap, "Edge", [edgeKey, edgeVal]);
+          this.addToMap(this.computerPollutionMap, ...argArr);
         }
         if (edgeVal.polVal === Identity.player.value) {
-          this.addToMap(this.playerPollutionMap, "Edge", [edgeKey, edgeVal]);
+          this.addToMap(this.playerPollutionMap, ...argArr);
         }
         if (edgeVal.polVal === 0) {
-          this.addToMap(this.unpollutedFieldsMap, "Edge", [edgeKey, edgeVal]);
+          this.addToMap(this.unpollutedFieldsMap, ...argArr);
         }
       });
-      // console.log(this.computerPollutionMap);
-      // console.log(this.playerPollutionMap);
-      // console.log(this.unpollutedFieldsMap);
     },
-    checkSides() {},
-    checkMiddle() {},
+    checkEdges() {
+      this.checkRegion("Edge");
+    },
+    checkSides() {
+      this.checkRegion("Side");
+    },
+    checkMiddle() {
+      this.checkRegion("Middle");
+    },
   };
 
   //SECTION: Testcalls
-  // console.log(Pollution.Edge.topLeft);
-  // Pollution.genCheck();
+
   Identity.resolveIdentity();
   Pollution.checkEdges();
+  Pollution.checkSides();
+  Pollution.checkMiddle();
+
+  //NOTE: Debug logs
+  console.log("----------------------Computer---------------------");
+  console.log(Pollution.computerPollutionMap);
+  console.log("-----------------------Player----------------------");
+  console.log(Pollution.playerPollutionMap);
+  console.log("------------------------Free-----------------------");
+  console.log(Pollution.unpollutedFieldsMap);
 
   //NOTE: Temp return for testing;
   return moves.pop();
