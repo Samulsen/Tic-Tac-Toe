@@ -155,7 +155,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       Game.field.forEach((sField) => {
         sField.reset();
       });
-      console.log(this.field.length);
+      // console.log(this.field.length);
     },
     prepStart() {
       // console.log("Calling: prepStart()");

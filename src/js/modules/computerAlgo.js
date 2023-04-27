@@ -26,7 +26,10 @@ const computerAlgo = function (field, computerObject) {
 
   //SECTION: Map Field Pollution
   const Pollution = {
+    pollutionStatus: false,
+
     //SECTION: Field destructuring
+
     Edge: {
       topLeft: field[0].value,
       bottomLeft: field[6].value,
@@ -40,20 +43,25 @@ const computerAlgo = function (field, computerObject) {
       right: field[5].value,
     },
     Middle: field[4].value,
+
     //SECTION: Methods
+
     genCheck() {
-      let isPolluted = false;
-      console.log(field.length);
-      field.forEach((sField) => {
-        if (sField.value === 4 || sField.value === 1) isPolluted = true;
-      });
-      console.log("is polluted?= " + isPolluted);
-      return isPolluted;
+      for (const sField of field) {
+        if (sField.value === 4 || sField.value === 1) {
+          this.pollutionStatus = true;
+          break;
+        }
+      }
+      console.log(this.pollutionStatus);
     },
   };
+
   //SECTION: Testcalls
+
   Pollution.genCheck();
   // Identity.resolveIdentity();
+
   //NOTE: Temp return for testing;
   return moves.pop();
 };
