@@ -130,7 +130,7 @@ const gameMultiplayer = function (multiplayerElement) {
     stepStatus: 0,
 
     buildField() {
-      field = [];
+      this.field = [];
       for (let i = 1; i < 10; i++) {
         this.field.push(new Field(i));
       }

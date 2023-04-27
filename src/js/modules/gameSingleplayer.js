@@ -42,6 +42,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
     constructor() {
+      this.name = "Cross";
       const newCross = document.createElement("img");
       newCross.classList.add("singleplayer__gameSection__cross");
       newCross.src = sinCross;
@@ -52,6 +53,7 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   const Circle = class {
     constructor() {
+      this.name = "Circle";
       const newCircle = document.createElement("img");
       newCircle.classList.add("singleplayer__gameSection__circle");
       newCircle.src = sinCircle;
@@ -142,20 +144,21 @@ const gameSingpleplayer = function (singleplayerElement) {
     stepStatus: 0,
     //SECTION: Start methods for start and reset (replay)
     buildField() {
-      console.log("Calling: buildField()");
-      field = [];
+      // console.log("Calling: buildField()");
+      this.field = [];
       for (let i = 1; i < 10; i++) {
         this.field.push(new Field(i));
       }
     },
     resetFieldDOM() {
-      console.log("Calling: resetFieldDOM()");
+      // console.log("Calling: resetFieldDOM()");
       Game.field.forEach((sField) => {
         sField.reset();
       });
+      console.log(this.field.length);
     },
     prepStart() {
-      console.log("Calling: prepStart()");
+      // console.log("Calling: prepStart()");
       if (this.startingEntity === Player) {
         // gameMessage.textContent = "Turn: Player!";
         this.currentEntity = Player;
@@ -167,6 +170,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       }
     },
     start() {
+      console.clear();
       console.log("Calling: start()");
       this.stepStatus = 0;
       this.gameStatus = "ongoing";
@@ -177,15 +181,15 @@ const gameSingpleplayer = function (singleplayerElement) {
     },
     //SECTION: Check methods
     checkDraw() {
-      console.log("Calling: checkDraw()");
+      // console.log("Calling: checkDraw()");
       let isDraw = false;
       this.stepStatus++;
-      console.log("Step Status= " + this.stepStatus);
+      // console.log("Step Status= " + this.stepStatus);
       if (this.stepStatus === 9) isDraw = true;
       return isDraw;
     },
     checkWin() {
-      console.log("Calling: checkWin()");
+      // console.log("Calling: checkWin()");
       let winner;
       for (const direction in this.checkOptions) {
         const options = this.checkOptions[direction];
@@ -199,13 +203,13 @@ const gameSingpleplayer = function (singleplayerElement) {
             if (value === 12) {
               gameMessage.textContent = `${this.startingEntity.Name} WON!`;
               winner = this.startingEntity;
-              console.warn(`Cross WON ---- ${this.startingEntity.Name}`);
+              // console.warn(`Cross WON ---- ${this.startingEntity.Name}`);
             }
             //NOTE: Check if CIRCLE won!
             if (value === 3) {
               gameMessage.textContent = `${this.secondEntity.Name} WON!`;
               winner = this.secondEntity;
-              console.warn(`Circle WON ---- ${this.secondEntity.Name}`);
+              // console.warn(`Circle WON ---- ${this.secondEntity.Name}`);
             }
           });
         });
@@ -248,45 +252,47 @@ const gameSingpleplayer = function (singleplayerElement) {
     },
     //SECTION: Entity move methods
     firstMove() {
-      console.log("Calling: firstMove()");
+      // console.log("Calling: firstMove()");
       if (this.currentEntity === Player) this.playerMove();
       if (this.currentEntity === Computer) this.computerMove();
     },
     nextMove() {
-      console.log("Calling: nextMove()");
-      console.log("Check if currentEntity is Player");
+      // console.log("Calling: nextMove()");
+      // console.log("Check if currentEntity is Player");
 
       if (this.currentEntity === Player) {
-        console.log(
-          "currentEntity is Player --> switch to Computer and terminate function"
-        );
+        // console.log(
+        //   "currentEntity is Player --> switch to Computer and terminate function"
+        // );
         this.currentEntity = Computer;
         this.computerMove();
         return;
       }
 
-      console.log("Check if currtentEntity is Computer");
+      // console.log("Check if currtentEntity is Computer");
       if (this.currentEntity === Computer) {
-        console.log(
-          "currentEntity is Computer --> switch to Player and terminate function"
-        );
+        // console.log(
+        //   "currentEntity is Computer --> switch to Player and terminate function"
+        // );
         this.currentEntity = Player;
         this.playerMove();
         return;
       }
     },
     playerMove() {
-      console.log("Calling: playerMove()");
+      // console.log("Calling: playerMove()");
       gameMessage.textContent = "Turn: Player!";
       addClickability();
     },
     computerMove() {
-      console.log("Calling: computerMove()");
+      // console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
-      this.handleMove(computerAlgo());
+      this.handleMove(computerAlgo(Game.field, Computer));
       this.checkStatus();
     },
   };
+
+  // computerAlgo(Game.field, Computer);
 
   //SECTION: Event handling
 
@@ -339,12 +345,12 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   function removeClickability() {
     gamefieldParent.removeEventListener("click", handlePlayerClick);
-    console.log("----------------Removed Click!----------------");
+    // console.log("----------------Removed Click!----------------");
   }
 
   function addClickability() {
     gamefieldParent.addEventListener("click", handlePlayerClick);
-    console.log("------------------Added Click!----------------");
+    // console.log("------------------Added Click!----------------");
   }
 
   //SUB_SECTION: Replay handling
