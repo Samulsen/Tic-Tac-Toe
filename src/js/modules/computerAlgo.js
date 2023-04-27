@@ -1,4 +1,4 @@
-let moves = [1, 2, 3, 4, 5, 6];
+let moves = [1, 2, 3];
 
 const computerAlgo = function (field, computerObject) {
   //SECTION: Resolve Identity;
@@ -31,18 +31,18 @@ const computerAlgo = function (field, computerObject) {
     //SECTION: Field destructuring
 
     Edge: {
-      topLeft: field[0].value,
-      bottomLeft: field[6].value,
-      topRight: field[2].value,
-      bottomRight: field[8].value,
+      topLeft: { polVal: field[0].value, fieldVal: field[0].fieldNum },
+      bottomLeft: { polVal: field[6].value, fieldVal: field[6].fieldNum },
+      topRight: { polVal: field[2].value, fieldVal: field[2].fieldNum },
+      bottomRight: { polVal: field[8].value, fieldVal: field[8].fieldNum },
     },
     Side: {
-      top: field[1].value,
-      bottom: field[7].value,
-      left: field[3].value,
-      right: field[5].value,
+      top: { polVal: field[1].value, fieldVal: field[1].fieldNum },
+      bottom: { polVal: field[7].value, fieldVal: field[7].fieldNum },
+      left: { polVal: field[3].value, fieldVal: field[3].fieldNum },
+      right: { polVal: field[5].value, fieldVal: field[5].fieldNum },
     },
-    Middle: field[4].value,
+    Middle: { polVal: field[4].value, fieldVal: field[4].fieldNum },
 
     //SECTION: Methods
 
@@ -53,13 +53,12 @@ const computerAlgo = function (field, computerObject) {
           break;
         }
       }
-      console.log(this.pollutionStatus);
     },
   };
 
   //SECTION: Testcalls
-
-  Pollution.genCheck();
+  // console.log(Pollution.Edge.topLeft);
+  // Pollution.genCheck();
   // Identity.resolveIdentity();
 
   //NOTE: Temp return for testing;

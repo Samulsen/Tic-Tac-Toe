@@ -186,6 +186,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       this.stepStatus++;
       // console.log("Step Status= " + this.stepStatus);
       if (this.stepStatus === 9) isDraw = true;
+      gameMessage.textContent = "There is a draw!";
       return isDraw;
     },
     checkWin() {
@@ -217,7 +218,10 @@ const gameSingpleplayer = function (singleplayerElement) {
       return winner || false;
     },
     checkStatus() {
-      console.log("Calling: checkStatus()");
+      console.log("Calling: checkStatus()--------------------------------");
+
+      //SECTION: Check for Win
+
       if (typeof this.checkWin() === "object") {
         this.currentEntity.increaseCount();
         this.gameStatus = "won";
@@ -226,19 +230,25 @@ const gameSingpleplayer = function (singleplayerElement) {
           "---------------------------------------------------------------"
         );
         return;
-      } else {
-        if (this.checkDraw()) {
-          this.gameStatus = "draw";
-          console.log("There is a draw!");
-          return;
-        } else {
-          this.nextMove();
-          console.log("No Win or no Draw: Continue");
-          console.log(
-            "---------------------------------------------------------------"
-          );
-          return;
-        }
+      }
+
+      //SECTION: Check for Draw
+
+      if (this.checkDraw()) {
+        this.gameStatus = "draw";
+        console.log("There is a draw!");
+        return;
+      }
+
+      //SECTION: Check for Continue
+
+      if (!(this.gameStatus === "draw" || this.gameStatus === "won")) {
+        console.log("No Win or no Draw: Continue");
+        console.log(
+          "---------------------------------------------------------------"
+        );
+        this.nextMove();
+        return;
       }
     },
     //SECTION: Field pollution methods
@@ -280,12 +290,12 @@ const gameSingpleplayer = function (singleplayerElement) {
       }
     },
     playerMove() {
-      // console.log("Calling: playerMove()");
+      console.log("Calling: playerMove()");
       gameMessage.textContent = "Turn: Player!";
       addClickability();
     },
     computerMove() {
-      // console.log("Calling: computerMove()");
+      console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       this.handleMove(computerAlgo(Game.field, Computer));
       this.checkStatus();
