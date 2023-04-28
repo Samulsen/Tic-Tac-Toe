@@ -1,9 +1,9 @@
 import { cloneDeep, identity } from "lodash";
 
-let moves = [1, 5, 9];
+let moves = [3, 4, 8];
 
 const computerAlgo = function (field, computerObject) {
-  let calculatedMove = 9;
+  let calculatedMove;
   //SECTION: Resolve Identity;
 
   const Identity = {
@@ -29,6 +29,7 @@ const computerAlgo = function (field, computerObject) {
   };
 
   //SECTION: Map Field Pollution
+
   const Pollution = {
     //SECTION: Pollution States
 
@@ -111,6 +112,8 @@ const computerAlgo = function (field, computerObject) {
     },
   };
 
+  //SECTION: Simulate different outcomes OR strategies
+
   const Simulation = {
     //SECTION: Simulation States
     checkOptions: {
@@ -129,25 +132,25 @@ const computerAlgo = function (field, computerObject) {
         [3, 5, 7],
       ],
     },
-    possibleWin: false,
-    possibleLoose: false,
-    possibleDraw: false,
-    possibleStrategy: true,
+    possibleWin: true,
+    possibleLoose: true,
+    possibleDraw: true,
+    possibleStrategy: false,
 
     //SECTION: Methods
 
     //SUB_SECTION: regular Checks
 
     checkForWin() {
-      console.log("COMPUTER: Checking for = WIN");
+      console.warn("COMPUTER: Checking for = WIN");
       const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
-      // console.log(...Object.entries(unconvertedMoves[0][1]));
+
       const availableMoves = [
         ...Object.entries(unconvertedMoves[0][1]),
         ...Object.entries(unconvertedMoves[1][1]),
         ...Object.entries(unconvertedMoves[2][1]),
       ];
-      console.log(availableMoves);
+      // console.log(availableMoves);
       for (const [moveKey, moveVal] of availableMoves) {
         const simulator = {
           copyFieldArr: cloneDeep(field),
@@ -169,29 +172,94 @@ const computerAlgo = function (field, computerObject) {
                 }
                 if (value === Identity.computer.winValue) {
                   console.log(
-                    `The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`
+                    `%cCOMPUTER: The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`,
+                    "color: green"
                   );
                   calculatedMove = moveVal.fieldVal;
+                  //NOTE: Break the if chain inside CalcMove
+                  Simulation.possibleLoose = false;
+                  Simulation.possibleDraw = false;
+                  Simulation.possibleStrategy = false;
                   return true;
-                } else
-                  console.log(
-                    `The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
-                  );
+                }
+                // else
+                //   console.log(
+                //     `COMPUTER: The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
+                //   );
               }
             }
+            console.log(
+              "%cFound no way to WIN!, preceed to check if I can loose",
+              "color: orange"
+            );
             return false;
           },
         };
         simulator.insert();
         if (simulator.check()) break;
       }
-      console.log("Finished my check!");
+      console.log("Finished my check of my possible wins!");
     },
     checkForLoose() {
-      console.log("COMPUTER: Checking for = LOOSE");
+      console.warn("COMPUTER: Checking for = LOOSE");
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+
+      const availableMoves = [
+        ...Object.entries(unconvertedMoves[0][1]),
+        ...Object.entries(unconvertedMoves[1][1]),
+        ...Object.entries(unconvertedMoves[2][1]),
+      ];
+      // console.log(availableMoves);
+      for (const [moveKey, moveVal] of availableMoves) {
+        const simulator = {
+          copyFieldArr: cloneDeep(field),
+          insert() {
+            const fieldIndex = moveVal.fieldVal - 1;
+            const choosenField = this.copyFieldArr[fieldIndex];
+            choosenField.polutted = true;
+            choosenField.value = Identity.player.value;
+          },
+          check() {
+            for (const direction in Simulation.checkOptions) {
+              const options = Simulation.checkOptions[direction];
+              for (const singleOption of options) {
+                let value = 0;
+                for (const fieldNum of singleOption) {
+                  const index = fieldNum - 1;
+                  const fieldValue = this.copyFieldArr[index].value;
+                  value = value + fieldValue;
+                }
+                if (value === Identity.player.winValue) {
+                  console.log(
+                    `%cFOR THE PLAYER = The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`,
+                    "color:red"
+                  );
+                  calculatedMove = moveVal.fieldVal;
+                  //NOTE: Break the if chain inside CalcMove
+                  Simulation.possibleDraw = false;
+                  Simulation.possibleStrategy = false;
+                  return true;
+                }
+                // else
+                //   console.log(
+                //     `FOR THE PLAYER = The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
+                //   );
+              }
+            }
+            console.log(
+              "%cFound no way to LOOSE!, preceed to check if I can Draw!",
+              "color: orange"
+            );
+            return false;
+          },
+        };
+        simulator.insert();
+        if (simulator.check()) break;
+      }
+      console.log("Finished my check of possible Player wins!");
     },
     checkForDraw() {
-      console.log("COMPUTER: Checking for = DRAW");
+      console.warn("COMPUTER: Checking for = DRAW");
     },
 
     //SUB_SECTION: Strategies
@@ -226,24 +294,21 @@ const computerAlgo = function (field, computerObject) {
     Pollution.checkSides();
     Pollution.checkMiddle();
     //NOTE: Switch Simulation chain
-    Simulation.possibleStrategy = false;
-    Simulation.possibleWin = true;
+    // Simulation.possibleStrategy = false;
   }
-
-  // if ()
 
   //SECTION: Testcalls
 
   //NOTE: Debug logs
-  console.log("----------------------Computer---------------------");
-  console.log(Pollution.computerPollutionMap);
-  console.log("-----------------------Player----------------------");
-  console.log(Pollution.playerPollutionMap);
-  console.log("------------------------Free-----------------------");
-  console.log(Pollution.unpollutedFieldsMap);
+  // console.log("----------------------Computer---------------------");
+  // console.log(Pollution.computerPollutionMap);
+  // console.log("-----------------------Player----------------------");
+  // console.log(Pollution.playerPollutionMap);
+  // console.log("------------------------Free-----------------------");
+  // console.log(Pollution.unpollutedFieldsMap);
 
   //NOTE: Temp return for testing;
-  console.warn("My calculated move= " + Simulation.calcMove());
+  console.warn("My calculated move = " + Simulation.calcMove());
   return moves.pop();
 };
 
