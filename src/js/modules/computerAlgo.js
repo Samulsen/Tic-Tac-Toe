@@ -1,6 +1,6 @@
 import { cloneDeep, identity } from "lodash";
 
-let moves = [1, 2, 4];
+let moves = [2, 6, 1, 7, 8];
 
 const computerAlgo = function (field, computerObject) {
   let calculatedMove;
@@ -132,6 +132,7 @@ const computerAlgo = function (field, computerObject) {
         [3, 5, 7],
       ],
     },
+
     possibleWin: true,
     possibleLoose: true,
     possibleDraw: true,
@@ -141,9 +142,10 @@ const computerAlgo = function (field, computerObject) {
     //SECTION: Methods
 
     //SUB_SECTION: regular Checks
+
     //NOTE: Only for Win or Loose
-    checkState(entity, stringArr) {
-      //SECTION: convert possible field options for following simulation
+    checkState(entity, stringArr, preecedState) {
+      // SECTION: convert possible field options for following simulation
       const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
       const availableMoves = [
         ...Object.entries(unconvertedMoves[0][1]),
@@ -178,7 +180,7 @@ const computerAlgo = function (field, computerObject) {
                   calculatedMove = moveVal.fieldVal;
                   Simulation.moveSolutionDetermined = true;
                   //NOTE: Break the if chain inside CalcMove
-                  Simulation.possibleDraw = false;
+                  Simulation[preecedState] = false;
                   Simulation.possibleStrategy = false;
                   return true;
                 }
@@ -202,32 +204,53 @@ const computerAlgo = function (field, computerObject) {
       }
     },
     checkForWin() {
-      console.warn("COMPUTER: Checking for = WIN");
-      this.checkState(Identity.computer, [
-        "COMPUTER",
-        "WIN",
-        "color:green",
-        "LOOSE",
-      ]);
+      console.warn("COMPUTER: Checking for possible WIN");
+      this.checkState(
+        Identity.computer,
+        ["COMPUTER", "WIN", "color:green", "LOOSE"],
+        "possibleLoose"
+      );
     },
     checkForLoose() {
-      console.warn("COMPUTER: Checking for = LOOSE");
-      this.checkState(Identity.player, [
-        "FOR THE PLAYER",
-        "LOOSE",
-        "color:red",
-        "DRAW",
-        "WIN",
-      ]);
+      console.warn("COMPUTER: Checking for possible LOOSE");
+      this.checkState(
+        Identity.player,
+        ["FOR THE PLAYER", "LOOSE", "color:red", "DRAW", "WIN"],
+        "possibleDraw"
+      );
     },
     checkForDraw() {
-      console.warn("COMPUTER: Checking for = DRAW");
+      console.warn("COMPUTER: Checking for possible DRAW");
+      //SECTION: convert possible field options for following simulation
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      const availableMoves = [
+        ...Object.entries(unconvertedMoves[0][1]),
+        ...Object.entries(unconvertedMoves[1][1]),
+        ...Object.entries(unconvertedMoves[2][1]),
+      ];
+      console.log(availableMoves);
+      //SECTION: Check if the possible options are greater then one, thus if we are in last round or NOT
+      if (availableMoves.length === 1) {
+        const lastFieldIndex = availableMoves[0][1].fieldVal;
+        calculatedMove = lastFieldIndex;
+        console.log(
+          `%cThere will be a DRAW, when placing on ${lastFieldIndex}!`,
+          "color: yellow"
+        );
+        this.possibleStrategy = false;
+      } else {
+        console.log(
+          `%cFound no way to DRAW!, preceed to calculate STRATEGY!`,
+          "color: orange"
+        );
+        this.possibleStrategy = true;
+      }
     },
 
     //SUB_SECTION: Strategies
 
     checkForStrategy() {
-      console.log("COMPUTER: Checking for = STRATEGY");
+      console.warn("COMPUTER: Checking for possible STRATEGY");
     },
 
     //NOTE: Bundler Function
@@ -245,6 +268,8 @@ const computerAlgo = function (field, computerObject) {
     },
   };
 
+  //SECTION: Callarea and flow controll
+
   Identity.resolveIdentity();
   // Pollution.checkGeneral();
   //NOTE: Short circuiting for now checkGeneral
@@ -258,8 +283,6 @@ const computerAlgo = function (field, computerObject) {
     //NOTE: Switch Simulation chain
     // Simulation.possibleStrategy = false;
   }
-
-  //SECTION: Testcalls
 
   //NOTE: Debug logs
   // console.log("----------------------Computer---------------------");
