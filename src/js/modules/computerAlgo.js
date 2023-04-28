@@ -1,6 +1,6 @@
 import { cloneDeep, identity } from "lodash";
 
-let moves = [3, 4, 8];
+let moves = [1, 2, 4];
 
 const computerAlgo = function (field, computerObject) {
   let calculatedMove;
@@ -136,21 +136,21 @@ const computerAlgo = function (field, computerObject) {
     possibleLoose: true,
     possibleDraw: true,
     possibleStrategy: false,
+    moveSolutionDetermined: false,
 
     //SECTION: Methods
 
     //SUB_SECTION: regular Checks
-
-    checkForWin() {
-      console.warn("COMPUTER: Checking for = WIN");
+    //NOTE: Only for Win or Loose
+    checkState(entity, stringArr) {
+      //SECTION: convert possible field options for following simulation
       const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
-
       const availableMoves = [
         ...Object.entries(unconvertedMoves[0][1]),
         ...Object.entries(unconvertedMoves[1][1]),
         ...Object.entries(unconvertedMoves[2][1]),
       ];
-      // console.log(availableMoves);
+      // SECTION: simulate weather possible fields will have certain outcome
       for (const [moveKey, moveVal] of availableMoves) {
         const simulator = {
           copyFieldArr: cloneDeep(field),
@@ -158,7 +158,7 @@ const computerAlgo = function (field, computerObject) {
             const fieldIndex = moveVal.fieldVal - 1;
             const choosenField = this.copyFieldArr[fieldIndex];
             choosenField.polutted = true;
-            choosenField.value = Identity.computer.value;
+            choosenField.value = entity.value;
           },
           check() {
             for (const direction in Simulation.checkOptions) {
@@ -170,93 +170,55 @@ const computerAlgo = function (field, computerObject) {
                   const fieldValue = this.copyFieldArr[index].value;
                   value = value + fieldValue;
                 }
-                if (value === Identity.computer.winValue) {
+                if (value === entity.winValue) {
                   console.log(
-                    `%cCOMPUTER: The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`,
-                    "color: green"
+                    `%c${stringArr[0]} = The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a ${stringArr[4]}!`,
+                    stringArr[2]
                   );
                   calculatedMove = moveVal.fieldVal;
+                  Simulation.moveSolutionDetermined = true;
                   //NOTE: Break the if chain inside CalcMove
-                  Simulation.possibleLoose = false;
                   Simulation.possibleDraw = false;
                   Simulation.possibleStrategy = false;
                   return true;
                 }
                 // else
                 //   console.log(
-                //     `COMPUTER: The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
+                //     `FOR THE PLAYER = The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a ${stringArr[1]}!`
                 //   );
               }
             }
-            console.log(
-              "%cFound no way to WIN!, preceed to check if I can loose",
-              "color: orange"
-            );
             return false;
           },
         };
         simulator.insert();
         if (simulator.check()) break;
       }
-      console.log("Finished my check of my possible wins!");
+      if (!Simulation.moveSolutionDetermined) {
+        console.log(
+          `%cFound no way to ${stringArr[1]}!, preceed to check if I can ${stringArr[3]}!`,
+          "color: orange"
+        );
+      }
+    },
+    checkForWin() {
+      console.warn("COMPUTER: Checking for = WIN");
+      this.checkState(Identity.computer, [
+        "COMPUTER",
+        "WIN",
+        "color:green",
+        "LOOSE",
+      ]);
     },
     checkForLoose() {
       console.warn("COMPUTER: Checking for = LOOSE");
-      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
-
-      const availableMoves = [
-        ...Object.entries(unconvertedMoves[0][1]),
-        ...Object.entries(unconvertedMoves[1][1]),
-        ...Object.entries(unconvertedMoves[2][1]),
-      ];
-      // console.log(availableMoves);
-      for (const [moveKey, moveVal] of availableMoves) {
-        const simulator = {
-          copyFieldArr: cloneDeep(field),
-          insert() {
-            const fieldIndex = moveVal.fieldVal - 1;
-            const choosenField = this.copyFieldArr[fieldIndex];
-            choosenField.polutted = true;
-            choosenField.value = Identity.player.value;
-          },
-          check() {
-            for (const direction in Simulation.checkOptions) {
-              const options = Simulation.checkOptions[direction];
-              for (const singleOption of options) {
-                let value = 0;
-                for (const fieldNum of singleOption) {
-                  const index = fieldNum - 1;
-                  const fieldValue = this.copyFieldArr[index].value;
-                  value = value + fieldValue;
-                }
-                if (value === Identity.player.winValue) {
-                  console.log(
-                    `%cFOR THE PLAYER = The field ${moveVal.fieldVal} WILL achieve in the instance of ${singleOption} a win!`,
-                    "color:red"
-                  );
-                  calculatedMove = moveVal.fieldVal;
-                  //NOTE: Break the if chain inside CalcMove
-                  Simulation.possibleDraw = false;
-                  Simulation.possibleStrategy = false;
-                  return true;
-                }
-                // else
-                //   console.log(
-                //     `FOR THE PLAYER = The field ${moveVal.fieldVal} will NOT achieve in the instance of ${singleOption} a win!`
-                //   );
-              }
-            }
-            console.log(
-              "%cFound no way to LOOSE!, preceed to check if I can Draw!",
-              "color: orange"
-            );
-            return false;
-          },
-        };
-        simulator.insert();
-        if (simulator.check()) break;
-      }
-      console.log("Finished my check of possible Player wins!");
+      this.checkState(Identity.player, [
+        "FOR THE PLAYER",
+        "LOOSE",
+        "color:red",
+        "DRAW",
+        "WIN",
+      ]);
     },
     checkForDraw() {
       console.warn("COMPUTER: Checking for = DRAW");
