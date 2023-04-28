@@ -148,7 +148,13 @@ const computerAlgo = function (field, computerObject, stepStatus) {
         [8, 7],
       ],
     },
-    edgeOptions: {},
+    edgeOptions: {
+      //NOTE: for placing edge options, keep in mind it is similar to sideOptions but the search Value and place Value are the same! you search for [1] and check 3 and place 3!
+      1: [3, 7],
+      3: [1, 9],
+      7: [9, 1],
+      9: [7, 3],
+    },
     possibleWin: true,
     possibleLoose: true,
     possibleDraw: true,
@@ -294,6 +300,20 @@ const computerAlgo = function (field, computerObject, stepStatus) {
       if (stepStatus === 2) {
         //NOTE: Check if an edge was choosen
         if (Object.keys(PlayerEdge).length === 1) {
+          const prevChoosenEdge = Object.values(ComputerEdge)[0].fieldVal;
+          const counterEdge = Object.values(PlayerEdge)[0].fieldVal;
+          const [hor, ver] = this.edgeOptions[prevChoosenEdge];
+          if (hor === counterEdge || ver === counterEdge) {
+            console.log("One of the Sides is populated!");
+            if (!(hor === counterEdge)) calculatedMove = hor;
+            if (!(ver === counterEdge)) calculatedMove = ver;
+            return;
+          } else {
+            console.log("None of the Sides is populated, choose random!");
+            const randomNumber = Math.random() < 0.5 ? 0 : 1;
+            calculatedMove = [hor, ver][randomNumber];
+            return;
+          }
         }
         //NOTE: Check if an side was choosen
         if (Object.keys(PlayerSide).length === 1) {
@@ -336,6 +356,13 @@ const computerAlgo = function (field, computerObject, stepStatus) {
           }
           return;
         }
+      }
+      if (stepStatus === 4) {
+        const lastPossibleEdge = Object.values(
+          Pollution.unpollutedFieldsMap.Edge
+        );
+        calculatedMove = lastPossibleEdge[0].fieldVal;
+        return;
       }
     },
     circleMover() {
