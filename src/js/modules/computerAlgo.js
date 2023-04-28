@@ -1,8 +1,8 @@
 import { cloneDeep, identity } from "lodash";
 
-let moves = [2, 6, 1, 7, 8];
+// let moves = [2, 6, 1, 7, 8];
 
-const computerAlgo = function (field, computerObject) {
+const computerAlgo = function (field, computerObject, stepStatus) {
   let calculatedMove;
   //SECTION: Resolve Identity;
 
@@ -130,7 +130,25 @@ const computerAlgo = function (field, computerObject) {
         [3, 5, 7],
       ],
     },
-
+    sideOptions: {
+      1: [
+        [2, 3],
+        [4, 7],
+      ],
+      3: [
+        [2, 1],
+        [6, 9],
+      ],
+      7: [
+        [4, 1],
+        [8, 9],
+      ],
+      9: [
+        [6, 3],
+        [8, 7],
+      ],
+    },
+    edgeOptions: {},
     possibleWin: true,
     possibleLoose: true,
     possibleDraw: true,
@@ -260,6 +278,49 @@ const computerAlgo = function (field, computerObject) {
     },
     crossMover() {
       console.log("CROSS MOVER!");
+
+      const {
+        Edge: PlayerEdge,
+        Side: PlayerSide,
+        Middle: PlayerMiddle,
+      } = Pollution.playerPollutionMap;
+
+      const {
+        Edge: ComputerEdge,
+        Side: ComputerSide,
+        Middle: ComputerMiddle,
+      } = Pollution.computerPollutionMap;
+
+      if (stepStatus === 2) {
+        //NOTE: Check if an edge was choosen
+        if (Object.keys(PlayerEdge).length === 1) {
+        }
+        //NOTE: Check if an side was choosen
+        if (Object.keys(PlayerSide).length === 1) {
+        }
+        //NOTE: Check if the middle was choosen
+        if (Object.keys(PlayerMiddle).length === 1) {
+          const prevChoosenEdge = Object.values(ComputerEdge)[0].fieldVal;
+          switch (prevChoosenEdge) {
+            case 1:
+              calculatedMove = 9;
+              break;
+            case 9:
+              calculatedMove = 1;
+              break;
+            case 3:
+              calculatedMove = 7;
+              break;
+            case 7:
+              calculatedMove = 3;
+              break;
+            default:
+              console.error("There was a problem!");
+              break;
+          }
+          return;
+        }
+      }
     },
     circleMover() {
       console.log("CIRCLE MOVER!");
@@ -328,8 +389,9 @@ const computerAlgo = function (field, computerObject) {
   // console.log(Pollution.unpollutedFieldsMap);
 
   //NOTE: Temp return for testing;
-  console.warn("My calculated move = " + Simulation.calcMove());
-  return moves.pop();
+  // console.warn("My calculated move = " + Simulation.calcMove());
+  // return moves.pop();
+  return Simulation.calcMove();
 };
 
 export default computerAlgo;
