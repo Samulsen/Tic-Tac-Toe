@@ -297,6 +297,22 @@ const computerAlgo = function (field, computerObject, stepStatus) {
         }
         //NOTE: Check if an side was choosen
         if (Object.keys(PlayerSide).length === 1) {
+          const prevChoosenEdge = Object.values(ComputerEdge)[0].fieldVal;
+          const counterSide = Object.values(PlayerSide)[0].fieldVal;
+          //NOTE: go through the options and check weather there is a conflict, immediately take the one that has no conflict
+          const [[horS, horP], [verS, verP]] =
+            this.sideOptions[prevChoosenEdge];
+          if (horS === counterSide || verS === counterSide) {
+            // console.log("One of the Sides is populated!");
+            if (!(horS === counterSide)) calculatedMove = horP;
+            if (!(verS === counterSide)) calculatedMove = verP;
+            return;
+          } else {
+            // console.log("None of the Sides is populated, choose random!");
+            const randomNumber = Math.random() < 0.5 ? 0 : 1;
+            calculatedMove = [horP, verP][randomNumber];
+            return;
+          }
         }
         //NOTE: Check if the middle was choosen
         if (Object.keys(PlayerMiddle).length === 1) {
