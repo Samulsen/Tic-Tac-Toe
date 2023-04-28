@@ -34,9 +34,6 @@ const computerAlgo = function (field, computerObject) {
     //SECTION: Pollution States
 
     pollutionStatus: false,
-    // pollutionEdges: false,
-    // pollutionSides: false,
-    // pollutionMiddle: false,
 
     //SECTION: Field destructuring of pollution
 
@@ -79,6 +76,7 @@ const computerAlgo = function (field, computerObject) {
       for (const sField of field) {
         if (sField.value === 4 || sField.value === 1) {
           this.pollutionStatus = true;
+          //NOTE: Meaning => is polluted!
           break;
         }
       }
@@ -136,10 +134,12 @@ const computerAlgo = function (field, computerObject) {
     possibleWin: true,
     possibleLoose: true,
     possibleDraw: true,
-    possibleStrategy: false,
+    possibleStrategy: true,
     moveSolutionDetermined: false,
 
     //SECTION: Methods
+
+    randomize() {},
 
     //SUB_SECTION: regular Checks
 
@@ -180,7 +180,10 @@ const computerAlgo = function (field, computerObject) {
                   calculatedMove = moveVal.fieldVal;
                   Simulation.moveSolutionDetermined = true;
                   //NOTE: Break the if chain inside CalcMove
-                  Simulation[preecedState] = false;
+                  // Simulation[preecedState] = false;
+                  //NOTE: Not opimal lol
+                  Simulation.possibleLoose = false;
+                  Simulation.possibleDraw = false;
                   Simulation.possibleStrategy = false;
                   return true;
                 }
@@ -228,7 +231,7 @@ const computerAlgo = function (field, computerObject) {
         ...Object.entries(unconvertedMoves[1][1]),
         ...Object.entries(unconvertedMoves[2][1]),
       ];
-      console.log(availableMoves);
+      // console.log(availableMoves);
       //SECTION: Check if the possible options are greater then one, thus if we are in last round or NOT
       if (availableMoves.length === 1) {
         const lastFieldIndex = availableMoves[0][1].fieldVal;
@@ -243,14 +246,39 @@ const computerAlgo = function (field, computerObject) {
           `%cFound no way to DRAW!, preceed to calculate STRATEGY!`,
           "color: orange"
         );
-        this.possibleStrategy = true;
       }
     },
 
     //SUB_SECTION: Strategies
-
+    firstMove() {
+      console.log("firstMove Strategy was called!");
+      //NOTE: return a random num that is indexing an array of four fieldNums, all corners
+      const randomNumber = Math.floor(Math.random() * 4);
+      //NOTE: randomNumber is from 0 - 3!
+      const edgesArr = [1, 3, 7, 9];
+      calculatedMove = edgesArr[randomNumber];
+    },
+    crossMover() {
+      console.log("CROSS MOVER!");
+    },
+    circleMover() {
+      console.log("CIRCLE MOVER!");
+    },
+    allOtherMoves() {
+      console.log("allOtherMoves Strategy was called!");
+      if (Identity.computer.name === "Cross") {
+        this.crossMover();
+      } else {
+        this.circleMover();
+      }
+    },
     checkForStrategy() {
       console.warn("COMPUTER: Checking for possible STRATEGY");
+      if (!Pollution.pollutionStatus) {
+        this.firstMove();
+      } else {
+        this.allOtherMoves();
+      }
     },
 
     //NOTE: Bundler Function
@@ -271,17 +299,24 @@ const computerAlgo = function (field, computerObject) {
   //SECTION: Callarea and flow controll
 
   Identity.resolveIdentity();
-  // Pollution.checkGeneral();
-  //NOTE: Short circuiting for now checkGeneral
-  Pollution.pollutionStatus = true;
+  Pollution.checkGeneral();
 
-  if (Pollution.pollutionStatus) {
-    //NOTE: Evaluate field for upcoming Simulations
+  if (!Pollution.pollutionStatus) {
+    Simulation.possibleWin = false;
+    Simulation.possibleLoose = false;
+    Simulation.possibleDraw = false;
+    console.log(
+      "%cUnpolluted Field => skipping Win, Loose and Draw!",
+      "color:orange"
+    );
+  } else {
+    console.log(
+      "%cPolluted Field => starting Win, Loose, Draw and Strategy Chain!",
+      "color:orange"
+    );
     Pollution.checkEdges();
     Pollution.checkSides();
     Pollution.checkMiddle();
-    //NOTE: Switch Simulation chain
-    // Simulation.possibleStrategy = false;
   }
 
   //NOTE: Debug logs
