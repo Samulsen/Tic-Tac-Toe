@@ -142,6 +142,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     currentEntity: "",
     gameStatus: "choice",
     stepStatus: 0,
+    rootChoice: 0,
     //SECTION: Start methods for start and reset (replay)
     buildField() {
       // console.log("Calling: buildField()");
@@ -297,7 +298,9 @@ const gameSingpleplayer = function (singleplayerElement) {
     computerMove() {
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
-      this.handleMove(computerAlgo(Game.field, Computer, this.stepStatus));
+      this.handleMove(
+        computerAlgo(Game.field, Computer, this.stepStatus, this.rootChoice)
+      );
       this.checkStatus();
     },
   };
@@ -345,6 +348,8 @@ const gameSingpleplayer = function (singleplayerElement) {
     if (event.target.classList[0].includes("fieldBox")) {
       const field = parseInt(event.target.classList[1].slice(-1), 10);
       Game.handleMove(field);
+      //NOTE: Add here if condition, that when first move, change root choice to fieldnum
+      if (Game.stepStatus === 0) Game.rootChoice = field;
       //NOTE: End with removing clickability
       removeClickability();
       //   console.warn("PlayerClick " + event.target.classList[0]);

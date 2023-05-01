@@ -1,13 +1,23 @@
-import { cloneDeep, identity } from "lodash";
+import { cloneDeep } from "lodash";
 
 // let moves = [2, 6, 1, 7, 8];
 
-const computerAlgo = function (field, computerObject, stepStatus) {
+const computerAlgo = function (
+  field,
+  computerObject,
+  stepStatus,
+  passedRootChoice
+) {
   let calculatedMove;
   //SECTION: Resolve Identity;
 
   const Identity = {
-    identCross: { name: "Cross", value: 4, winValue: 12 },
+    identCross: {
+      name: "Cross",
+      value: 4,
+      winValue: 12,
+      rootChoicePlayer: passedRootChoice,
+    },
     identCircle: { name: "Circle", value: 1, winValue: 3 },
     computer: "",
     player: "",
@@ -403,6 +413,7 @@ const computerAlgo = function (field, computerObject, stepStatus) {
   //SECTION: Callarea and flow controll
 
   Identity.resolveIdentity();
+  console.log(Identity.player.rootChoicePlayer);
   Pollution.checkGeneral();
 
   if (!Pollution.pollutionStatus) {
