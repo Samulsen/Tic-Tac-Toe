@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash";
 
-let moves = [7, 1, 4, 3];
+let moves = [7, 1, 8, 5];
 
 const computerAlgo = function (
   field,
@@ -322,9 +322,51 @@ const computerAlgo = function (
       const randomChoice = value.fieldVal;
       calculatedMove = randomChoice;
     },
-    chooseSide_noEdgePollution() {},
-    chooseEdge_onePos_sidePollution() {},
-    chooseEdge_twoNeg_sidePollution() {},
+    chooseSide_noEdgePollution() {
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      //NOTE: 1/1 =  Side
+      const availableSides = [...Object.entries(unconvertedMoves[1][1])];
+      for (const [key, value] of availableSides) {
+        if (
+          value.fieldVal === 2 &&
+          Pollution.generalPollutionMap.Edge.topLeft.polVal === 0 &&
+          Pollution.generalPollutionMap.Edge.topRight.polVal === 0
+        ) {
+          calculatedMove = value.fieldVal;
+          return;
+        }
+        if (
+          value.fieldVal === 4 &&
+          Pollution.generalPollutionMap.Edge.topLeft.polVal === 0 &&
+          Pollution.generalPollutionMap.Edge.bottomLeft.polVal === 0
+        ) {
+          calculatedMove = value.fieldVal;
+          return;
+        }
+        if (
+          value.fieldVal === 6 &&
+          Pollution.generalPollutionMap.Edge.topRight.polVal === 0 &&
+          Pollution.generalPollutionMap.Edge.bottomRight.polVal === 0
+        ) {
+          calculatedMove = value.fieldVal;
+          return;
+        }
+        if (
+          value.fieldVal === 8 &&
+          Pollution.generalPollutionMap.Edge.bottomLeft.polVal === 0 &&
+          Pollution.generalPollutionMap.Edge.bottomRight.polVal === 0
+        ) {
+          calculatedMove = value.fieldVal;
+          return;
+        }
+      }
+    },
+    chooseEdge_onePos_sidePollution() {
+      //NOTE: PosVal = 1
+    },
+    chooseEdge_twoNeg_sidePollution() {
+      //NOTE: NegVal = 4
+    },
     chooseEdge_oneNeg_sidePollution_AND_edgePollution() {},
 
     //SUB_SECTION: Bundler for stepStatus 4 Decision
@@ -585,6 +627,9 @@ const computerAlgo = function (
     Pollution.checkSides();
     Pollution.checkMiddle();
   }
+
+  //SECTION: Testcalls
+  Simulation.chooseSide_noEdgePollution();
 
   //NOTE: Debug logs
   // console.log("----------------------Computer---------------------");
