@@ -177,7 +177,7 @@ const computerAlgo = function (
 
     //SUB_SECTION: regular Checks
 
-    //NOTE: Only for Win or Loose
+    //NOTE: Only for Win, Loose or Draw
     checkState(entity, stringArr, preecedState) {
       // SECTION: convert possible field options for following simulation
       const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
@@ -282,8 +282,19 @@ const computerAlgo = function (
         );
       }
     },
+    //SUB_SECTION: Strategy logic filler
 
-    //SUB_SECTION: Strategies
+    //SUB_SECTION: Root choice filter
+    rootChoiceMiddle() {
+      console.log("ROOT CHOICE = MIDDLE");
+    },
+    rootChoiceSide() {
+      console.log("ROOT CHOICE = SIDE");
+    },
+    rootChoiceEdge() {
+      console.log("ROOT CHOICE = EDGE");
+    },
+    //SUB_SECTION: Strategy bundling routes
     firstMove() {
       console.log("firstMove Strategy was called!");
       //NOTE: return a random num that is indexing an array of four fieldNums, all corners
@@ -377,6 +388,31 @@ const computerAlgo = function (
     },
     circleMover() {
       console.log("CIRCLE MOVER!");
+      const rootChoice = Identity.player.rootChoicePlayer;
+
+      //NOTE: Check if the root choice was MIDDLE!
+
+      if (rootChoice === 5) this.rootChoiceMiddle();
+
+      //NOTE: Check if the root choice was EDGE!
+
+      if (
+        rootChoice === 1 ||
+        rootChoice === 3 ||
+        rootChoice === 7 ||
+        rootChoice === 9
+      )
+        this.rootChoiceEdge();
+
+      //NOTE: Check if the root choice was SIDE!
+
+      if (
+        rootChoice === 2 ||
+        rootChoice === 4 ||
+        rootChoice === 6 ||
+        rootChoice === 8
+      )
+        this.rootChoiceSide();
     },
     allOtherMoves() {
       console.log("allOtherMoves Strategy was called!");
@@ -413,7 +449,6 @@ const computerAlgo = function (
   //SECTION: Callarea and flow controll
 
   Identity.resolveIdentity();
-  console.log(Identity.player.rootChoicePlayer);
   Pollution.checkGeneral();
 
   if (!Pollution.pollutionStatus) {
