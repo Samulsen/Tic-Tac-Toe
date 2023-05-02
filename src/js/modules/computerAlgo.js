@@ -282,12 +282,46 @@ const computerAlgo = function (
         );
       }
     },
+
     //SUB_SECTION: Strategy logic filler
 
-    chooseMiddle() {},
-    chooseAnyLeftovers() {},
-    chooseAnyLeftoverEdges() {},
-    chooseAnyLeftoverSides() {},
+    chooseMiddle() {
+      calculatedMove = 5;
+      console.log("%cChoosing the middle position!", "color:orange");
+    },
+    chooseAnyLeftovers() {
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      const availableMoves = [
+        ...Object.entries(unconvertedMoves[0][1]),
+        ...Object.entries(unconvertedMoves[1][1]),
+        ...Object.entries(unconvertedMoves[2][1]),
+      ];
+      const randomIndex = Math.floor(Math.random() * availableMoves.length);
+      // console.log(randomIndex);
+      const [key, value] = availableMoves[randomIndex];
+      const randomChoice = value.fieldVal;
+      calculatedMove = randomChoice;
+    },
+    chooseAnyLeftoverEdges() {
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      //NOTE: 0/1 = Edge
+      const availableMoves = [...Object.entries(unconvertedMoves[0][1])];
+      const randomIndex = Math.floor(Math.random() * availableMoves.length);
+      // console.log("EDGES = " + availableMoves);
+      const [key, value] = availableMoves[randomIndex];
+      const randomChoice = value.fieldVal;
+      calculatedMove = randomChoice;
+    },
+    chooseAnyLeftoverSides() {
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      //NOTE: 1/1 =  Side
+      const availableMoves = [...Object.entries(unconvertedMoves[1][1])];
+      const randomIndex = Math.floor(Math.random() * availableMoves.length);
+      // console.log("SIDES = " + availableMoves);
+      const [key, value] = availableMoves[randomIndex];
+      const randomChoice = value.fieldVal;
+      calculatedMove = randomChoice;
+    },
     chooseSide_noEdgePollution() {},
     chooseEdge_onePos_sidePollution() {},
     chooseEdge_twoNeg_sidePollution() {},
@@ -299,6 +333,7 @@ const computerAlgo = function (
     logicFillerBundle_forSide() {},
 
     //SUB_SECTION: Root choice router
+
     rootChoiceMiddle() {
       console.log("ROOT CHOICE = MIDDLE");
 
