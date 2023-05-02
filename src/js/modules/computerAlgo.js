@@ -287,21 +287,22 @@ const computerAlgo = function (
     //SUB_SECTION: Root choice router
     rootChoiceMiddle() {
       console.log("ROOT CHOICE = MIDDLE");
+
       switch (stepStatus) {
         case 1:
-          console.log("choose random leftover edge");
+          console.error("choose random leftover edge");
           break;
 
         case 3:
-          console.log("choose random leftover edge");
+          console.error("choose random leftover edge");
           break;
 
         case 5:
-          console.log("choose random leftover");
+          console.error("choose edge that has one positive side pollution");
           break;
 
         case 7:
-          console.log("choose random leftover");
+          console.error("choose random leftover");
           break;
 
         default:
@@ -310,9 +311,56 @@ const computerAlgo = function (
     },
     rootChoiceSide() {
       console.log("ROOT CHOICE = SIDE");
+
+      switch (stepStatus) {
+        case 1:
+          console.log("choose middle");
+          break;
+
+        case 3:
+          console.log("3 different choices to make, deciding...");
+          //NOTE: 1 - "choose random leftover edge"
+          //NOTE: 2 - "choose edge that has two negative side pollution"
+          //NOTE: 3 - "choose edge that has one negative side pollution AND one negative edge pollution"
+          break;
+
+        case 5:
+          console.error("choose random leftover edge");
+          break;
+
+        case 7:
+          console.error("choose random leftover");
+          break;
+
+        default:
+          break;
+      }
     },
     rootChoiceEdge() {
       console.log("ROOT CHOICE = EDGE");
+
+      switch (stepStatus) {
+        case 1:
+          console.log("choose middle");
+          break;
+
+        case 3:
+          console.log("2 different choices to make, deciding...");
+          //NOTE: 1 - "choose side that has no edge pollution"
+          //NOTE: 2 - "choose random leftover side"
+          break;
+
+        case 5:
+          console.error("choose random leftover side");
+          break;
+
+        case 7:
+          console.error("choose random leftover");
+          break;
+
+        default:
+          break;
+      }
     },
     //SUB_SECTION: Strategy bundling routes
     firstMove() {
