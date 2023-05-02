@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash";
 
-// let moves = [2, 6, 1, 7, 8];
+let moves = [7, 1, 4, 3];
 
 const computerAlgo = function (
   field,
@@ -284,9 +284,29 @@ const computerAlgo = function (
     },
     //SUB_SECTION: Strategy logic filler
 
-    //SUB_SECTION: Root choice filter
+    //SUB_SECTION: Root choice router
     rootChoiceMiddle() {
       console.log("ROOT CHOICE = MIDDLE");
+      switch (stepStatus) {
+        case 1:
+          console.log("choose random leftover edge");
+          break;
+
+        case 3:
+          console.log("choose random leftover edge");
+          break;
+
+        case 5:
+          console.log("choose random leftover");
+          break;
+
+        case 7:
+          console.log("choose random leftover");
+          break;
+
+        default:
+          break;
+      }
     },
     rootChoiceSide() {
       console.log("ROOT CHOICE = SIDE");
@@ -477,10 +497,10 @@ const computerAlgo = function (
   // console.log("------------------------Free-----------------------");
   // console.log(Pollution.unpollutedFieldsMap);
 
-  //NOTE: Temp return for testing;
-  // console.warn("My calculated move = " + Simulation.calcMove());
-  // return moves.pop();
-  return Simulation.calcMove();
+  // NOTE: Temp return for testing;
+  console.warn("My calculated move = " + Simulation.calcMove());
+  return moves.pop();
+  // return Simulation.calcMove();
 };
 
 export default computerAlgo;
