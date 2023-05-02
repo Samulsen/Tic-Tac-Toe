@@ -284,6 +284,20 @@ const computerAlgo = function (
     },
     //SUB_SECTION: Strategy logic filler
 
+    chooseMiddle() {},
+    chooseAnyLeftovers() {},
+    chooseAnyLeftoverEdges() {},
+    chooseAnyLeftoverSides() {},
+    chooseSide_noEdgePollution() {},
+    chooseEdge_onePos_sidePollution() {},
+    chooseEdge_twoNeg_sidePollution() {},
+    chooseEdge_oneNeg_sidePollution_AND_edgePollution() {},
+
+    //SUB_SECTION: Bundler for stepStatus 4 Decision
+
+    logicFillerBundle_forEdge() {},
+    logicFillerBundle_forSide() {},
+
     //SUB_SECTION: Root choice router
     rootChoiceMiddle() {
       console.log("ROOT CHOICE = MIDDLE");
