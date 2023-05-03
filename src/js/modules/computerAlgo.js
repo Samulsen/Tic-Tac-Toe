@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash";
 
-let moves = [7, 1, 8, 5];
+let moves = [1, 4, 3];
 
 const computerAlgo = function (
   field,
@@ -363,6 +363,48 @@ const computerAlgo = function (
     },
     chooseEdge_onePos_sidePollution() {
       //NOTE: PosVal = 1
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      //NOTE: 0/1 = Edge
+      const availableEdges = [...Object.entries(unconvertedMoves[0][1])];
+
+      for (const [key, val] of availableEdges) {
+        if (
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.left.polVal === 1) ||
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.top.polVal === 1)
+        ) {
+          calculatedMove = 1;
+          return;
+        }
+        if (
+          (val.fieldVal === 3 &&
+            Pollution.generalPollutionMap.Side.right.polVal === 1) ||
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.top.polVal === 1)
+        ) {
+          calculatedMove = 3;
+          return;
+        }
+        if (
+          (val.fieldVal === 7 &&
+            Pollution.generalPollutionMap.Side.left.polVal === 1) ||
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.bottom.polVal === 1)
+        ) {
+          calculatedMove = 7;
+          return;
+        }
+        if (
+          (val.fieldVal === 9 &&
+            Pollution.generalPollutionMap.Side.right.polVal === 1) ||
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.bottom.polVal === 1)
+        ) {
+          calculatedMove = 9;
+          return;
+        }
+      }
     },
     chooseEdge_twoNeg_sidePollution() {
       //NOTE: NegVal = 4
@@ -629,7 +671,8 @@ const computerAlgo = function (
   }
 
   //SECTION: Testcalls
-  Simulation.chooseSide_noEdgePollution();
+  // Simulation.chooseSide_noEdgePollution();
+  Simulation.chooseEdge_onePos_sidePollution();
 
   //NOTE: Debug logs
   // console.log("----------------------Computer---------------------");
