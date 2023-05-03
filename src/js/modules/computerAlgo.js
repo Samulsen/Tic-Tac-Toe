@@ -447,7 +447,62 @@ const computerAlgo = function (
         }
       }
     },
-    chooseEdge_oneNeg_sidePollution_AND_edgePollution() {},
+    chooseEdge_oneNeg_sidePollution_AND_edgePollution() {
+      //NOTE: NegVal = 4
+      const unconvertedMoves = Object.entries(Pollution.unpollutedFieldsMap);
+      //NOTE: 0/1 = Edge
+      const availableEdges = [...Object.entries(unconvertedMoves[0][1])];
+
+      for (const [key, val] of availableEdges) {
+        if (
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.top.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.bottomLeft.polVal === 4) ||
+          (val.fieldVal === 1 &&
+            Pollution.generalPollutionMap.Side.left.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.topRight.polVal === 4)
+        ) {
+          calculatedMove = 1;
+          return;
+        }
+
+        if (
+          (val.fieldVal === 3 &&
+            Pollution.generalPollutionMap.Side.top.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.bottomRight.polVal === 4) ||
+          (val.fieldVal === 3 &&
+            Pollution.generalPollutionMap.Side.right.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.topLeft.polVal === 4)
+        ) {
+          calculatedMove = 3;
+          return;
+        }
+
+        if (
+          (val.fieldVal === 7 &&
+            Pollution.generalPollutionMap.Side.bottom.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.topLeft.polVal === 4) ||
+          (val.fieldVal === 7 &&
+            Pollution.generalPollutionMap.Side.left.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.bottomRight.polVal === 4)
+        ) {
+          calculatedMove = 7;
+          return;
+        }
+
+        if (
+          (val.fieldVal === 9 &&
+            Pollution.generalPollutionMap.Side.bottom.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.topRight.polVal === 4) ||
+          (val.fieldVal === 9 &&
+            Pollution.generalPollutionMap.Side.right.polVal === 4 &&
+            Pollution.generalPollutionMap.Edge.bottomLeft.polVal === 4)
+        ) {
+          calculatedMove = 9;
+          return;
+        }
+      }
+    },
 
     //SUB_SECTION: Bundler for stepStatus 4 Decision
 
@@ -709,6 +764,7 @@ const computerAlgo = function (
   }
 
   //SECTION: Testcalls
+  Simulation.chooseEdge_oneNeg_sidePollution_AND_edgePollution();
 
   //NOTE: Debug logs
   // console.log("----------------------Computer---------------------");
