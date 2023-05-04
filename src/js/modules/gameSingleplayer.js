@@ -299,7 +299,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       this.handleMove(
-        computerAlgo(Game.field, Computer, this.stepStatus, this.rootChoice)
+        computerAlgo(Game.field, Computer, this.stepStatus, this.rootChoice, 3)
       );
       this.checkStatus();
     },

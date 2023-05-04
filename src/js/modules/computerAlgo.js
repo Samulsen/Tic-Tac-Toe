@@ -1,12 +1,13 @@
 import { cloneDeep } from "lodash";
 
-let moves = [3, 5];
+// let moves = [3, 5];
 
 const computerAlgo = function (
   field,
   computerObject,
   stepStatus,
-  passedRootChoice
+  passedRootChoice,
+  passedModusChoice
 ) {
   let calculatedMove;
   //SECTION: Resolve Identity;
@@ -506,8 +507,58 @@ const computerAlgo = function (
 
     //SUB_SECTION: Bundler for stepStatus 4 Decision
 
-    logicFillerBundle_forEdge() {},
-    logicFillerBundle_forSide() {},
+    logicFillerBundle_forEdge() {
+      if (Object.entries(Pollution.playerPollutionMap.Edge).length === 2) {
+        //NOTE: @4 choose random leftover side
+        this.chooseAnyLeftoverSides();
+        // console.warn("I have decided for a random side!");
+        return;
+      }
+
+      if (Object.entries(Pollution.playerPollutionMap.Side).length === 1) {
+        //NOTE: @4 choose side that has no edge pollution
+        this.chooseSide_noEdgePollution();
+        // console.warn("I have decided for a Side with no Edge Pollution");
+        return;
+      }
+    },
+    logicFillerBundle_forSide() {
+      if (
+        Object.entries(Pollution.playerPollutionMap.Edge).length === 1 &&
+        Object.entries(Pollution.playerPollutionMap.Side).length === 1
+      ) {
+        //NOTE: @4 choose edge that has one negative side pollution AND one negative edge pollution
+        this.chooseEdge_oneNeg_sidePollution_AND_edgePollution();
+        // console.warn(
+        //   "There was one Edge and one Side of the Player, going for specific Edge"
+        // );
+        return;
+      }
+
+      if (
+        ("top" in Pollution.playerPollutionMap.Side &&
+          "right" in Pollution.playerPollutionMap.Side) ||
+        ("left" in Pollution.playerPollutionMap.Side &&
+          "bottom" in Pollution.playerPollutionMap.Side)
+      ) {
+        //NOTE: @4 choose edge that has two negative side pollution
+        this.chooseEdge_twoNeg_sidePollution();
+        // console.warn("Go for the edge with two new side pollutions! ");
+        return;
+      }
+
+      if (
+        ("top" in Pollution.playerPollutionMap.Side &&
+          "bottom" in Pollution.playerPollutionMap.Side) ||
+        ("left" in Pollution.playerPollutionMap.Side &&
+          "right" in Pollution.playerPollutionMap.Side)
+      ) {
+        //NOTE: @4 choose random leftover edge
+        this.chooseAnyLeftoverEdges();
+        // console.warn("Opposite Sides are polluted go for random edge!");
+        return;
+      }
+    },
 
     //SUB_SECTION: Root choice router
 
@@ -517,18 +568,22 @@ const computerAlgo = function (
       switch (stepStatus) {
         case 1:
           console.error("choose random leftover edge");
+          this.chooseAnyLeftoverEdges();
           break;
 
         case 3:
           console.error("choose random leftover edge");
+          this.chooseAnyLeftoverEdges();
           break;
 
         case 5:
           console.error("choose edge that has one positive side pollution");
+          this.chooseEdge_onePos_sidePollution();
           break;
 
         case 7:
           console.error("choose random leftover");
+          this.chooseAnyLeftovers();
           break;
 
         default:
@@ -541,6 +596,7 @@ const computerAlgo = function (
       switch (stepStatus) {
         case 1:
           console.log("choose middle");
+          this.chooseMiddle();
           break;
 
         case 3:
@@ -548,14 +604,17 @@ const computerAlgo = function (
           //NOTE: 1 - "choose random leftover edge"
           //NOTE: 2 - "choose edge that has two negative side pollution"
           //NOTE: 3 - "choose edge that has one negative side pollution AND one negative edge pollution"
+          this.logicFillerBundle_forSide();
           break;
 
         case 5:
           console.error("choose random leftover edge");
+          this.chooseAnyLeftoverEdges();
           break;
 
         case 7:
           console.error("choose random leftover");
+          this.chooseAnyLeftovers();
           break;
 
         default:
@@ -568,20 +627,24 @@ const computerAlgo = function (
       switch (stepStatus) {
         case 1:
           console.log("choose middle");
+          this.chooseMiddle();
           break;
 
         case 3:
           console.log("2 different choices to make, deciding...");
           //NOTE: 1 - "choose side that has no edge pollution"
           //NOTE: 2 - "choose random leftover side"
+          this.logicFillerBundle_forEdge();
           break;
 
         case 5:
           console.error("choose random leftover side");
+          this.chooseAnyLeftoverSides();
           break;
 
         case 7:
           console.error("choose random leftover");
+          this.chooseAnyLeftovers();
           break;
 
         default:
@@ -725,9 +788,11 @@ const computerAlgo = function (
       }
     },
 
-    //NOTE: Bundler Function
+    //NOTE: Main Bundler Function
     calcMove() {
       //
+      console.clear();
+
       if (this.possibleWin === true) this.checkForWin();
 
       if (this.possibleLoose === true) this.checkForLoose();
@@ -763,21 +828,7 @@ const computerAlgo = function (
     Pollution.checkMiddle();
   }
 
-  //SECTION: Testcalls
-  Simulation.chooseEdge_oneNeg_sidePollution_AND_edgePollution();
-
-  //NOTE: Debug logs
-  // console.log("----------------------Computer---------------------");
-  // console.log(Pollution.computerPollutionMap);
-  // console.log("-----------------------Player----------------------");
-  // console.log(Pollution.playerPollutionMap);
-  // console.log("------------------------Free-----------------------");
-  // console.log(Pollution.unpollutedFieldsMap);
-
-  // NOTE: Temp return for testing;
-  console.warn("My calculated move = " + Simulation.calcMove());
-  return moves.pop();
-  // return Simulation.calcMove();
+  return Simulation.calcMove();
 };
 
 export default computerAlgo;
