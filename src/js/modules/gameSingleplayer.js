@@ -11,6 +11,29 @@ const gameSingpleplayer = function (singleplayerElement) {
   const gamefieldParent = singleplayerElement.querySelector(
     ".singleplayer__gameSection"
   );
+  //SUB_SECTION: Difficulty Selection Settings
+
+  const diffOptionBox = gamefieldParent.querySelector(
+    ".singleplayer__gameSection__DiffModeBox"
+  );
+  const easyMode = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox__switcharea__option--one"
+  );
+  const middleMode = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox__switcharea__option--two"
+  );
+  const hardMode = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox__switcharea__option--three"
+  );
+  const selectorDiff = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox__switcharea--switcher"
+  );
+  const backButton = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox--backButton"
+  );
+
+  //SUB_SECTION: Symbol Selection Settings
+
   const optionBox = gamefieldParent.querySelector(
     ".singleplayer__gameSection__optionBox"
   );
@@ -26,6 +49,11 @@ const gameSingpleplayer = function (singleplayerElement) {
   const confirmButton = optionBox.querySelector(
     ".singleplayer__gameSection__optionBox--confirm"
   );
+  const switchModeButton = optionBox.querySelector(
+    ".singleplayer__gameSection__optionBox--switchmode"
+  );
+
+  //SUB_SECTION: Rest Settings
   const gameMessage = singleplayerElement.querySelector(
     ".singleplayer__menuSection__display__message"
   );
@@ -144,7 +172,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     stepStatus: 0,
     rootChoice: 0,
     //FIXME: to integrate!
-    modeChoice: 1,
+    modeChoice: 3,
     //SECTION: Start methods for start and reset (replay)
     buildField() {
       // console.log("Calling: buildField()");
@@ -317,9 +345,8 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SECTION: Event handling
 
-  //SUB_SECTION: Options selection handling
+  //SUB_SECTION: Options selection handling NOTE: for SYMBOL
 
-  //FIXME: Change the button to new element
   gameMessage.addEventListener("click", (e) => {
     optionBox.style.display = "grid";
     // console.log("Option Box = ACTIVE  " + e.target.classList);
@@ -348,6 +375,8 @@ const gameSingpleplayer = function (singleplayerElement) {
     //NOTE: start the game
     Game.start();
   });
+
+  //SUB_SECTION: Options selection handling NOTE: for DIFFICULTY
 
   //FIXME: Add another button for mode selection!
 
