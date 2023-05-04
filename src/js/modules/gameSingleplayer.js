@@ -143,6 +143,8 @@ const gameSingpleplayer = function (singleplayerElement) {
     gameStatus: "choice",
     stepStatus: 0,
     rootChoice: 0,
+    //FIXME: to integrate!
+    modeChoice: 1,
     //SECTION: Start methods for start and reset (replay)
     buildField() {
       // console.log("Calling: buildField()");
@@ -299,7 +301,13 @@ const gameSingpleplayer = function (singleplayerElement) {
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       this.handleMove(
-        computerAlgo(Game.field, Computer, this.stepStatus, this.rootChoice, 3)
+        computerAlgo(
+          Game.field,
+          Computer,
+          this.stepStatus,
+          this.rootChoice,
+          this.modeChoice
+        )
       );
       this.checkStatus();
     },
@@ -311,6 +319,7 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SUB_SECTION: Options selection handling
 
+  //FIXME: Change the button to new element
   gameMessage.addEventListener("click", (e) => {
     optionBox.style.display = "grid";
     // console.log("Option Box = ACTIVE  " + e.target.classList);
@@ -339,6 +348,8 @@ const gameSingpleplayer = function (singleplayerElement) {
     //NOTE: start the game
     Game.start();
   });
+
+  //FIXME: Add another button for mode selection!
 
   //SUB_SECTION: Game logic handling, after selection
 
