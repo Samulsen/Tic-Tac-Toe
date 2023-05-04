@@ -58,9 +58,9 @@
       }
 
       &--divider {
-        grid-row: 3/4;
-        grid-column: 2/3;
+        grid-area: gap;
         background-color: white;
+        border-radius: 1rem;
         justify-self: stretch;
         align-self: stretch;
       }

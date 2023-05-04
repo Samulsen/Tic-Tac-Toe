@@ -44,6 +44,8 @@
         justify-content: center;
         align-self: stretch;
         justify-self: stretch;
+        align-items: center;
+        justify-items: center;
         //NOTE: Grid Area
         grid-template-areas:
           "oneNum lineOne twoNum lineTwo threeNum"
@@ -51,6 +53,10 @@
           "sel-One lineX sel-Two lineY sel-Three";
 
         &__line {
+          background-color: white;
+          border-radius: 1rem;
+          align-self: stretch;
+          justify-self: stretch;
           &--One {
             grid-area: lineOne;
           }
@@ -60,18 +66,41 @@
         }
 
         &__option {
+          font-size: 2.5rem;
+          border-style: dashed;
+          border-radius: 1rem;
+          border-width: 0.2rem;
+          font-weight: 700;
+          padding: 0.2rem 0.7rem;
+          text-align: center;
+          cursor: pointer;
+
           &--one {
+            border-color: rgb(28, 220, 28);
             grid-area: oneNum;
+            &:hover {
+              background-color: rgb(28, 220, 28);
+            }
           }
           &--two {
+            border-color: rgb(245, 199, 16);
             grid-area: twoNum;
+            &:hover {
+              background-color: rgb(245, 199, 16);
+            }
           }
           &--three {
+            border-color: red;
             grid-area: threeNum;
+            &:hover {
+              background-color: red;
+            }
           }
         }
 
         &__note {
+          font-size: 1.5rem;
+          font-style: italic;
           &--one {
             grid-area: oneNote;
           }
@@ -84,10 +113,8 @@
         }
 
         &--switcher {
-          align-self: center;
-          justify-self: center;
           grid-area: sel-One;
-          transform: scale(0.5);
+          transform: scale(0.3);
         }
       }
 
