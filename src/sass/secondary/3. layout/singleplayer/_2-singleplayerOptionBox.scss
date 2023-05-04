@@ -14,7 +14,7 @@
 
       //SECTION: Gridsettings
 
-      display: grid;
+      display: none;
       justify-content: center;
       align-content: center;
       justify-items: center;
@@ -47,13 +47,13 @@
 
       &--circle {
         grid-area: circle;
-        padding: 3.6rem;
+        transform: scale(0.5);
         cursor: pointer;
       }
 
       &--cross {
         grid-area: cross;
-        padding: 2.5rem;
+        transform: scale(0.45);
         cursor: pointer;
       }
 
@@ -66,7 +66,7 @@
       }
 
       &--selector {
-        padding: 5rem;
+        transform: scale(0.3);
         grid-area: cir-s;
       }
       //NOTE: The actual confirm button

@@ -1,0 +1,106 @@
+.singleplayer {
+  &__gameSection {
+    &__DiffModeBox {
+      background-color: #5b8a72;
+      z-index: 2;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      border-radius: 1rem;
+      border-style: solid;
+      border-color: white;
+      padding: 1rem 1rem;
+      //NOTE: Grid Settings
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 5rem 7rem 12.5rem 5rem;
+      grid-template-columns: 100%;
+      grid-template-areas:
+        "title"
+        "note"
+        "switcharea"
+        "button";
+
+      &--title {
+        grid-area: title;
+        font-size: 2.3rem;
+        font-weight: 700;
+      }
+
+      &--note {
+        grid-area: note;
+        font-size: 2rem;
+        font-weight: 100;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      &__switcharea {
+        grid-area: switcharea;
+        display: grid;
+        grid-template-rows: 40% 30% 30%;
+        grid-template-columns: 30% 2% 30% 2% 30%;
+        justify-content: center;
+        align-self: stretch;
+        justify-self: stretch;
+        //NOTE: Grid Area
+        grid-template-areas:
+          "oneNum lineOne twoNum lineTwo threeNum"
+          "oneNote lineOne twoNote lineTwo threeNote"
+          "sel-One lineX sel-Two lineY sel-Three";
+
+        &__line {
+          &--One {
+            grid-area: lineOne;
+          }
+          &--Two {
+            grid-area: lineTwo;
+          }
+        }
+
+        &__option {
+          &--one {
+            grid-area: oneNum;
+          }
+          &--two {
+            grid-area: twoNum;
+          }
+          &--three {
+            grid-area: threeNum;
+          }
+        }
+
+        &__note {
+          &--one {
+            grid-area: oneNote;
+          }
+          &--two {
+            grid-area: twoNote;
+          }
+          &--three {
+            grid-area: threeNote;
+          }
+        }
+
+        &--switcher {
+          align-self: center;
+          justify-self: center;
+          grid-area: sel-One;
+          transform: scale(0.5);
+        }
+      }
+
+      &--backButton {
+        grid-area: button;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem 2rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
