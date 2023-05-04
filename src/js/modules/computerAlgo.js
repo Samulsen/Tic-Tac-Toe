@@ -787,12 +787,32 @@ const computerAlgo = function (
         this.allOtherMoves();
       }
     },
+    //SUB_SECTION: Bundled Strategies for mode choices
 
-    //NOTE: Main Bundler Function
-    calcMove() {
-      //
-      console.clear();
+    easyMode() {
+      if (stepStatus === 0) {
+        const randomNum = Math.floor(Math.random() * 9);
+        calculatedMove = randomNum;
+        return;
+      }
+      this.chooseAnyLeftovers();
+    },
+    middleMode() {
+      if (stepStatus === 0) {
+        const randomNum = Math.floor(Math.random() * 9);
+        calculatedMove = randomNum;
+        return;
+      }
 
+      if (this.possibleWin === true) this.checkForWin();
+
+      if (this.possibleLoose === true) this.checkForLoose();
+
+      if (this.possibleDraw === true) this.checkForDraw();
+      //NOTE: Will just randomly choose leftover
+      if (this.possibleStrategy === true) this.chooseAnyLeftovers();
+    },
+    hardMode() {
       if (this.possibleWin === true) this.checkForWin();
 
       if (this.possibleLoose === true) this.checkForLoose();
@@ -800,6 +820,27 @@ const computerAlgo = function (
       if (this.possibleDraw === true) this.checkForDraw();
 
       if (this.possibleStrategy === true) this.checkForStrategy();
+    },
+
+    //NOTE: Main Bundler Function
+    calcMove() {
+      //
+      console.clear();
+      switch (passedModusChoice) {
+        //NOTE: Easy
+        case 1:
+          this.easyMode();
+          break;
+        case 2:
+          this.middleMode();
+          break;
+        case 3:
+          this.hardMode();
+          break;
+
+        default:
+          break;
+      }
 
       return calculatedMove;
     },
