@@ -25,6 +25,10 @@ const gameSingpleplayer = function (singleplayerElement) {
   const hardMode = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea__option--three"
   );
+
+  const diffSwitcharea = diffOptionBox.querySelector(
+    ".singleplayer__gameSection__DiffModeBox__switcharea"
+  );
   const selectorDiff = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea--switcher"
   );
@@ -171,7 +175,6 @@ const gameSingpleplayer = function (singleplayerElement) {
     gameStatus: "choice",
     stepStatus: 0,
     rootChoice: 0,
-    //FIXME: to integrate!
     modeChoice: 3,
     //SECTION: Start methods for start and reset (replay)
     buildField() {
@@ -345,10 +348,15 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SECTION: Event handling
 
+  //SUB_SECTION:
+
+  const enableView = "grid";
+  const disableView = "none";
+
   //SUB_SECTION: Options selection handling NOTE: for SYMBOL
 
   gameMessage.addEventListener("click", (e) => {
-    optionBox.style.display = "grid";
+    optionBox.style.display = enableView;
     // console.log("Option Box = ACTIVE  " + e.target.classList);
   });
 
@@ -371,14 +379,49 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   confirmButton.addEventListener("click", (e) => {
     //NOTE: Hide menu
-    optionBox.style.display = "none";
+    optionBox.style.display = disableView;
     //NOTE: start the game
     Game.start();
   });
 
+  switchModeButton.addEventListener("click", (e) => {
+    optionBox.style.display = disableView;
+    diffOptionBox.style.display = enableView;
+  });
+
   //SUB_SECTION: Options selection handling NOTE: for DIFFICULTY
 
-  //FIXME: Add another button for mode selection!
+  backButton.addEventListener("click", (e) => {
+    optionBox.style.display = enableView;
+    diffOptionBox.style.display = disableView;
+  });
+
+  diffSwitcharea.addEventListener("click", (e) => {
+    if (e.target.classList[0].includes("option")) {
+      //NOTE: typecoerce from string to number
+      const choosenMode = e.target.innerText - 0;
+
+      switch (choosenMode) {
+        case 1:
+          selectorDiff.style.gridArea = "sel-One";
+          Game.modeChoice = 1;
+          break;
+
+        case 2:
+          selectorDiff.style.gridArea = "sel-Two";
+          Game.modeChoice = 2;
+          break;
+
+        case 3:
+          selectorDiff.style.gridArea = "sel-Three";
+          Game.modeChoice = 3;
+          break;
+
+        default:
+          break;
+      }
+    }
+  });
 
   //SUB_SECTION: Game logic handling, after selection
 
