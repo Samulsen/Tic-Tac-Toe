@@ -10,11 +10,11 @@
       border-radius: 1rem;
       border-style: solid;
       border-color: white;
-      padding: 1rem 2rem;
+      padding: 1rem 1rem;
 
       //SECTION: Gridsettings
 
-      display: none;
+      display: grid;
       justify-content: center;
       align-content: center;
       justify-items: center;
@@ -47,7 +47,7 @@
 
       &--circle {
         grid-area: circle;
-        padding: 3.2rem;
+        padding: 3.6rem;
         cursor: pointer;
       }
 
@@ -69,17 +69,36 @@
         padding: 5rem;
         grid-area: cir-s;
       }
-
+      //NOTE: The actual confirm button
       &--confirm {
         align-self: flex-end;
-        font-size: 1.4rem;
+        justify-self: left;
+        grid-area: row;
+        margin-left: 1rem;
+        font-size: 1.3rem;
         font-weight: 700;
         border-radius: 2rem;
         border-style: solid;
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+      }
+
+      //NOTE: Button to go to switchmode page!
+
+      &--switchmode {
         grid-area: row;
+        align-self: flex-end;
+        justify-self: right;
+        margin-right: 1rem;
+
+        font-size: 1.3rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem;
+        cursor: pointer;
       }
     }
   }
