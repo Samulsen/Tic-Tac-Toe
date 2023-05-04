@@ -1,0 +1,133 @@
+.singleplayer {
+  &__gameSection {
+    &__DiffModeBox {
+      background-color: #5b8a72;
+      z-index: 2;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      border-radius: 1rem;
+      border-style: solid;
+      border-color: white;
+      padding: 1rem 1rem;
+      //NOTE: Grid Settings
+      display: none;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 5rem 7rem 12.5rem 5rem;
+      grid-template-columns: 100%;
+      grid-template-areas:
+        "title"
+        "note"
+        "switcharea"
+        "button";
+
+      &--title {
+        grid-area: title;
+        font-size: 2.3rem;
+        font-weight: 700;
+      }
+
+      &--note {
+        grid-area: note;
+        font-size: 2rem;
+        font-weight: 100;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      &__switcharea {
+        grid-area: switcharea;
+        display: grid;
+        grid-template-rows: 40% 30% 30%;
+        grid-template-columns: 30% 2% 30% 2% 30%;
+        justify-content: center;
+        align-self: stretch;
+        justify-self: stretch;
+        align-items: center;
+        justify-items: center;
+        //NOTE: Grid Area
+        grid-template-areas:
+          "oneNum lineOne twoNum lineTwo threeNum"
+          "oneNote lineOne twoNote lineTwo threeNote"
+          "sel-One lineX sel-Two lineY sel-Three";
+
+        &__line {
+          background-color: white;
+          border-radius: 1rem;
+          align-self: stretch;
+          justify-self: stretch;
+          &--One {
+            grid-area: lineOne;
+          }
+          &--Two {
+            grid-area: lineTwo;
+          }
+        }
+
+        &__option {
+          font-size: 2.5rem;
+          border-style: dashed;
+          border-radius: 1rem;
+          border-width: 0.2rem;
+          font-weight: 700;
+          padding: 0.2rem 0.7rem;
+          text-align: center;
+          cursor: pointer;
+
+          &--one {
+            border-color: rgb(28, 220, 28);
+            grid-area: oneNum;
+            &:hover {
+              background-color: rgb(28, 220, 28);
+            }
+          }
+          &--two {
+            border-color: rgb(245, 199, 16);
+            grid-area: twoNum;
+            &:hover {
+              background-color: rgb(245, 199, 16);
+            }
+          }
+          &--three {
+            border-color: red;
+            grid-area: threeNum;
+            &:hover {
+              background-color: red;
+            }
+          }
+        }
+
+        &__note {
+          font-size: 1.5rem;
+          font-style: italic;
+          &--one {
+            grid-area: oneNote;
+          }
+          &--two {
+            grid-area: twoNote;
+          }
+          &--three {
+            grid-area: threeNote;
+          }
+        }
+
+        &--switcher {
+          grid-area: sel-Three;
+          transform: scale(0.3);
+        }
+      }
+
+      &--backButton {
+        grid-area: button;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem 2rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

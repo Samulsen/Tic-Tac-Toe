@@ -1,0 +1,105 @@
+.singleplayer {
+  &__gameSection {
+    &__optionBox {
+      // SECTION: Style Settings
+
+      background-color: #5b8a72;
+      z-index: 2;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      border-radius: 1rem;
+      border-style: solid;
+      border-color: white;
+      padding: 1rem 1rem;
+
+      //SECTION: Gridsettings
+
+      display: none;
+      justify-content: center;
+      align-content: center;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 15% 28% 30% 10% 17%;
+      grid-template-columns: 49% 2% 49%;
+      grid-template-areas:
+        "title title title"
+        "note note note"
+        "circle gap cross"
+        "cir-s l cro-s"
+        "row row row";
+
+      //SECTION: Childselection
+
+      &--title {
+        grid-area: title;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      &--note {
+        grid-area: note;
+        font-size: 2rem;
+        font-weight: 100;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      &--circle {
+        grid-area: circle;
+        transform: scale(0.5);
+        cursor: pointer;
+      }
+
+      &--cross {
+        grid-area: cross;
+        transform: scale(0.45);
+        cursor: pointer;
+      }
+
+      &--divider {
+        grid-area: gap;
+        background-color: white;
+        border-radius: 1rem;
+        justify-self: stretch;
+        align-self: stretch;
+      }
+
+      &--selector {
+        transform: scale(0.3);
+        grid-area: cir-s;
+      }
+      //NOTE: The actual confirm button
+      &--confirm {
+        align-self: flex-end;
+        justify-self: left;
+        grid-area: row;
+        margin-left: 1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem;
+        cursor: pointer;
+      }
+
+      //NOTE: Button to go to switchmode page!
+
+      &--switchmode {
+        grid-area: row;
+        align-self: flex-end;
+        justify-self: right;
+        margin-right: 1rem;
+
+        font-size: 1.3rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        border-style: solid;
+        border-color: white;
+        padding: 0.6rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

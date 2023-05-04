@@ -1,4 +1,4 @@
-// ----------------------- START OF IMPORTS -----------------------
+// IMPORT_START:
 
 // ---- !Transpiling and Polyfilling Modules!----------------------
 
@@ -13,12 +13,14 @@ import { async } from "regenerator-runtime";
 // -
 
 // ---- Internal Modules ------------------------------------------
-// import dateDisplay from "./modules/dateDisplay";
+
+import appControl from "./modules/appControl";
 // -
 // -
 
-// ----------------------- END OF IMPORTS -------------------------
+// IMPORT_END:
 
-// setInterval(() => {
-//   dateDisplay();
-// }, 1000);
+// if (module.hot) {
+//   module.hot.accept();
+// }
+appControl();

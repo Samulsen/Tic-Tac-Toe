@@ -5,13 +5,13 @@
     @include mainContainer(#464f41);
   }
 
+  &__titleSection {
+    @include titleSection(#5b8a72);
+  }
+
   &__gameSection {
     @include baseGameSection;
     @include extensionGameSection;
-  }
-
-  &__titleSection {
-    @include titleSection(#5b8a72);
   }
 
   &__menuSection {
