@@ -127,6 +127,21 @@
         border-color: white;
         padding: 0.6rem 2rem;
         cursor: pointer;
+
+        &:hover {
+          animation: singleplayerButtonSave-ON 0.3s ease-out 0s 1 normal
+            forwards;
+        }
+
+        &:not(:hover) {
+          animation: singleplayerButtonSave-Off 0.3s ease-out 0s 1 normal
+            backwards;
+        }
+
+        &:active {
+          animation: singleplayerButtonSave-CLICKED 0.1s ease-out 0s 1 normal
+            forwards;
+        }
       }
     }
   }
