@@ -4,4 +4,14 @@
 @include hoverStateButtonOff(startpageButton-OFF);
 @include clickedStateButton(startpageButton-CLICKED, #b8621b);
 
-//SECTION: Singleplayer and Multiplayer Buttons
+//SECTION: Singleplayer Buttons
+
+@include hoverStateButtonOn(singleplayerButton-ON, #5b8a72);
+@include hoverStateButtonOff(singleplayerButton-OFF);
+@include clickedStateButton(singleplayerButton-CLICKED, #5b8a72);
+
+//SECTION: Multiplayer Buttons
+
+@include hoverStateButtonOn(multiplayerButton-ON, #2c3333);
+@include hoverStateButtonOff(multiplayerButton-OFF);
+@include clickedStateButton(multiplayerButton-CLICKED, #2c3333);

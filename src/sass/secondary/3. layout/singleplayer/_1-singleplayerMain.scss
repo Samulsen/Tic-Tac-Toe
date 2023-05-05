@@ -15,6 +15,6 @@
   }
 
   &__menuSection {
-    @include menuSection(#56776c, #bfcba8);
+    @include menuSection(#56776c, #bfcba8, singleplayer);
   }
 }
