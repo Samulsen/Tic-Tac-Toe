@@ -113,7 +113,9 @@
 
 .message {
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding-left: 12.8rem;
   align-self: center;
+  justify-self: left;
+  animation: noteScaler 2s ease-in-out 0.5s infinite normal backwards;
 }

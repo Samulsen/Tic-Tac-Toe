@@ -6,6 +6,8 @@
 
 //SECTION: Not inherited Animations
 
+//SUB_SECTION: Title Section
+
 @keyframes crossTitleRotate {
   0% {
   }
@@ -31,3 +33,18 @@
     transform: translateY(0);
   }
 }
+
+@keyframes noteScaler {
+  0% {
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+//SUB_SECTION: Preview Section
