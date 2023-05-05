@@ -405,16 +405,25 @@ const gameSingpleplayer = function (singleplayerElement) {
         case 1:
           selectorDiff.style.gridArea = "sel-One";
           Game.modeChoice = 1;
+          easyMode.style.backgroundColor = "#1cdc1c";
+          middleMode.style.backgroundColor = "";
+          hardMode.style.backgroundColor = "";
           break;
 
         case 2:
           selectorDiff.style.gridArea = "sel-Two";
           Game.modeChoice = 2;
+          easyMode.style.backgroundColor = "";
+          middleMode.style.backgroundColor = "#f5c710";
+          hardMode.style.backgroundColor = "";
           break;
 
         case 3:
           selectorDiff.style.gridArea = "sel-Three";
           Game.modeChoice = 3;
+          easyMode.style.backgroundColor = "";
+          middleMode.style.backgroundColor = "";
+          hardMode.style.backgroundColor = "#ff0000";
           break;
 
         default:
