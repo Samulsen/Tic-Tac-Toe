@@ -1,0 +1,11 @@
+//SECTION: Singleplayer Buttons
+
+@include hoverStateButtonOn(singleplayerButton-ON, #5b8a72);
+@include hoverStateButtonOff(singleplayerButton-OFF);
+@include clickedStateButton(singleplayerButton-CLICKED, #5b8a72);
+
+//NOTE: seperate for replay button
+
+@include hoverStateButtonREPLAY-On(singleplayerButtonReplay-ON, #5b8a72);
+@include hoverStateButtonREPLAY-Off(singleplayerButtonReplay-OFF);
+@include clickedStateButtonREPLAY(singleplayerButtonReplay-CLICKED, #5b8a72);

@@ -1,0 +1,33 @@
+//SECTION: Startpage Buttons - inherited
+
+@include hoverStateButtonOn(startpageButton-ON, #b8621b);
+@include hoverStateButtonOff(startpageButton-OFF);
+@include clickedStateButton(startpageButton-CLICKED, #b8621b);
+
+//SECTION: Not inherited Animations
+
+@keyframes crossTitleRotate {
+  0% {
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes circleTitleHop {
+  0% {
+  }
+
+  50% {
+    transform: translateY(-0.4rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -55,6 +55,8 @@
     height: 4rem;
     align-self: center;
     justify-self: center;
+    //NOTE: Animation
+    animation: crossTitleRotate 4s ease-in-out 1s infinite normal backwards;
   }
 }
 
@@ -103,6 +105,8 @@
     height: 2.45rem;
     align-self: flex-end;
     justify-self: center;
+
+    animation: circleTitleHop 1.5s ease-in-out 0.5s infinite normal backwards;
   }
 }
 //SECTION_START: Message formating
