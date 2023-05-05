@@ -82,6 +82,21 @@
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+
+        &:hover {
+          animation: singleplayerButtonConfirm-ON 0.3s ease-out 0s 1 normal
+            forwards;
+        }
+
+        &:not(:hover) {
+          animation: singleplayerButtonConfirm-Off 0.3s ease-out 0s 1 normal
+            backwards;
+        }
+
+        &:active {
+          animation: singleplayerButtonConfirm-CLICKED 0.1s ease-out 0s 1 normal
+            forwards;
+        }
       }
 
       //NOTE: Button to go to switchmode page!
