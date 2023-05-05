@@ -9,9 +9,17 @@
 @include hoverStateButtonOn(singleplayerButton-ON, #5b8a72);
 @include hoverStateButtonOff(singleplayerButton-OFF);
 @include clickedStateButton(singleplayerButton-CLICKED, #5b8a72);
+//NOTE: seperate for replay button
+@include hoverStateButtonREPLAY-On(singleplayerButtonReplay-ON, #5b8a72);
+@include hoverStateButtonREPLAY-Off(singleplayerButtonReplay-OFF);
+@include clickedStateButtonREPLAY(singleplayerButtonReplay-CLICKED, #5b8a72);
 
 //SECTION: Multiplayer Buttons
 
 @include hoverStateButtonOn(multiplayerButton-ON, #2c3333);
 @include hoverStateButtonOff(multiplayerButton-OFF);
 @include clickedStateButton(multiplayerButton-CLICKED, #2c3333);
+//NOTE: seperate for replay button
+@include hoverStateButtonREPLAY-On(multiplayerButtonReplay-ON, #2c3333);
+@include hoverStateButtonREPLAY-Off(multiplayerButtonReplay-OFF);
+@include clickedStateButtonREPLAY(multiplayerButtonReplay-CLICKED, #2c3333);

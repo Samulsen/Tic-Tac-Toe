@@ -251,7 +251,7 @@
   }
 }
 
-@mixin menuSectionCONTROL($line-col-2-del) {
+@mixin menuSectionCONTROL($line-col-2-del, $del-name) {
   &__control {
     display: grid;
     grid-template-rows: 4.5rem 4.5rem;
@@ -275,6 +275,21 @@
       padding: 1rem 1.5rem;
       justify-self: left;
       cursor: pointer;
+
+      &:hover {
+        animation: #{$del-name}ButtonReplay-ON 0.3s ease-out 0s 1 normal
+          forwards;
+      }
+
+      &:not(:hover) {
+        animation: #{$del-name}ButtonReplay-OFF 0.3s ease-out 0s 1 normal
+          backwards;
+      }
+
+      &:active {
+        animation: #{$del-name}ButtonReplay-CLICKED 0.1s ease-out 0s 1 normal
+          forwards;
+      }
     }
     &--firstCount {
       grid-area: firstCount;
@@ -339,6 +354,6 @@
   grid-template-rows: 7rem 9rem 7rem;
 
   @include menuSectionDISPLAY($line-col-1);
-  @include menuSectionCONTROL($line-col-2);
+  @include menuSectionCONTROL($line-col-2, $name);
   @include menuSectionMENU($line-col-1, $name);
 }

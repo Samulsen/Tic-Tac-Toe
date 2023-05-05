@@ -1,3 +1,5 @@
+//SECTION: Controll specific
+
 @mixin hoverStateButtonOn($name, $font-col) {
   @keyframes #{$name} {
     0% {
@@ -43,6 +45,48 @@
       color: $font-col;
       border-radius: 3rem;
       transform: translateY(0rem);
+    }
+  }
+}
+
+//SECTION: Replay specific
+
+@mixin hoverStateButtonREPLAY-On($name, $font-col) {
+  @keyframes #{$name} {
+    0% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+
+    100% {
+      background-color: white;
+      color: $font-col;
+    }
+  }
+}
+
+@mixin hoverStateButtonREPLAY-Off($name) {
+  @keyframes #{$name} {
+    0% {
+      background-color: rgb(255, 255, 255);
+    }
+
+    100% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+@mixin clickedStateButtonREPLAY($name, $font-col) {
+  @keyframes #{$name} {
+    0% {
+      background-color: white;
+      color: $font-col;
+    }
+
+    100% {
+      background-color: white;
+      color: $font-col;
+      transform: scale(0.9);
     }
   }
 }
