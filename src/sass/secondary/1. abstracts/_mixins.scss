@@ -274,9 +274,7 @@
 
       padding: 1rem 1.5rem;
       justify-self: left;
-      &:visited {
-        color: white;
-      }
+      cursor: pointer;
     }
     &--firstCount {
       grid-area: firstCount;
@@ -302,6 +300,7 @@
       border-width: 0.6rem;
       padding: 1rem 1.5rem;
       border-radius: 3rem;
+      cursor: pointer;
 
       &--home {
         justify-self: left;
@@ -309,10 +308,6 @@
 
       &--mode {
         justify-self: right;
-      }
-
-      &:visited {
-        color: white;
       }
     }
   }
