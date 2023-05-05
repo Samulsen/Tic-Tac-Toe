@@ -16,11 +16,23 @@
   border-width: 0.75rem;
   border-color: #b8621b;
   padding: 2rem 3rem;
-  border-radius: 10rem;
+  border-radius: 5rem;
   justify-self: center;
   align-self: start;
   text-decoration: none;
   cursor: pointer;
+
+  &:hover {
+    animation: hoverStateButtonOn 0.3s ease-out 0s 1 normal forwards;
+  }
+
+  &:not(:hover) {
+    animation: hoverStateButtonOff 0.3s ease-out 0s 1 normal backwards;
+  }
+
+  &:active {
+    animation: clickedStateButton 0.1s ease-out 0s 1 normal forwards;
+  }
 
   &--singleplayer {
     justify-self: start;
