@@ -35,30 +35,37 @@
   }
 
   &__cross {
+    opacity: 0;
     &--1 {
       grid-row: 1/11;
       grid-column: 1/11;
+      animation: Cross-1 1s ease-in 2s 1 normal forwards;
     }
     &--2 {
       grid-row: 12/22;
       grid-column: 12/22;
+      animation: Cross-2 1s ease-in 6s 1 normal forwards;
     }
     &--3 {
       grid-row: 23/33;
       grid-column: 23/33;
+      animation: Cross-3 1s ease-in 10s 1 normal forwards;
     }
   }
 
   &__circle {
     //NOTE: padding for resizing uneven circle svg 1.2rem == default size cross
     padding: 1.2rem;
+    opacity: 0;
     &--1 {
       grid-row: 1/11;
       grid-column: 12/22;
+      animation: Circle-1 1s ease-in 4s 1 normal forwards;
     }
     &--2 {
       grid-row: 23/33;
       grid-column: 1/11;
+      animation: Circle-2 1s ease-in 8s 1 normal forwards;
     }
   }
 }
