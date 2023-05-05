@@ -27,18 +27,20 @@ const menuButtons = function (
 
   const menuSectionStartpage = document.querySelector(".menuSection");
   menuSectionStartpage.addEventListener("click", (event) => {
-    try {
-      //NOTE: GO TO SINGLEPLAYER
-      if (event.target.classList[1].includes(SP)) {
-        viewStartpage.display = disableView;
-        viewSingleplayer.display = enableView;
-      }
-      //NOTE: GO TO MULTIPLAYER
-      if (event.target.classList[1].includes(MP)) {
-        viewStartpage.display = disableView;
-        viewMultiplayer.display = enableView;
-      }
-    } catch (error) {}
+    setTimeout(() => {
+      try {
+        //NOTE: GO TO SINGLEPLAYER
+        if (event.target.classList[1].includes(SP)) {
+          viewStartpage.display = disableView;
+          viewSingleplayer.display = enableView;
+        }
+        //NOTE: GO TO MULTIPLAYER
+        if (event.target.classList[1].includes(MP)) {
+          viewStartpage.display = disableView;
+          viewMultiplayer.display = enableView;
+        }
+      } catch (error) {}
+    }, 700);
   });
 
   //SUB_SECTION: Menu Buttons in MULTIPLAYER
@@ -47,18 +49,20 @@ const menuButtons = function (
     `.${MP}__menuSection__options`
   );
   menuSectionMultiplayer.addEventListener("click", (event) => {
-    try {
-      //NOTE: GO TO MULTIPLAYER
-      if (event.target.classList[1].includes("mode")) {
-        viewMultiplayer.display = disableView;
-        viewSingleplayer.display = enableView;
-      }
-      //NOTE: GO TO SINGLEPLAYER
-      if (event.target.classList[1].includes("home")) {
-        viewStartpage.display = enableView;
-        viewMultiplayer.display = disableView;
-      }
-    } catch (error) {}
+    setTimeout(() => {
+      try {
+        //NOTE: GO TO MULTIPLAYER
+        if (event.target.classList[1].includes("mode")) {
+          viewMultiplayer.display = disableView;
+          viewSingleplayer.display = enableView;
+        }
+        //NOTE: GO TO SINGLEPLAYER
+        if (event.target.classList[1].includes("home")) {
+          viewStartpage.display = enableView;
+          viewMultiplayer.display = disableView;
+        }
+      } catch (error) {}
+    }, 700);
   });
 
   //SUB_SECTION: Menu Buttons in SINGLEPLAYER
@@ -67,18 +71,20 @@ const menuButtons = function (
     `.${SP}__menuSection__options`
   );
   menuSectionSingleplayer.addEventListener("click", (event) => {
-    try {
-      //NOTE: GO TO MULTIPLAYER
-      if (event.target.classList[1].includes("mode")) {
-        viewSingleplayer.display = disableView;
-        viewMultiplayer.display = enableView;
-      }
-      //NOTE: GO TO SINGLEPLAYER
-      if (event.target.classList[1].includes("home")) {
-        viewSingleplayer.display = disableView;
-        viewStartpage.display = enableView;
-      }
-    } catch (error) {}
+    setTimeout(() => {
+      try {
+        //NOTE: GO TO MULTIPLAYER
+        if (event.target.classList[1].includes("mode")) {
+          viewSingleplayer.display = disableView;
+          viewMultiplayer.display = enableView;
+        }
+        //NOTE: GO TO SINGLEPLAYER
+        if (event.target.classList[1].includes("home")) {
+          viewSingleplayer.display = disableView;
+          viewStartpage.display = enableView;
+        }
+      } catch (error) {}
+    }, 700);
   });
 };
 
