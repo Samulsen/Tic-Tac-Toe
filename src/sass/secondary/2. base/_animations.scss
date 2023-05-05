@@ -1,42 +1,7 @@
-@keyframes hoverStateButtonOn {
-  0% {
-    background-color: rgba(255, 255, 255, 0);
-  }
+//SECTION: Startpage Buttons
 
-  100% {
-    background-color: white;
-    transform: translateY(-1rem);
-    color: #b8621b;
-    border-radius: 1rem;
-  }
-}
+@include hoverStateButtonOn(startpageButton-ON, #b8621b);
+@include hoverStateButtonOff(startpageButton-OFF);
+@include clickedStateButton(startpageButton-CLICKED, #b8621b);
 
-@keyframes hoverStateButtonOff {
-  0% {
-    background-color: rgb(255, 255, 255);
-    transform: translateY(-1rem);
-    border-radius: 1rem;
-  }
-
-  100% {
-    background-color: rgba(255, 255, 255, 0);
-    transform: translateY(0);
-    border-radius: 5rem;
-  }
-}
-
-@keyframes clickedStateButton {
-  0% {
-    background-color: white;
-    transform: translateY(-1rem);
-    color: #b8621b;
-    border-radius: 1rem;
-  }
-
-  100% {
-    background-color: white;
-    color: #b8621b;
-    border-radius: 3rem;
-    transform: translateY(0rem);
-  }
-}
+//SECTION: Singleplayer and Multiplayer Buttons

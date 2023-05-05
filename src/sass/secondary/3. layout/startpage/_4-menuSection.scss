@@ -23,15 +23,15 @@
   cursor: pointer;
 
   &:hover {
-    animation: hoverStateButtonOn 0.3s ease-out 0s 1 normal forwards;
+    animation: startpageButton-ON 0.3s ease-out 0s 1 normal forwards;
   }
 
   &:not(:hover) {
-    animation: hoverStateButtonOff 0.3s ease-out 0s 1 normal backwards;
+    animation: startpageButton-OFF 0.3s ease-out 0s 1 normal backwards;
   }
 
   &:active {
-    animation: clickedStateButton 0.1s ease-out 0s 1 normal forwards;
+    animation: startpageButton-CLICKED 0.1s ease-out 0s 1 normal forwards;
   }
 
   &--singleplayer {
