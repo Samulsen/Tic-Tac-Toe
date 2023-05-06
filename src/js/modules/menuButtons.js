@@ -177,20 +177,67 @@ const menuButtons = function (
     `.${SP}__menuSection__options`
   );
   menuSectionSingleplayer.addEventListener("click", (event) => {
-    setTimeout(() => {
-      try {
-        //NOTE: GO TO MULTIPLAYER
-        if (event.target.classList[1].includes("mode")) {
-          viewSingleplayer.display = disableView;
-          viewMultiplayer.display = enableView;
-        }
-        //NOTE: GO TO SINGLEPLAYER
-        if (event.target.classList[1].includes("home")) {
-          viewSingleplayer.display = disableView;
-          viewStartpage.display = enableView;
-        }
-      } catch (error) {}
-    }, 700);
+    try {
+      //NOTE: GO TO MULTIPLAYER
+      if (event.target.classList[1].includes("mode")) {
+        fromSingleplayerToMultiplayer.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              singleplayerElement.classList.add("PageOffLoad");
+              singleplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewSingleplayer.display = disableView;
+            viewMultiplayer.display = enableView;
+            multiplayerElement.classList.remove("PageOffLoad");
+            multiplayerElement.classList.add("PageOnLoad");
+            fromSingleplayerToMultiplayer.classList.remove(
+              "clickedButtonWhileLoad"
+            );
+          });
+
+        //
+      }
+      //NOTE: GO TO STARTPAGE
+      if (event.target.classList[1].includes("home")) {
+        fromSingleplayerToHome.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              singleplayerElement.classList.add("PageOffLoad");
+              singleplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewSingleplayer.display = disableView;
+            viewStartpage.display = enableView;
+            startpageElement.classList.remove("PageOffLoad");
+            startpageElement.classList.add("PageOnLoad");
+            fromSingleplayerToHome.classList.remove("clickedButtonWhileLoad");
+          });
+
+        //
+      }
+    } catch (error) {}
   });
 };
 
