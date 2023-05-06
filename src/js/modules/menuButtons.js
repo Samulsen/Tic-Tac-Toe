@@ -40,6 +40,7 @@ const menuButtons = function (
           .then(() => {
             return new Promise((resolve) => {
               startpageElement.classList.add("PageOffLoad");
+              startpageElement.classList.remove("PageOnLoad");
               setTimeout(() => {
                 resolve();
               }, 1000);
@@ -48,13 +49,34 @@ const menuButtons = function (
           .then(() => {
             viewStartpage.display = disableView;
             viewSingleplayer.display = enableView;
+            singleplayerElement.classList.remove("PageOffLoad");
             singleplayerElement.classList.add("PageOnLoad");
           });
       }
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes(MP)) {
-        viewStartpage.display = disableView;
-        viewMultiplayer.display = enableView;
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 700);
+        });
+
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              startpageElement.classList.add("PageOffLoad");
+              startpageElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewStartpage.display = disableView;
+            viewMultiplayer.display = enableView;
+            multiplayerElement.classList.remove("PageOffLoad");
+            multiplayerElement.classList.add("PageOnLoad");
+          });
       }
     } catch (error) {}
   });
