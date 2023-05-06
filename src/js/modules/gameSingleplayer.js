@@ -344,18 +344,26 @@ const gameSingpleplayer = function (singleplayerElement) {
           }
         }, 1000);
       });
-      initChain.then(() => {
-        this.handleMove(
-          computerAlgo(
-            Game.field,
-            Computer,
-            this.stepStatus,
-            this.rootChoice,
-            this.modeChoice
-          )
-        );
-        this.checkStatus();
-      });
+      initChain
+        .then(() => {
+          return new Promise((resolve) => {
+            this.handleMove(
+              computerAlgo(
+                Game.field,
+                Computer,
+                this.stepStatus,
+                this.rootChoice,
+                this.modeChoice
+              )
+            );
+            setTimeout(() => {
+              resolve();
+            }, 1500);
+          });
+        })
+        .then(() => {
+          this.checkStatus();
+        });
     },
   };
 
