@@ -1,0 +1,35 @@
+@keyframes insertMoveCross {
+  0% {
+    opacity: 0.5;
+    transform: rotate(30deg) scale(0.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(0.6);
+  }
+}
+
+@keyframes insertMoveCircle {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5) translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(0.7) translateY(-0.5rem);
+  }
+
+  50% {
+    transform: scale(0.7) translateY(0rem);
+  }
+
+  75% {
+    transform: scale(0.7) translateY(-0.5rem);
+  }
+
+  100% {
+    transform: scale(0.7) translateY(0);
+  }
+}

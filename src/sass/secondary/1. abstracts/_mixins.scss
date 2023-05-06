@@ -153,10 +153,12 @@
 
   &__cross {
     transform: scale(0.6);
+    animation: insertMoveCross 1s ease-in-out 0s 1 normal forwards;
   }
 
   &__circle {
     transform: scale(0.7);
+    animation: insertMoveCircle 1s ease-in-out 0s 1 normal forwards;
   }
 }
 
@@ -176,14 +178,6 @@
     justify-self: center;
     border-radius: 10rem;
     align-self: center;
-
-    // &--upper {
-    //   justify-self: flex-start;
-    // }
-
-    // &--lower {
-    //   justify-self: flex-end;
-    // }
   }
 
   &--titleText {
