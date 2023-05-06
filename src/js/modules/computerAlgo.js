@@ -782,11 +782,61 @@ const computerAlgo = function (
         }
       }
       if (stepStatus === 4) {
-        const lastPossibleEdge = Object.values(
-          Pollution.unpollutedFieldsMap.Edge
-        );
-        calculatedMove = lastPossibleEdge[0].fieldVal;
-        return;
+        //NOTE: Differeciate if middle is taken by posVal or not
+        if (Object.keys(ComputerMiddle).length === 1) {
+          const avaibleEdges = Object.entries(
+            Pollution.unpollutedFieldsMap.Edge
+          );
+          for ([key, value] of avaibleEdges) {
+            switch (value.fieldVal) {
+              case 1:
+                if (
+                  Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.left.polVal === 0
+                ) {
+                  calculatedMove = 1;
+                  break;
+                }
+                break;
+              case 3:
+                if (
+                  Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.right.polVal === 0
+                ) {
+                  calculatedMove = 3;
+                  break;
+                }
+                break;
+              case 7:
+                if (
+                  Pollution.generalPollutionMap.Side.left.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.bottom.polVal === 0
+                ) {
+                  calculatedMove = 7;
+                  break;
+                }
+                break;
+              case 9:
+                if (
+                  Pollution.generalPollutionMap.Side.right.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.bottom.polVal === 0
+                ) {
+                  calculatedMove = 9;
+                  break;
+                }
+                break;
+              default:
+                break;
+            }
+          }
+        } else {
+          //NOTE: if middle is not pos val->
+          const lastPossibleEdge = Object.values(
+            Pollution.unpollutedFieldsMap.Edge
+          );
+          calculatedMove = lastPossibleEdge[0].fieldVal;
+          return;
+        }
       }
     },
     circleMover() {

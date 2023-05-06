@@ -331,6 +331,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       // NOTE: Because of async problems, replay button is disabled while computer thinks
       removedClickabilityREPLAY();
       removeClickabilityOPTION();
+      removeClickability();
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       const initChain = new Promise((resolve) => {
