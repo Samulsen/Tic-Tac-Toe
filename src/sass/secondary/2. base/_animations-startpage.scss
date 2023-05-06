@@ -1,11 +1,3 @@
-//SECTION: Startpage Buttons - inherited
-
-@include hoverStateButtonOn(startpageButton-ON, #b8621b);
-@include hoverStateButtonOff(startpageButton-OFF);
-@include clickedStateButton(startpageButton-CLICKED, #b8621b);
-
-//SECTION: Not inherited Animations
-
 //SUB_SECTION: Title Section
 
 @keyframes crossTitleRotate {
@@ -77,51 +69,4 @@
   100% {
     opacity: 1;
   }
-}
-
-//SUB_SECTION: ButtonClickWhileLoad
-
-@keyframes ButtonClickedWhileLoading {
-  50% {
-    transform: translateY(-1rem);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.clickedButtonWhileLoad {
-  animation: ButtonClickedWhileLoading 0.5s ease-out 0s infinite normal
-    backwards;
-}
-
-//SUB_SECTION: Whole Page
-
-@keyframes PageOnLoadAnim {
-  0% {
-    opacity: 0;
-    transform: translateY(-100rem);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.PageOnLoad {
-  animation: PageOnLoadAnim 2s ease-in-out 0s 1 normal forwards;
-}
-
-@keyframes PageOffLoadAnim {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(100rem);
-  }
-}
-
-.PageOffLoad {
-  animation: PageOffLoadAnim 2s ease-in-out 0s 1 normal forwards;
 }

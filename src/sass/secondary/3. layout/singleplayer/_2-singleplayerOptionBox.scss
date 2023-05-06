@@ -92,20 +92,20 @@
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+        transition: all 0.3s;
 
         &:hover {
-          animation: singleplayerButtonConfirm-ON 0.3s ease-out 0s 1 normal
-            forwards;
-        }
-
-        &:not(:hover) {
-          animation: singleplayerButtonConfirm-Off 0.3s ease-out 0s 1 normal
-            backwards;
+          background-color: white;
+          transform: translateY(-0.41rem);
+          color: #464f41;
+          border-color: #464f41;
         }
 
         &:active {
-          animation: singleplayerButtonConfirm-CLICKED 0.1s ease-out 0s 1 normal
-            forwards;
+          background-color: white;
+          transform: translateY(-0.41rem) scale(0.9);
+          color: #464f41;
+          border-color: #464f41;
         }
       }
 
@@ -124,20 +124,20 @@
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+        transition: all 0.3s;
 
         &:hover {
-          animation: singleplayerButtonMode-ON 0.3s ease-out 0s 1 normal
-            forwards;
-        }
-
-        &:not(:hover) {
-          animation: singleplayerButtonMode-Off 0.3s ease-out 0s 1 normal
-            backwards;
+          background-color: white;
+          transform: translateY(-0.4rem);
+          color: #464f41;
+          border-color: #464f41;
         }
 
         &:active {
-          animation: singleplayerButtonMode-CLICKED 0.1s ease-out 0s 1 normal
-            forwards;
+          background-color: white;
+          transform: translateY(-0.4rem) scale(0.9);
+          color: #464f41;
+          border-color: #464f41;
         }
       }
     }

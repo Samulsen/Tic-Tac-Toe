@@ -266,24 +266,21 @@
       border-style: solid;
       border-width: 0.6rem;
       border-radius: 1rem;
-
       padding: 1rem 1.5rem;
       justify-self: left;
       cursor: pointer;
+      transition: all 0.3s;
 
       &:hover {
-        animation: #{$del-name}ButtonReplay-ON 0.3s ease-out 0s 1 normal
-          forwards;
-      }
-
-      &:not(:hover) {
-        animation: #{$del-name}ButtonReplay-OFF 0.3s ease-out 0s 1 normal
-          backwards;
+        background-color: white;
+        color: $line-col-2-del;
+        transform: translateY(-0.4rem);
       }
 
       &:active {
-        animation: #{$del-name}ButtonReplay-CLICKED 0.1s ease-out 0s 1 normal
-          forwards;
+        background-color: white;
+        color: $line-col-2-del;
+        transform: translateY(-0.4rem) scale(0.8);
       }
     }
     &--firstCount {
@@ -295,7 +292,7 @@
   }
 }
 
-@mixin menuSectionMENU($line-col-1-del, $del-name) {
+@mixin menuSectionMENU($line-col-1-del, $line-col-2-del) {
   &__options {
     display: grid;
     grid-template-rows: 100%;
@@ -311,17 +308,22 @@
       padding: 1rem 1.5rem;
       border-radius: 3rem;
       cursor: pointer;
+      transition: all 0.3s;
 
       &:hover {
-        animation: #{$del-name}Button-ON 0.3s ease-out 0s 1 normal forwards;
+        border-color: $line-col-2-del;
+        background-color: white;
+        transform: translateY(-0.4rem);
+        color: $line-col-2-del;
+        border-radius: 1rem;
       }
 
-      // &:not(:hover) {
-      //   animation: #{$del-name}Button-OFF 0.3s ease-out 0s 1 normal backwards;
-      // }
-
       &:active {
-        animation: #{$del-name}Button-CLICKED 0.1s ease-out 0s 1 normal forwards;
+        background-color: white;
+        border-color: $line-col-2-del;
+        color: $line-col-2-del;
+        border-radius: 3rem;
+        transform: translateY(0rem);
       }
 
       &--home {
@@ -350,5 +352,5 @@
 
   @include menuSectionDISPLAY($line-col-1);
   @include menuSectionCONTROL($line-col-2, $name);
-  @include menuSectionMENU($line-col-1, $name);
+  @include menuSectionMENU($line-col-1, $line-col-2);
 }

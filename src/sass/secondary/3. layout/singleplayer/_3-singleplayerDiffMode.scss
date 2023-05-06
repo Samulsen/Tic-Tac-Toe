@@ -133,20 +133,20 @@
         border-color: white;
         padding: 0.6rem 2rem;
         cursor: pointer;
+        transition: all 0.3s;
 
         &:hover {
-          animation: singleplayerButtonSave-ON 0.3s ease-out 0s 1 normal
-            forwards;
-        }
-
-        &:not(:hover) {
-          animation: singleplayerButtonSave-Off 0.3s ease-out 0s 1 normal
-            backwards;
+          background-color: white;
+          transform: translateY(-0.6rem);
+          color: #464f41;
+          border-color: #464f41;
         }
 
         &:active {
-          animation: singleplayerButtonSave-CLICKED 0.1s ease-out 0s 1 normal
-            forwards;
+          background-color: white;
+          transform: translateY(-0.6rem) scale(0.9);
+          color: #464f41;
+          border-color: #464f41;
         }
       }
     }

@@ -1,13 +1,1 @@
-//SECTION: Multiplayer Buttons
 
-@include hoverStateButtonOn(multiplayerButton-ON, #2c3333);
-@include hoverStateButtonOff(multiplayerButton-OFF);
-@include clickedStateButton(multiplayerButton-CLICKED, #2c3333);
-
-//NOTE: seperate for replay button
-
-@include hoverStateButtonREPLAY-On(multiplayerButtonReplay-ON, #2c3333);
-@include hoverStateButtonREPLAY-Off(multiplayerButtonReplay-OFF);
-@include clickedStateButtonREPLAY(multiplayerButtonReplay-CLICKED, #2c3333);
-
-//SECTION: Optionboxes
