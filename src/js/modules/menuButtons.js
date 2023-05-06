@@ -141,13 +141,32 @@ const menuButtons = function (
               "clickedButtonWhileLoad"
             );
           });
-
-        //
       }
       //NOTE: GO TO STARTPAGE
       if (event.target.classList[1].includes("home")) {
-        viewStartpage.display = enableView;
-        viewMultiplayer.display = disableView;
+        fromMultiplayerToHome.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              multiplayerElement.classList.add("PageOffLoad");
+              multiplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewStartpage.display = enableView;
+            viewMultiplayer.display = disableView;
+            startpageElement.classList.remove("PageOffLoad");
+            startpageElement.classList.add("PageOnLoad");
+            fromMultiplayerToHome.classList.remove("clickedButtonWhileLoad");
+          });
       }
     } catch (error) {}
   });
