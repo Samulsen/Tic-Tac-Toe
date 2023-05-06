@@ -328,6 +328,8 @@ const gameSingpleplayer = function (singleplayerElement) {
       addClickability();
     },
     computerMove() {
+      // NOTE: Because of async problems, replay button is disabled while computer thinks
+      removedClickabilityREPLAY();
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       const initChain = new Promise((resolve) => {
@@ -356,13 +358,15 @@ const gameSingpleplayer = function (singleplayerElement) {
                 this.modeChoice
               )
             );
+            gameMessage.textContent = "Made my Choice!";
             setTimeout(() => {
               resolve();
-            }, 1500);
+            }, 1200);
           });
         })
         .then(() => {
           this.checkStatus();
+          addClickabilityREPLAY();
         });
     },
   };
@@ -485,9 +489,19 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SUB_SECTION: Replay handling
 
-  replayButton.addEventListener("click", () => {
+  function replayCallback() {
     Game.start();
-  });
+  }
+
+  function removedClickabilityREPLAY() {
+    replayButton.removeEventListener("click", replayCallback);
+  }
+
+  function addClickabilityREPLAY() {
+    replayButton.addEventListener("click", replayCallback);
+  }
+
+  replayButton.addEventListener("click", replayCallback);
 };
 
 export default gameSingpleplayer;
