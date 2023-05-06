@@ -49,12 +49,22 @@
         grid-area: circle;
         transform: scale(0.5);
         cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          transform: scale(0.6) translateY(-1rem);
+        }
       }
 
       &--cross {
         grid-area: cross;
-        transform: scale(0.45);
+        transform: scale(0.4);
         cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          transform: scale(0.5) translateY(-1rem);
+        }
       }
 
       &--divider {

@@ -21,17 +21,20 @@
   align-self: start;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s;
 
   &:hover {
-    animation: startpageButton-ON 0.3s ease-out 0s 1 normal forwards;
-  }
-
-  &:not(:hover) {
-    animation: startpageButton-OFF 0.3s ease-out 0s 1 normal backwards;
+    background-color: white;
+    transform: translateY(-1rem);
+    color: #b8621b;
+    border-radius: 1rem;
   }
 
   &:active {
-    animation: startpageButton-CLICKED 0.1s ease-out 0s 1 normal forwards;
+    background-color: white;
+    color: #b8621b;
+    border-radius: 3rem;
+    transform: translateY(0rem);
   }
 
   &--singleplayer {

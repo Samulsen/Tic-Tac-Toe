@@ -9,6 +9,13 @@ const menuButtons = function (
   const viewSingleplayer = singleplayerElement.style;
   const viewMultiplayer = multiplayerElement.style;
 
+  //SECTION: Button selections
+
+  const singleplayerButton = document.querySelector(
+    ".buttonStart--singleplayer"
+  );
+  const multiplayerButton = document.querySelector(".buttonStart--multiplayer");
+
   //SECTION: Options
 
   //SUB_SECTION: Pages
@@ -30,10 +37,11 @@ const menuButtons = function (
     try {
       //NOTE: GO TO SINGLEPLAYER
       if (event.target.classList[1].includes(SP)) {
+        singleplayerButton.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
             resolve();
-          }, 700);
+          }, 2000);
         });
 
         initChain
@@ -51,14 +59,16 @@ const menuButtons = function (
             viewSingleplayer.display = enableView;
             singleplayerElement.classList.remove("PageOffLoad");
             singleplayerElement.classList.add("PageOnLoad");
+            singleplayerButton.classList.remove("clickedButtonWhileLoad");
           });
       }
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes(MP)) {
+        multiplayerButton.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
             resolve();
-          }, 700);
+          }, 2000);
         });
 
         initChain
@@ -76,6 +86,7 @@ const menuButtons = function (
             viewMultiplayer.display = enableView;
             multiplayerElement.classList.remove("PageOffLoad");
             multiplayerElement.classList.add("PageOnLoad");
+            multiplayerButton.classList.remove("clickedButtonWhileLoad");
           });
       }
     } catch (error) {}

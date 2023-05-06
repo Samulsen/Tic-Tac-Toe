@@ -79,7 +79,22 @@
   }
 }
 
-//SUB_SECTION:
+//SUB_SECTION: ButtonClickWhileLoad
+
+@keyframes ButtonClickedWhileLoading {
+  50% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.clickedButtonWhileLoad {
+  animation: ButtonClickedWhileLoading 0.5s ease-out 0s infinite normal
+    backwards;
+}
 
 //SUB_SECTION: Whole Page
 
