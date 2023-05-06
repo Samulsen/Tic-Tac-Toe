@@ -39,9 +39,11 @@
 
   &--singleplayer {
     justify-self: start;
+    animation: fade-in 1s ease-out 6s 1 normal backwards;
   }
 
   &--multiplayer {
     justify-self: end;
+    animation: fade-in 1s ease-out 7s 1 normal backwards;
   }
 }
