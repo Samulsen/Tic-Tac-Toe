@@ -4,9 +4,8 @@
   justify-content: space-around;
   align-content: center;
   grid-template-columns: repeat(2, 43%);
-  // grid-template-rows: 45% 40%;
   grid-template-rows: 45%;
-  // margin-top: 5rem;
+  animation: fade-in 1s ease-out 6s 1 normal backwards;
 }
 
 .buttonStart {
@@ -39,11 +38,9 @@
 
   &--singleplayer {
     justify-self: start;
-    animation: fade-in 1s ease-out 6s 1 normal backwards;
   }
 
   &--multiplayer {
     justify-self: end;
-    animation: fade-in 1s ease-out 7s 1 normal backwards;
   }
 }
