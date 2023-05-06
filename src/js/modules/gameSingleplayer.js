@@ -25,7 +25,6 @@ const gameSingpleplayer = function (singleplayerElement) {
   const hardMode = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea__option--three"
   );
-
   const diffSwitcharea = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea"
   );
@@ -331,16 +330,32 @@ const gameSingpleplayer = function (singleplayerElement) {
     computerMove() {
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
-      this.handleMove(
-        computerAlgo(
-          Game.field,
-          Computer,
-          this.stepStatus,
-          this.rootChoice,
-          this.modeChoice
-        )
-      );
-      this.checkStatus();
+      const initChain = new Promise((resolve) => {
+        let count = 0;
+        let appendString = "Computer thinks.";
+        const computerWaiter = setInterval(() => {
+          if (count === 3) {
+            clearInterval(computerWaiter);
+            resolve();
+          } else {
+            gameMessage.textContent = appendString;
+            appendString = appendString + ".";
+            count++;
+          }
+        }, 1000);
+      });
+      initChain.then(() => {
+        this.handleMove(
+          computerAlgo(
+            Game.field,
+            Computer,
+            this.stepStatus,
+            this.rootChoice,
+            this.modeChoice
+          )
+        );
+        this.checkStatus();
+      });
     },
   };
 
