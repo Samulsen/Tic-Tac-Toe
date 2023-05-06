@@ -56,7 +56,7 @@
     align-self: center;
     justify-self: center;
     //NOTE: Animation
-    animation: crossTitleRotate 4s ease-in-out 1s infinite normal backwards;
+    animation: crossTitleRotate 4s ease-in-out 2s infinite normal backwards;
   }
 }
 
@@ -106,7 +106,7 @@
     align-self: flex-end;
     justify-self: center;
 
-    animation: circleTitleHop 1.5s ease-in-out 10s infinite normal backwards;
+    animation: circleTitleHop 1.5s ease-in-out 2s infinite normal backwards;
   }
 }
 //SECTION_START: Message formating
@@ -117,5 +117,5 @@
   padding-left: 12.8rem;
   align-self: center;
   justify-self: left;
-  animation: noteScaler 2s ease-in-out 0.5s infinite normal backwards;
+  animation: noteScaler 2s ease-in-out 2s infinite normal backwards;
 }
