@@ -1,4 +1,7 @@
 .startpage {
+  //SECTION: On Load Animations
+
+  //SECTION: Layout
   @include baseContainer(grid, white, #4fbdba, #35858b);
 
   &__main-container {

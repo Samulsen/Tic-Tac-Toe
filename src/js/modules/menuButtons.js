@@ -27,20 +27,36 @@ const menuButtons = function (
 
   const menuSectionStartpage = document.querySelector(".menuSection");
   menuSectionStartpage.addEventListener("click", (event) => {
-    setTimeout(() => {
-      try {
-        //NOTE: GO TO SINGLEPLAYER
-        if (event.target.classList[1].includes(SP)) {
-          viewStartpage.display = disableView;
-          viewSingleplayer.display = enableView;
-        }
-        //NOTE: GO TO MULTIPLAYER
-        if (event.target.classList[1].includes(MP)) {
-          viewStartpage.display = disableView;
-          viewMultiplayer.display = enableView;
-        }
-      } catch (error) {}
-    }, 700);
+    try {
+      //NOTE: GO TO SINGLEPLAYER
+      if (event.target.classList[1].includes(SP)) {
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 700);
+        });
+
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              startpageElement.classList.add("PageOffLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewStartpage.display = disableView;
+            viewSingleplayer.display = enableView;
+            singleplayerElement.classList.add("PageOnLoad");
+          });
+      }
+      //NOTE: GO TO MULTIPLAYER
+      if (event.target.classList[1].includes(MP)) {
+        viewStartpage.display = disableView;
+        viewMultiplayer.display = enableView;
+      }
+    } catch (error) {}
   });
 
   //SUB_SECTION: Menu Buttons in MULTIPLAYER

@@ -78,3 +78,35 @@
     opacity: 1;
   }
 }
+
+//SUB_SECTION:
+
+//SUB_SECTION: Whole Page
+
+@keyframes PageOnLoadAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-100rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.PageOnLoad {
+  animation: PageOnLoadAnim 2s ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes PageOffLoadAnim {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(100rem);
+  }
+}
+
+.PageOffLoad {
+  animation: PageOffLoadAnim 2s ease-in-out 0s 1 normal forwards;
+}
