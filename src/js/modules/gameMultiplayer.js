@@ -218,11 +218,20 @@ const gameMultiplayer = function (multiplayerElement) {
   }
 
   function handleGamelogic(event) {
-    if (event.target.classList[0].includes("fieldBox")) {
-      //SECTION: Insert correct object and switch to other player
-      const field = parseInt(event.target.classList[1].slice(-1), 10);
-      Game.handleMove(field);
-      //SECTION: Check if someone has won or draw!
+    const initChain = new Promise((resolve) => {
+      if (event.target.classList[0].includes("fieldBox")) {
+        //SECTION: Insert correct object and switch to other player
+        const field = parseInt(event.target.classList[1].slice(-1), 10);
+        Game.handleMove(field);
+        //NOTE: Delay resolve until animation done, roughly 1,5sec
+        removeClickability();
+        setTimeout(() => {
+          gamefieldParent.addEventListener("click", handleGamelogic);
+          resolve();
+        }, 1500);
+      }
+    });
+    initChain.then(() => {
       const winCheck = Game.checkWin();
       if (typeof winCheck === "object") {
         console.log("WINNER!");
@@ -242,7 +251,7 @@ const gameMultiplayer = function (multiplayerElement) {
           Game.updateMessage();
         }
       }
-    }
+    });
   }
 
   //SUB_SECTION: Handle Placements Reqs!
