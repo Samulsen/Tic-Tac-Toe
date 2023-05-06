@@ -472,7 +472,10 @@ const gameSingpleplayer = function (singleplayerElement) {
       //NOTE: End with removing clickability
       removeClickability();
       //   console.warn("PlayerClick " + event.target.classList[0]);
-      Game.checkStatus();
+
+      setTimeout(() => {
+        Game.checkStatus();
+      }, 1300);
     }
     // console.warn("UNWANTEND CLICK   " + event.target.classList);
   }
