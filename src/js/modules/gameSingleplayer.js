@@ -330,6 +330,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     computerMove() {
       // NOTE: Because of async problems, replay button is disabled while computer thinks
       removedClickabilityREPLAY();
+      removeClickabilityOPTION();
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
       const initChain = new Promise((resolve) => {
@@ -367,6 +368,7 @@ const gameSingpleplayer = function (singleplayerElement) {
         .then(() => {
           this.checkStatus();
           addClickabilityREPLAY();
+          addClickabilityOPTION();
         });
     },
   };
@@ -382,10 +384,19 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SUB_SECTION: Options selection handling NOTE: for SYMBOL
 
-  gameMessage.addEventListener("click", (e) => {
+  function optionBoxOpener() {
     optionBox.style.display = enableView;
-    // console.log("Option Box = ACTIVE  " + e.target.classList);
-  });
+  }
+
+  function addClickabilityOPTION() {
+    gameMessage.addEventListener("click", optionBoxOpener);
+  }
+
+  function removeClickabilityOPTION() {
+    gameMessage.removeEventListener("click", optionBoxOpener);
+  }
+
+  gameMessage.addEventListener("click", optionBoxOpener);
 
   circleOption.addEventListener("click", (e) => {
     selector.style.gridArea = "cir-s";
@@ -504,7 +515,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     replayButton.addEventListener("click", replayCallback);
   }
 
-  replayButton.addEventListener("click", replayCallback);
+  // replayButton.addEventListener("click", replayCallback);
 };
 
 export default gameSingpleplayer;

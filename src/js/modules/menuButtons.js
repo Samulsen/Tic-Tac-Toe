@@ -16,6 +16,22 @@ const menuButtons = function (
   );
   const multiplayerButton = document.querySelector(".buttonStart--multiplayer");
 
+  const fromSingleplayerToHome = document.querySelector(
+    ".singleplayer__menuSection__options__button--home"
+  );
+
+  const fromSingleplayerToMultiplayer = document.querySelector(
+    ".singleplayer__menuSection__options__button--mode"
+  );
+
+  const fromMultiplayerToHome = document.querySelector(
+    ".multiplayer__menuSection__options__button--home"
+  );
+
+  const fromMultiplayerToSingleplayer = document.querySelector(
+    ".multiplayer__menuSection__options__button--mode"
+  );
+
   //SECTION: Options
 
   //SUB_SECTION: Pages
@@ -43,7 +59,6 @@ const menuButtons = function (
             resolve();
           }, 2000);
         });
-
         initChain
           .then(() => {
             return new Promise((resolve) => {
@@ -98,20 +113,43 @@ const menuButtons = function (
     `.${MP}__menuSection__options`
   );
   menuSectionMultiplayer.addEventListener("click", (event) => {
-    setTimeout(() => {
-      try {
-        //NOTE: GO TO MULTIPLAYER
-        if (event.target.classList[1].includes("mode")) {
-          viewMultiplayer.display = disableView;
-          viewSingleplayer.display = enableView;
-        }
-        //NOTE: GO TO SINGLEPLAYER
-        if (event.target.classList[1].includes("home")) {
-          viewStartpage.display = enableView;
-          viewMultiplayer.display = disableView;
-        }
-      } catch (error) {}
-    }, 700);
+    try {
+      //NOTE: GO TO SINGLEPLAYER
+      if (event.target.classList[1].includes("mode")) {
+        fromMultiplayerToSingleplayer.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              multiplayerElement.classList.add("PageOffLoad");
+              multiplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewMultiplayer.display = disableView;
+            viewSingleplayer.display = enableView;
+            singleplayerElement.classList.remove("PageOffLoad");
+            singleplayerElement.classList.add("PageOnLoad");
+            fromMultiplayerToSingleplayer.classList.remove(
+              "clickedButtonWhileLoad"
+            );
+          });
+
+        //
+      }
+      //NOTE: GO TO STARTPAGE
+      if (event.target.classList[1].includes("home")) {
+        viewStartpage.display = enableView;
+        viewMultiplayer.display = disableView;
+      }
+    } catch (error) {}
   });
 
   //SUB_SECTION: Menu Buttons in SINGLEPLAYER
