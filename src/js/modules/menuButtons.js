@@ -54,13 +54,22 @@ const menuButtons = function (
 
   //SECTION: Eventhandling
 
-  //SUB_SECTION: STARTPAGE
-
+  //SUB_SECTION: Object Selection
   const menuSectionStartpage = document.querySelector(".menuSection");
-  menuSectionStartpage.addEventListener("click", (event) => {
+  const menuSectionMultiplayer = document.querySelector(
+    `.${MP}__menuSection__options`
+  );
+  const menuSectionSingleplayer = document.querySelector(
+    `.${SP}__menuSection__options`
+  );
+  //SUB_SECTION: Handler
+
+  function menuStartpageHandler(event) {
     try {
       //NOTE: GO TO SINGLEPLAYER
       if (event.target.classList[1].includes(SP)) {
+        menuStartpageHandlerREMOVE();
+        menuSingleplayerHandlerADD();
         clickSound.play();
         singleplayerButton.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
@@ -91,6 +100,8 @@ const menuButtons = function (
       }
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes(MP)) {
+        menuStartpageHandlerREMOVE();
+        menuMultiplayerHandlerADD();
         multiplayerButton.classList.add("clickedButtonWhileLoad");
         clickSound.play();
         const initChain = new Promise((resolve) => {
@@ -121,86 +132,14 @@ const menuButtons = function (
           });
       }
     } catch (error) {}
-  });
+  }
 
-  //SUB_SECTION: Menu Buttons in MULTIPLAYER
-
-  const menuSectionMultiplayer = document.querySelector(
-    `.${MP}__menuSection__options`
-  );
-  menuSectionMultiplayer.addEventListener("click", (event) => {
-    try {
-      //NOTE: GO TO SINGLEPLAYER
-      if (event.target.classList[1].includes("mode")) {
-        clickSound.play();
-        fromMultiplayerToSingleplayer.classList.add("clickedButtonWhileLoad");
-        const initChain = new Promise((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 2000);
-        });
-        initChain
-          .then(() => {
-            return new Promise((resolve) => {
-              multiplayerElement.classList.add("PageOffLoad");
-              multiplayerElement.classList.remove("PageOnLoad");
-              setTimeout(() => {
-                resolve();
-              }, 1000);
-            });
-          })
-          .then(() => {
-            setTimeout(() => {
-              pageLoadedSound.play();
-            }, 10000);
-            viewMultiplayer.display = disableView;
-            viewSingleplayer.display = enableView;
-            singleplayerElement.classList.remove("PageOffLoad");
-            singleplayerElement.classList.add("PageOnLoad");
-            fromMultiplayerToSingleplayer.classList.remove(
-              "clickedButtonWhileLoad"
-            );
-          });
-      }
-      //NOTE: GO TO STARTPAGE
-      if (event.target.classList[1].includes("home")) {
-        clickSound.play();
-        fromMultiplayerToHome.classList.add("clickedButtonWhileLoad");
-        const initChain = new Promise((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 2000);
-        });
-        initChain
-          .then(() => {
-            return new Promise((resolve) => {
-              multiplayerElement.classList.add("PageOffLoad");
-              multiplayerElement.classList.remove("PageOnLoad");
-              setTimeout(() => {
-                resolve();
-              }, 1000);
-            });
-          })
-          .then(() => {
-            viewStartpage.display = enableView;
-            viewMultiplayer.display = disableView;
-            startpageElement.classList.remove("PageOffLoad");
-            startpageElement.classList.add("PageOnLoad");
-            fromMultiplayerToHome.classList.remove("clickedButtonWhileLoad");
-          });
-      }
-    } catch (error) {}
-  });
-
-  //SUB_SECTION: Menu Buttons in SINGLEPLAYER
-
-  const menuSectionSingleplayer = document.querySelector(
-    `.${SP}__menuSection__options`
-  );
-  menuSectionSingleplayer.addEventListener("click", (event) => {
+  function menuSingleplayerHandler(event) {
     try {
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes("mode")) {
+        menuSingleplayerHandlerREMOVE();
+        menuMultiplayerHandlerADD();
         clickSound.play();
         fromSingleplayerToMultiplayer.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
@@ -236,6 +175,8 @@ const menuButtons = function (
       }
       //NOTE: GO TO STARTPAGE
       if (event.target.classList[1].includes("home")) {
+        menuSingleplayerHandlerREMOVE();
+        menuStartpageHandlerADD();
         clickSound.play();
         fromSingleplayerToHome.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
@@ -264,7 +205,110 @@ const menuButtons = function (
         //
       }
     } catch (error) {}
-  });
+  }
+
+  function menuMultiplayerHandler(event) {
+    try {
+      //NOTE: GO TO SINGLEPLAYER
+      if (event.target.classList[1].includes("mode")) {
+        menuMultiplayerHandlerREMOVE();
+        menuSingleplayerHandlerADD();
+        clickSound.play();
+        fromMultiplayerToSingleplayer.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              multiplayerElement.classList.add("PageOffLoad");
+              multiplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            setTimeout(() => {
+              pageLoadedSound.play();
+            }, 10000);
+            viewMultiplayer.display = disableView;
+            viewSingleplayer.display = enableView;
+            singleplayerElement.classList.remove("PageOffLoad");
+            singleplayerElement.classList.add("PageOnLoad");
+            fromMultiplayerToSingleplayer.classList.remove(
+              "clickedButtonWhileLoad"
+            );
+          });
+      }
+      //NOTE: GO TO STARTPAGE
+      if (event.target.classList[1].includes("home")) {
+        menuMultiplayerHandlerREMOVE();
+        menuStartpageHandlerADD();
+        clickSound.play();
+        fromMultiplayerToHome.classList.add("clickedButtonWhileLoad");
+        const initChain = new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+        initChain
+          .then(() => {
+            return new Promise((resolve) => {
+              multiplayerElement.classList.add("PageOffLoad");
+              multiplayerElement.classList.remove("PageOnLoad");
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            });
+          })
+          .then(() => {
+            viewStartpage.display = enableView;
+            viewMultiplayer.display = disableView;
+            startpageElement.classList.remove("PageOffLoad");
+            startpageElement.classList.add("PageOnLoad");
+            fromMultiplayerToHome.classList.remove("clickedButtonWhileLoad");
+          });
+      }
+    } catch (error) {}
+  }
+
+  //SUB_SECTION: Event Listener ADDER
+
+  function menuStartpageHandlerADD() {
+    menuSectionStartpage.addEventListener("click", menuStartpageHandler);
+  }
+  function menuSingleplayerHandlerADD() {
+    menuSectionSingleplayer.addEventListener("click", menuSingleplayerHandler);
+  }
+  function menuMultiplayerHandlerADD() {
+    menuSectionMultiplayer.addEventListener("click", menuMultiplayerHandler);
+  }
+
+  //SUB_SECTION: Event Lsitener REMOVER
+
+  function menuStartpageHandlerREMOVE() {
+    menuSectionStartpage.removeEventListener("click", menuStartpageHandler);
+  }
+  function menuSingleplayerHandlerREMOVE() {
+    menuSectionSingleplayer.removeEventListener(
+      "click",
+      menuSingleplayerHandler
+    );
+  }
+  function menuMultiplayerHandlerREMOVE() {
+    menuSectionMultiplayer.removeEventListener("click", menuMultiplayerHandler);
+  }
+
+  //SUB_SECTION: Default LOADER
+
+  menuSectionStartpage.addEventListener("click", menuStartpageHandler);
+
+  // menuSectionSingleplayer.addEventListener("click", menuSingleplayerHandler);
+
+  // menuSectionMultiplayer.addEventListener("click", menuMultiplayerHandler);
 };
 
 export default menuButtons;
