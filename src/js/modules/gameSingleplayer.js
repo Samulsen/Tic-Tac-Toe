@@ -287,12 +287,18 @@ const gameSingpleplayer = function (singleplayerElement) {
         console.log(
           "---------------------------------------------------------------"
         );
+        if (this.currentEntity.Name === "Computer") {
+          lostSound.play();
+        } else {
+          wonSound.play();
+        }
         return;
       }
 
       //SECTION: Check for Draw
 
       if (this.checkDraw()) {
+        drawSound.play();
         this.gameStatus = "draw";
         console.log("There is a draw!");
         return;
@@ -377,6 +383,7 @@ const gameSingpleplayer = function (singleplayerElement) {
       initChain
         .then(() => {
           return new Promise((resolve) => {
+            placeObjectSound.play();
             this.handleMove(
               computerAlgo(
                 Game.field,
@@ -510,6 +517,7 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   function handlePlayerClick(event) {
     if (event.target.classList[0].includes("fieldBox")) {
+      placeObjectSound.play();
       const field = parseInt(event.target.classList[1].slice(-1), 10);
       Game.handleMove(field);
       //NOTE: Add here if condition, that when first move, change root choice to fieldnum

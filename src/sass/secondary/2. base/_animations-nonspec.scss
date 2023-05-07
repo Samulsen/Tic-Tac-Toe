@@ -6,9 +6,21 @@
     transform: rotate(30deg) scale(0.4);
   }
 
-  100% {
+  25% {
     opacity: 1;
-    transform: rotate(0deg) scale(0.6);
+    transform: rotate(0deg) scale(0.6) translateY(-0.5rem);
+  }
+
+  50% {
+    transform: scale(0.6) translateY(0rem);
+  }
+
+  75% {
+    transform: scale(0.6) translateY(-0.5rem);
+  }
+
+  100% {
+    transform: scale(0.6) translateY(0);
   }
 }
 
