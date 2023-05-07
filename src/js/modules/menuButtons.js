@@ -1,3 +1,5 @@
+import clickNormal from "url:../../audio/click-nor.wav";
+
 const menuButtons = function (
   startpageElement,
   singleplayerElement,
@@ -44,6 +46,10 @@ const menuButtons = function (
   const enableView = "grid";
   const disableView = "none";
 
+  //SECTION: Audio Objects
+
+  const clickSound = new Audio(clickNormal);
+
   //SECTION: Eventhandling
 
   //SUB_SECTION: STARTPAGE
@@ -53,6 +59,7 @@ const menuButtons = function (
     try {
       //NOTE: GO TO SINGLEPLAYER
       if (event.target.classList[1].includes(SP)) {
+        clickSound.play();
         singleplayerButton.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
@@ -80,6 +87,7 @@ const menuButtons = function (
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes(MP)) {
         multiplayerButton.classList.add("clickedButtonWhileLoad");
+        clickSound.play();
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
             resolve();
@@ -116,6 +124,7 @@ const menuButtons = function (
     try {
       //NOTE: GO TO SINGLEPLAYER
       if (event.target.classList[1].includes("mode")) {
+        clickSound.play();
         fromMultiplayerToSingleplayer.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
@@ -144,6 +153,7 @@ const menuButtons = function (
       }
       //NOTE: GO TO STARTPAGE
       if (event.target.classList[1].includes("home")) {
+        clickSound.play();
         fromMultiplayerToHome.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
@@ -180,6 +190,7 @@ const menuButtons = function (
     try {
       //NOTE: GO TO MULTIPLAYER
       if (event.target.classList[1].includes("mode")) {
+        clickSound.play();
         fromSingleplayerToMultiplayer.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
@@ -211,6 +222,7 @@ const menuButtons = function (
       }
       //NOTE: GO TO STARTPAGE
       if (event.target.classList[1].includes("home")) {
+        clickSound.play();
         fromSingleplayerToHome.classList.add("clickedButtonWhileLoad");
         const initChain = new Promise((resolve) => {
           setTimeout(() => {
