@@ -1,0 +1,75 @@
+//SUB_SECTION: Title Section
+
+@keyframes crossTitleRotate {
+  0% {
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes circleTitleHop {
+  0% {
+  }
+
+  50% {
+    transform: translateY(-0.4rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes noteScaler {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+//SUB_SECTION: Preview Section
+
+//NOTE: Objects
+
+@keyframes Cross-1 {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Circle-1 {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Cross-2 {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Circle-2 {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Cross-3 {
+  100% {
+    opacity: 1;
+  }
+}

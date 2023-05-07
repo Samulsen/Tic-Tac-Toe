@@ -9,9 +9,9 @@
 
 html {
   /* Defining global font size for rem by percentage, for flexibel browser compatibility --> default 16px * 62.5% = 10px (root rem factor) */
-  font-size: 62.5%;
+  // font-size: 62.5%;
   //NOTE: Had to reduce font-size for rem spec because of prev error with scaling...
-  // font-size: 50%;
+  font-size: 50%;
 }
 
 // Temporary for connection test!
@@ -24,8 +24,4 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-}
-
-a {
-  text-decoration: none;
 }

@@ -15,6 +15,6 @@
   }
 
   &__menuSection {
-    @include menuSection(#e7f6f2, #2c3333);
+    @include menuSection(#e7f6f2, #2c3333, multiplayer);
   }
 }

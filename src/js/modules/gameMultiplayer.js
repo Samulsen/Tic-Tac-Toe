@@ -2,6 +2,11 @@
 
 import mulCircle from "../../svg/multiplayer/mulCircle.svg";
 import mulCross from "../../svg/multiplayer/mulCross.svg";
+import clickReplay from "url:../../audio/click-replay.wav";
+import placeObject from "url:../../audio/object-place.wav";
+import statusDraw from "url:../../audio/status-draw.wav";
+import statusWon from "url:../../audio/status-won.wav";
+import pageLoaded from "url:../../audio/pageOffLoaded.wav";
 
 //IMPORT_END:
 
@@ -22,6 +27,14 @@ const gameMultiplayer = function (multiplayerElement) {
   const replayButton = multiplayerElement.querySelector(
     ".multiplayer__menuSection__control--replayButton"
   );
+
+  //SECTION: Audio
+
+  const clickReplaySound = new Audio(clickReplay);
+  const placeObjectSound = new Audio(placeObject);
+  const wonSound = new Audio(statusWon);
+  const drawSound = new Audio(statusDraw);
+  const pageLoadedSound = new Audio(pageLoaded);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -204,8 +217,21 @@ const gameMultiplayer = function (multiplayerElement) {
   };
 
   //SECTION: INVOKING START SET UP
-
   Game.start();
+  multiplayerElement.addEventListener("animationend", (e) => {
+    //NOTE: last animation
+    if (e.target.classList[0].includes("titleSection--line")) {
+      removeClickability();
+      Game.field.forEach((sField) => {
+        sField.reset();
+      });
+      Game.start();
+    }
+    if (e.target.classList[0].includes("options")) {
+      pageLoadedSound.play();
+      addClickability();
+    }
+  });
 
   //SECTION: Event handling
 
@@ -217,14 +243,29 @@ const gameMultiplayer = function (multiplayerElement) {
     gamefieldParent.removeEventListener("click", handleGamelogic);
   }
 
+  function addClickability() {
+    gamefieldParent.addEventListener("click", handleGamelogic);
+  }
+
   function handleGamelogic(event) {
-    if (event.target.classList[0].includes("fieldBox")) {
-      //SECTION: Insert correct object and switch to other player
-      const field = parseInt(event.target.classList[1].slice(-1), 10);
-      Game.handleMove(field);
-      //SECTION: Check if someone has won or draw!
+    const initChain = new Promise((resolve) => {
+      if (event.target.classList[0].includes("fieldBox")) {
+        placeObjectSound.play();
+        //SECTION: Insert correct object and switch to other player
+        const field = parseInt(event.target.classList[1].slice(-1), 10);
+        Game.handleMove(field);
+        //NOTE: Delay resolve until animation done, roughly 1,5sec
+        removeClickability();
+        setTimeout(() => {
+          gamefieldParent.addEventListener("click", handleGamelogic);
+          resolve();
+        }, 1500);
+      }
+    });
+    initChain.then(() => {
       const winCheck = Game.checkWin();
       if (typeof winCheck === "object") {
+        wonSound.play();
         console.log("WINNER!");
         Game.gameStatus = "won";
         Game.updateMessage(winCheck);
@@ -233,6 +274,7 @@ const gameMultiplayer = function (multiplayerElement) {
         // gamefieldParent.remove
       } else {
         if (Game.checkDraw()) {
+          drawSound.play();
           console.log("DRAW!");
           Game.gameStatus = "draw";
           Game.updateMessage();
@@ -242,21 +284,20 @@ const gameMultiplayer = function (multiplayerElement) {
           Game.updateMessage();
         }
       }
-    }
+    });
   }
 
   //SUB_SECTION: Handle Placements Reqs!
 
-  gamefieldParent.addEventListener("click", handleGamelogic);
-
   //SUB_SECTION: Handle Replays Reqs!
 
   replayButton.addEventListener("click", () => {
+    clickReplaySound.play();
     Game.field.forEach((sField) => {
       sField.reset();
     });
     Game.start();
-    gamefieldParent.addEventListener("click", handleGamelogic);
+    addClickability();
   });
 };
 

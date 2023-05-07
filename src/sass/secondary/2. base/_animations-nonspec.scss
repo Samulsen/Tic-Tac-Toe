@@ -1,0 +1,159 @@
+//SECTION: insert Move Animations
+
+@keyframes insertMoveCross {
+  0% {
+    opacity: 0.5;
+    transform: rotate(30deg) scale(0.4);
+  }
+
+  25% {
+    opacity: 1;
+    transform: rotate(0deg) scale(0.6) translateY(-0.5rem);
+  }
+
+  50% {
+    transform: scale(0.6) translateY(0rem);
+  }
+
+  75% {
+    transform: scale(0.6) translateY(-0.5rem);
+  }
+
+  100% {
+    transform: scale(0.6) translateY(0);
+  }
+}
+
+@keyframes insertMoveCircle {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5) translateY(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(0.7) translateY(-0.5rem);
+  }
+
+  50% {
+    transform: scale(0.7) translateY(0rem);
+  }
+
+  75% {
+    transform: scale(0.7) translateY(-0.5rem);
+  }
+
+  100% {
+    transform: scale(0.7) translateY(0);
+  }
+}
+
+//SECTION: Page loading
+
+//SUB_SECTION: ButtonClickWhileLoad
+
+@keyframes ButtonClickedWhileLoading {
+  50% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.clickedButtonWhileLoad {
+  animation: ButtonClickedWhileLoading 0.6s ease-in-out 0s infinite normal
+    backwards;
+}
+
+//SUB_SECTION: Whole Page
+
+@keyframes PageOnLoadAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-100rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.PageOnLoad {
+  animation: PageOnLoadAnim 2s ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes PageOffLoadAnim {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(100rem);
+  }
+}
+
+.PageOffLoad {
+  animation: PageOffLoadAnim 2s ease-in-out 0s 1 normal forwards;
+}
+
+//SUB_SECTION: Field animations
+
+@keyframes line-1 {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes line-2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes line-3 {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes line-4 {
+  0% {
+    opacity: 0;
+    transform: translateY(-10rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//SECTION: Generic
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

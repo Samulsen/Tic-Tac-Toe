@@ -49,12 +49,22 @@
         grid-area: circle;
         transform: scale(0.5);
         cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          transform: scale(0.6) translateY(-1rem);
+        }
       }
 
       &--cross {
         grid-area: cross;
-        transform: scale(0.45);
+        transform: scale(0.4);
         cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          transform: scale(0.5) translateY(-1rem);
+        }
       }
 
       &--divider {
@@ -82,6 +92,21 @@
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: white;
+          transform: translateY(-0.41rem);
+          color: #464f41;
+          border-color: #464f41;
+        }
+
+        &:active {
+          background-color: white;
+          transform: translateY(-0.41rem) scale(0.9);
+          color: #464f41;
+          border-color: #464f41;
+        }
       }
 
       //NOTE: Button to go to switchmode page!
@@ -99,6 +124,21 @@
         border-color: white;
         padding: 0.6rem;
         cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: white;
+          transform: translateY(-0.4rem);
+          color: #464f41;
+          border-color: #464f41;
+        }
+
+        &:active {
+          background-color: white;
+          transform: translateY(-0.4rem) scale(0.9);
+          color: #464f41;
+          border-color: #464f41;
+        }
       }
     }
   }

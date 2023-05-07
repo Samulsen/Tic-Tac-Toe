@@ -682,12 +682,12 @@ const computerAlgo = function (
           const counterEdge = Object.values(PlayerEdge)[0].fieldVal;
           const [hor, ver] = this.edgeOptions[prevChoosenEdge];
           if (hor === counterEdge || ver === counterEdge) {
-            console.log("One of the Sides is populated!");
+            // console.log("One of the Sides is populated!");
             if (!(hor === counterEdge)) calculatedMove = hor;
             if (!(ver === counterEdge)) calculatedMove = ver;
             return;
           } else {
-            console.log("None of the Sides is populated, choose random!");
+            // console.log("None of the Sides is populated, choose random!");
             const randomNumber = Math.random() < 0.5 ? 0 : 1;
             calculatedMove = [hor, ver][randomNumber];
             return;
@@ -695,20 +695,66 @@ const computerAlgo = function (
         }
         //NOTE: Check if an side was choosen
         if (Object.keys(PlayerSide).length === 1) {
+          let isOpposite = false;
           const prevChoosenEdge = Object.values(ComputerEdge)[0].fieldVal;
-          const counterSide = Object.values(PlayerSide)[0].fieldVal;
-          //NOTE: go through the options and check weather there is a conflict, immediately take the one that has no conflict
-          const [[horS, horP], [verS, verP]] =
-            this.sideOptions[prevChoosenEdge];
-          if (horS === counterSide || verS === counterSide) {
-            // console.log("One of the Sides is populated!");
-            if (!(horS === counterSide)) calculatedMove = horP;
-            if (!(verS === counterSide)) calculatedMove = verP;
-            return;
+
+          switch (prevChoosenEdge) {
+            case 1:
+              if (
+                Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                Pollution.generalPollutionMap.Side.left.polVal === 0
+              ) {
+                isOpposite = true;
+              }
+              break;
+            case 3:
+              if (
+                Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                Pollution.generalPollutionMap.Side.right.polVal === 0
+              ) {
+                isOpposite = true;
+              }
+              break;
+            case 7:
+              if (
+                Pollution.generalPollutionMap.Side.left.polVal === 0 &&
+                Pollution.generalPollutionMap.Side.bottom.polVal === 0
+              ) {
+                isOpposite = true;
+              }
+              break;
+            case 9:
+              if (
+                Pollution.generalPollutionMap.Side.right.polVal === 0 &&
+                Pollution.generalPollutionMap.Side.bottom.polVal === 0
+              ) {
+                isOpposite = true;
+              }
+              break;
+            default:
+              break;
+          }
+
+          // const prevChoosenEdge = Object.values(ComputerEdge)[0].fieldVal;
+          if (isOpposite) {
+            //NOTE: Choose when went for opposite side!
+            const counterSide = Object.values(PlayerSide)[0].fieldVal;
+            //NOTE: go through the options and check weather there is a conflict, immediately take the one that has no conflict
+            const [[horS, horP], [verS, verP]] =
+              this.sideOptions[prevChoosenEdge];
+            if (horS === counterSide || verS === counterSide) {
+              // console.log("One of the Sides is populated!");
+              if (!(horS === counterSide)) calculatedMove = horP;
+              if (!(verS === counterSide)) calculatedMove = verP;
+              return;
+            } else {
+              // console.log("None of the Sides is populated, choose random!");
+              const randomNumber = Math.random() < 0.5 ? 0 : 1;
+              calculatedMove = [horP, verP][randomNumber];
+              return;
+            }
           } else {
-            // console.log("None of the Sides is populated, choose random!");
-            const randomNumber = Math.random() < 0.5 ? 0 : 1;
-            calculatedMove = [horP, verP][randomNumber];
+            calculatedMove = 5;
             return;
           }
         }
@@ -736,11 +782,61 @@ const computerAlgo = function (
         }
       }
       if (stepStatus === 4) {
-        const lastPossibleEdge = Object.values(
-          Pollution.unpollutedFieldsMap.Edge
-        );
-        calculatedMove = lastPossibleEdge[0].fieldVal;
-        return;
+        //NOTE: Differeciate if middle is taken by posVal or not
+        if (Object.keys(ComputerMiddle).length === 1) {
+          const avaibleEdges = Object.entries(
+            Pollution.unpollutedFieldsMap.Edge
+          );
+          for ([key, value] of avaibleEdges) {
+            switch (value.fieldVal) {
+              case 1:
+                if (
+                  Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.left.polVal === 0
+                ) {
+                  calculatedMove = 1;
+                  break;
+                }
+                break;
+              case 3:
+                if (
+                  Pollution.generalPollutionMap.Side.top.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.right.polVal === 0
+                ) {
+                  calculatedMove = 3;
+                  break;
+                }
+                break;
+              case 7:
+                if (
+                  Pollution.generalPollutionMap.Side.left.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.bottom.polVal === 0
+                ) {
+                  calculatedMove = 7;
+                  break;
+                }
+                break;
+              case 9:
+                if (
+                  Pollution.generalPollutionMap.Side.right.polVal === 0 &&
+                  Pollution.generalPollutionMap.Side.bottom.polVal === 0
+                ) {
+                  calculatedMove = 9;
+                  break;
+                }
+                break;
+              default:
+                break;
+            }
+          }
+        } else {
+          //NOTE: if middle is not pos val->
+          const lastPossibleEdge = Object.values(
+            Pollution.unpollutedFieldsMap.Edge
+          );
+          calculatedMove = lastPossibleEdge[0].fieldVal;
+          return;
+        }
       }
     },
     circleMover() {

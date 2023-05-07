@@ -4,21 +4,21 @@
   //NOTE: depends uppon rem values in app
   height: 100%;
   width: 100%;
-  //SECTION_START: border styles
+  //SECTION: border styles
   border-style: solid;
   border-color: $border-col;
   border-width: 0.5rem;
   border-radius: 0.7rem;
-  //SECTION_START: grid-dimensions defintion
+  //SECTION: grid-dimensions defintion
   display: $switch;
   grid-template-rows: 1.5rem 82rem 1.5rem;
   grid-template-columns: repeat(10, 6.5rem);
-  //SECTION_START: template-area defintion
+  //SECTION: template-area defintion
   grid-template-areas:
     "two two two two two two two one one one"
     "main main main main main main main main main main"
     "oneL oneL oneL twoL twoL twoL twoL twoL twoL twoL";
-  //SECTION_START: Outline upper and lower definition (four childs)
+  //SECTION: Outline upper and lower definition (four childs)
   &__line-one-third {
     background-color: $one-third-col;
 
@@ -70,7 +70,7 @@
   justify-content: center;
   align-content: center;
 
-  //SECTION_START: FIELD DEFINITION => NOTE: LINES!
+  //SECTION: FIELD DEFINITION => NOTE: LINES!
 
   &__fieldline {
     background-color: white;
@@ -81,10 +81,12 @@
       &--1 {
         grid-row: 11/11;
         grid-column: 1 / -1;
+        animation: line-1 2s ease-out 4s 1 normal backwards;
       }
       &--2 {
         grid-row: 22/22;
         grid-column: 1 / -1;
+        animation: line-2 2s ease-out 4s 1 normal backwards;
       }
     }
 
@@ -92,21 +94,25 @@
       &--1 {
         grid-column: 11/11;
         grid-row: 1 / -1;
+        animation: line-3 2s ease-out 4s 1 normal backwards;
       }
       &--2 {
         grid-column: 22/22;
         grid-row: 1 / -1;
+        animation: line-3 2s ease-out 4s 1 normal backwards;
       }
     }
   }
 }
 
 @mixin extensionGameSection {
-  //SECTION_START: FIELD DEFINTION => NOTE: FIELDS!
+  //SECTION: FIELD DEFINTION => NOTE: FIELDS!
 
   &__fieldBox {
     // background-color: rgba(128, 128, 128, 0.244);
-    //SECTION_START: First Row
+    cursor: pointer;
+    animation: fade-in 1s ease-out 5s 1 normal backwards;
+    //SECTION: First Row
     z-index: 1;
     &--1 {
       grid-row: 1/11;
@@ -119,7 +125,7 @@
     &--3 {
       grid-row: 1/11;
       grid-column: 23/33;
-      //SECTION_START: Second Row
+      //SECTION: Second Row
     }
     &--4 {
       grid-row: 12/22;
@@ -133,7 +139,7 @@
       grid-row: 12/22;
       grid-column: 23/33;
     }
-    //SECTION_START: Third Row
+    //SECTION: Third Row
     &--7 {
       grid-row: 23/33;
       grid-column: 1/11;
@@ -148,14 +154,16 @@
     }
   }
 
-  //SECTION_START: OBJECT DEFINTIONS => NOTE: CROSS AND CIRCLE!
+  //SECTION: OBJECT DEFINTIONS => NOTE: CROSS AND CIRCLE!
 
   &__cross {
-    transform: scale(0.65);
+    transform: scale(0.6);
+    animation: insertMoveCross 1s ease-in-out 0s 1 normal forwards;
   }
 
   &__circle {
     transform: scale(0.7);
+    animation: insertMoveCircle 1s ease-in-out 0s 1 normal forwards;
   }
 }
 
@@ -175,14 +183,7 @@
     justify-self: center;
     border-radius: 10rem;
     align-self: center;
-
-    // &--upper {
-    //   justify-self: flex-start;
-    // }
-
-    // &--lower {
-    //   justify-self: flex-end;
-    // }
+    animation: fade-in 1s ease-out 2s 1 normal backwards;
   }
 
   &--titleText {
@@ -191,6 +192,7 @@
     font-weight: 700;
     justify-self: center;
     align-self: flex-end;
+    animation: fade-in 1s ease-out 3s 1 normal backwards;
   }
 }
 
@@ -204,6 +206,7 @@
     display: grid;
     grid-template-rows: 1rem 5rem 1rem;
     grid-template-columns: 1rem 30rem 1rem;
+    animation: fade-in 1s ease-out 7s 1 normal backwards;
     //NOTE: Corners
     &__line {
       background-color: $line-col-1-del;
@@ -251,7 +254,7 @@
   }
 }
 
-@mixin menuSectionCONTROL($line-col-2-del) {
+@mixin menuSectionCONTROL($line-col-2-del, $del-name) {
   &__control {
     display: grid;
     grid-template-rows: 4.5rem 4.5rem;
@@ -262,6 +265,7 @@
     justify-items: right;
     align-items: center;
     font-size: 2rem;
+    animation: fade-in 1s ease-out 8s 1 normal backwards;
 
     &--replayButton {
       font-weight: 700;
@@ -271,11 +275,21 @@
       border-style: solid;
       border-width: 0.6rem;
       border-radius: 1rem;
-
       padding: 1rem 1.5rem;
       justify-self: left;
-      &:visited {
-        color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: white;
+        color: $line-col-2-del;
+        transform: translateY(-0.4rem);
+      }
+
+      &:active {
+        background-color: white;
+        color: $line-col-2-del;
+        transform: translateY(-0.4rem) scale(0.8);
       }
     }
     &--firstCount {
@@ -287,7 +301,7 @@
   }
 }
 
-@mixin menuSectionMENU($line-col-1-del) {
+@mixin menuSectionMENU($line-col-1-del, $line-col-2-del) {
   &__options {
     display: grid;
     grid-template-rows: 100%;
@@ -295,6 +309,7 @@
     align-items: center;
     font-weight: 700;
     font-size: 2.2rem;
+    animation: fade-in 1s ease-out 9s 1 normal backwards;
 
     &__button {
       border-color: $line-col-1-del;
@@ -302,6 +317,24 @@
       border-width: 0.6rem;
       padding: 1rem 1.5rem;
       border-radius: 3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: $line-col-2-del;
+        background-color: white;
+        transform: translateY(-0.4rem);
+        color: $line-col-2-del;
+        border-radius: 1rem;
+      }
+
+      &:active {
+        background-color: white;
+        border-color: $line-col-2-del;
+        color: $line-col-2-del;
+        border-radius: 3rem;
+        transform: translateY(0rem);
+      }
 
       &--home {
         justify-self: left;
@@ -310,10 +343,6 @@
       &--mode {
         justify-self: right;
       }
-
-      &:visited {
-        color: white;
-      }
     }
   }
 }
@@ -321,7 +350,7 @@
 //SUB_SECTION: Parent mixin of the above childs
 //NOTE: As mentioned above, arguements from here are delegated to their corresponding "-del" arguement of child mixins!
 
-@mixin menuSection($line-col-1, $line-col-2) {
+@mixin menuSection($line-col-1, $line-col-2, $name) {
   padding-top: 1rem;
   grid-area: menuSection;
   display: grid;
@@ -332,6 +361,6 @@
   grid-template-rows: 7rem 9rem 7rem;
 
   @include menuSectionDISPLAY($line-col-1);
-  @include menuSectionCONTROL($line-col-2);
-  @include menuSectionMENU($line-col-1);
+  @include menuSectionCONTROL($line-col-2, $name);
+  @include menuSectionMENU($line-col-1, $line-col-2);
 }

@@ -1,8 +1,20 @@
 //IMPORT_START:
 
 import computerAlgo from "./computerAlgo";
+//SECTION: Ressources
 import sinCircle from "../../svg/singleplayer/sinCircle.svg";
 import sinCross from "../../svg/singleplayer/sinCross.svg";
+//SUB_SECTION: Audio
+import clickReplay from "url:../../audio/click-replay.wav";
+import clickConfirm from "url:../../audio/confirm.wav";
+import clickModeAndBack from "url:../../audio/modeAndBack.wav";
+import clickDiffMode from "url:../../audio/diffMode.wav";
+import clickObjectChoice from "url:../../audio/crossOrCircle.wav";
+import placeObject from "url:../../audio/object-place.wav";
+import statusDraw from "url:../../audio/status-draw.wav";
+import statusWon from "url:../../audio/status-won.wav";
+import statusLost from "url:../../audio/status-lost.wav";
+import pageLoaded from "url:../../audio/pageOffLoaded.wav";
 
 //IMPORT_END:
 
@@ -25,7 +37,6 @@ const gameSingpleplayer = function (singleplayerElement) {
   const hardMode = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea__option--three"
   );
-
   const diffSwitcharea = diffOptionBox.querySelector(
     ".singleplayer__gameSection__DiffModeBox__switcharea"
   );
@@ -70,6 +81,19 @@ const gameSingpleplayer = function (singleplayerElement) {
   const replayButton = singleplayerElement.querySelector(
     ".singleplayer__menuSection__control--replayButton"
   );
+
+  //SECTION: Audio
+
+  const clickReplaySound = new Audio(clickReplay);
+  const clickConfirmSound = new Audio(clickConfirm);
+  const clickModeAndBackSound = new Audio(clickModeAndBack);
+  const clickDiffModeSound = new Audio(clickDiffMode);
+  const clickObjectChoiceSound = new Audio(clickObjectChoice);
+  const placeObjectSound = new Audio(placeObject);
+  const wonSound = new Audio(statusWon);
+  const drawSound = new Audio(statusDraw);
+  const lostSound = new Audio(statusLost);
+  const pageLoadedSound = new Audio(pageLoaded);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -263,12 +287,18 @@ const gameSingpleplayer = function (singleplayerElement) {
         console.log(
           "---------------------------------------------------------------"
         );
+        if (this.currentEntity.Name === "Computer") {
+          lostSound.play();
+        } else {
+          wonSound.play();
+        }
         return;
       }
 
       //SECTION: Check for Draw
 
       if (this.checkDraw()) {
+        drawSound.play();
         this.gameStatus = "draw";
         console.log("There is a draw!");
         return;
@@ -326,21 +356,54 @@ const gameSingpleplayer = function (singleplayerElement) {
     playerMove() {
       console.log("Calling: playerMove()");
       gameMessage.textContent = "Turn: Player!";
+      addClickabilityREPLAY();
       addClickability();
     },
     computerMove() {
+      // NOTE: Because of async problems, replay button is disabled while computer thinks
+      removedClickabilityREPLAY();
+      removeClickabilityOPTION();
+      removeClickability();
       console.log("Calling: computerMove()");
       gameMessage.textContent = "Turn: Computer!";
-      this.handleMove(
-        computerAlgo(
-          Game.field,
-          Computer,
-          this.stepStatus,
-          this.rootChoice,
-          this.modeChoice
-        )
-      );
-      this.checkStatus();
+      const initChain = new Promise((resolve) => {
+        let count = 0;
+        let appendString = "Computer thinks.";
+        const computerWaiter = setInterval(() => {
+          if (count === 3) {
+            clearInterval(computerWaiter);
+            resolve();
+          } else {
+            gameMessage.textContent = appendString;
+            appendString = appendString + ".";
+            count++;
+          }
+        }, 1000);
+      });
+      initChain
+        .then(() => {
+          return new Promise((resolve) => {
+            placeObjectSound.play();
+            this.handleMove(
+              computerAlgo(
+                Game.field,
+                Computer,
+                this.stepStatus,
+                this.rootChoice,
+                this.modeChoice
+              )
+            );
+            gameMessage.textContent = "Made my Choice!";
+            setTimeout(() => {
+              resolve();
+            }, 1200);
+          });
+        })
+        .then(() => {
+          this.checkStatus();
+          addClickabilityREPLAY();
+          addClickabilityOPTION();
+        });
     },
   };
 
@@ -355,12 +418,28 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SUB_SECTION: Options selection handling NOTE: for SYMBOL
 
-  gameMessage.addEventListener("click", (e) => {
+  function optionBoxOpener() {
+    clickModeAndBackSound.play();
     optionBox.style.display = enableView;
-    // console.log("Option Box = ACTIVE  " + e.target.classList);
-  });
+  }
 
+  function addClickabilityOPTION() {
+    gameMessage.addEventListener("click", optionBoxOpener);
+  }
+
+  function removeClickabilityOPTION() {
+    gameMessage.removeEventListener("click", optionBoxOpener);
+  }
+
+  singleplayerElement.addEventListener("animationend", (e) => {
+    //NOTE: last animation
+    if (e.target.classList[0].includes("options")) {
+      pageLoadedSound.play();
+    }
+  });
+  gameMessage.addEventListener("click", optionBoxOpener);
   circleOption.addEventListener("click", (e) => {
+    clickObjectChoiceSound.play();
     selector.style.gridArea = "cir-s";
     Player.AssignedSymbol = Circle;
     Computer.AssignedSymbol = Cross;
@@ -369,6 +448,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     // console.log("SELECT CRIRCLE  " + e.target.classList);
   });
   crossOption.addEventListener("click", (e) => {
+    clickObjectChoiceSound.play();
     selector.style.gridArea = "cro-s";
     Player.AssignedSymbol = Cross;
     Computer.AssignedSymbol = Circle;
@@ -378,6 +458,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   });
 
   confirmButton.addEventListener("click", (e) => {
+    clickConfirmSound.play();
     //NOTE: Hide menu
     optionBox.style.display = disableView;
     //NOTE: start the game
@@ -385,6 +466,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   });
 
   switchModeButton.addEventListener("click", (e) => {
+    clickModeAndBackSound.play();
     optionBox.style.display = disableView;
     diffOptionBox.style.display = enableView;
   });
@@ -392,12 +474,14 @@ const gameSingpleplayer = function (singleplayerElement) {
   //SUB_SECTION: Options selection handling NOTE: for DIFFICULTY
 
   backButton.addEventListener("click", (e) => {
+    clickModeAndBackSound.play();
     optionBox.style.display = enableView;
     diffOptionBox.style.display = disableView;
   });
 
   diffSwitcharea.addEventListener("click", (e) => {
     if (e.target.classList[0].includes("option")) {
+      clickDiffModeSound.play();
       //NOTE: typecoerce from string to number
       const choosenMode = e.target.innerText - 0;
 
@@ -405,16 +489,25 @@ const gameSingpleplayer = function (singleplayerElement) {
         case 1:
           selectorDiff.style.gridArea = "sel-One";
           Game.modeChoice = 1;
+          easyMode.style.backgroundColor = "#1cdc1c";
+          middleMode.style.backgroundColor = "";
+          hardMode.style.backgroundColor = "#ffffff00";
           break;
 
         case 2:
           selectorDiff.style.gridArea = "sel-Two";
           Game.modeChoice = 2;
+          easyMode.style.backgroundColor = "";
+          middleMode.style.backgroundColor = "#f5c710";
+          hardMode.style.backgroundColor = "#ffffff00";
           break;
 
         case 3:
           selectorDiff.style.gridArea = "sel-Three";
           Game.modeChoice = 3;
+          easyMode.style.backgroundColor = "";
+          middleMode.style.backgroundColor = "";
+          hardMode.style.backgroundColor = "#ff0000";
           break;
 
         default:
@@ -429,6 +522,7 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   function handlePlayerClick(event) {
     if (event.target.classList[0].includes("fieldBox")) {
+      placeObjectSound.play();
       const field = parseInt(event.target.classList[1].slice(-1), 10);
       Game.handleMove(field);
       //NOTE: Add here if condition, that when first move, change root choice to fieldnum
@@ -436,7 +530,10 @@ const gameSingpleplayer = function (singleplayerElement) {
       //NOTE: End with removing clickability
       removeClickability();
       //   console.warn("PlayerClick " + event.target.classList[0]);
-      Game.checkStatus();
+
+      setTimeout(() => {
+        Game.checkStatus();
+      }, 1300);
     }
     // console.warn("UNWANTEND CLICK   " + event.target.classList);
   }
@@ -453,9 +550,20 @@ const gameSingpleplayer = function (singleplayerElement) {
 
   //SUB_SECTION: Replay handling
 
-  replayButton.addEventListener("click", () => {
+  function replayCallback() {
+    clickReplaySound.play();
     Game.start();
-  });
+  }
+
+  function removedClickabilityREPLAY() {
+    replayButton.removeEventListener("click", replayCallback);
+  }
+
+  function addClickabilityREPLAY() {
+    replayButton.addEventListener("click", replayCallback);
+  }
+
+  // replayButton.addEventListener("click", replayCallback);
 };
 
 export default gameSingpleplayer;

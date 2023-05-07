@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="app">
-      <div class="startpage">
+      <div class="startpage PageOnLoad">
         <div
           class="startpage__line-one-third startpage__line-one-third--upper"
         ></div>
@@ -99,11 +99,10 @@
             />
           </div>
           <div class="menuSection">
-            <a href="#" class="buttonStart buttonStart--singleplayer"
-              >Singleplayer</a
-            ><a href="#" class="buttonStart buttonStart--multiplayer"
-              >Multiplayer</a
-            >
+            <div class="buttonStart buttonStart--singleplayer">
+              singleplayer
+            </div>
+            <div class="buttonStart buttonStart--multiplayer">multiplayer</div>
           </div>
         </div>
       </div>
@@ -199,7 +198,7 @@
                 Confirm and start
               </div>
               <div class="singleplayer__gameSection__optionBox--switchmode">
-                Difficulty
+                Change mode
               </div>
             </div>
             <div class="singleplayer__gameSection__DiffModeBox">
@@ -231,9 +230,6 @@
                 <div
                   class="singleplayer__gameSection__DiffModeBox__switcharea__line singleplayer__gameSection__DiffModeBox__switcharea__line--Two"
                 ></div>
-                <!-- <div
-                  class="singleplayer__gameSection__DiffModeBox__switcharea--switcher"
-                ></div> -->
 
                 <img
                   src="/src/svg/singleplayer/selector.svg"
@@ -277,15 +273,13 @@
                 class="singleplayer__menuSection__display__line singleplayer__menuSection__display__line--4"
               ></div>
               <div class="singleplayer__menuSection__display__message">
-                Choose your symbol!
+                Click this message!
               </div>
             </div>
             <div class="singleplayer__menuSection__control">
-              <a
-                href="#"
-                class="singleplayer__menuSection__control--replayButton"
-                >Replay</a
-              >
+              <div class="singleplayer__menuSection__control--replayButton">
+                Replay
+              </div>
               <div class="singleplayer__menuSection__control--firstCount">
                 Player: 00
               </div>
@@ -294,16 +288,18 @@
               </div>
             </div>
             <div class="singleplayer__menuSection__options">
-              <a
+              <div
                 href="#"
                 class="singleplayer__menuSection__options__button singleplayer__menuSection__options__button--home"
-                >Home</a
               >
-              <a
+                Home
+              </div>
+              <div
                 href="#"
                 class="singleplayer__menuSection__options__button singleplayer__menuSection__options__button--mode"
-                >Multiplayer</a
               >
+                Multiplayer
+              </div>
             </div>
           </div>
         </div>
@@ -348,22 +344,10 @@
             ></div>
             <div
               class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--1"
-            >
-              <!-- <img
-                src="src/svg/multiplayer/mulCross.svg"
-                alt="croMul"
-                class="multiplayer__gameSection__cross"
-              /> -->
-            </div>
+            ></div>
             <div
               class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--2"
-            >
-              <!-- <img
-                src="src/svg/multiplayer/mulCircle.svg"
-                alt="cirMul"
-                class="multiplayer__gameSection__circle"
-              /> -->
-            </div>
+            ></div>
             <div
               class="multiplayer__gameSection__fieldBox multiplayer__gameSection__fieldBox--3"
             ></div>
@@ -405,11 +389,12 @@
               </div>
             </div>
             <div class="multiplayer__menuSection__control">
-              <a
+              <div
                 href="#"
                 class="multiplayer__menuSection__control--replayButton"
-                >Replay</a
               >
+                Replay
+              </div>
               <div class="multiplayer__menuSection__control--firstCount">
                 Player 1: 00
               </div>
@@ -418,16 +403,18 @@
               </div>
             </div>
             <div class="multiplayer__menuSection__options">
-              <a
+              <div
                 href="#"
                 class="multiplayer__menuSection__options__button multiplayer__menuSection__options__button--home"
-                >Home</a
               >
-              <a
+                Home
+              </div>
+              <div
                 href="#"
                 class="multiplayer__menuSection__options__button multiplayer__menuSection__options__button--mode"
-                >Singleplayer</a
               >
+                Singleplayer
+              </div>
             </div>
           </div>
         </div>
