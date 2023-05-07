@@ -111,6 +111,7 @@
   &__fieldBox {
     // background-color: rgba(128, 128, 128, 0.244);
     cursor: pointer;
+    animation: fade-in 1s ease-out 5s 1 normal backwards;
     //SECTION: First Row
     z-index: 1;
     &--1 {

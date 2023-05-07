@@ -220,8 +220,16 @@ const gameMultiplayer = function (multiplayerElement) {
   Game.start();
   multiplayerElement.addEventListener("animationend", (e) => {
     //NOTE: last animation
+    if (e.target.classList[0].includes("titleSection--line")) {
+      removeClickability();
+      Game.field.forEach((sField) => {
+        sField.reset();
+      });
+      Game.start();
+    }
     if (e.target.classList[0].includes("options")) {
       pageLoadedSound.play();
+      addClickability();
     }
   });
 
@@ -233,6 +241,10 @@ const gameMultiplayer = function (multiplayerElement) {
 
   function removeClickability() {
     gamefieldParent.removeEventListener("click", handleGamelogic);
+  }
+
+  function addClickability() {
+    gamefieldParent.addEventListener("click", handleGamelogic);
   }
 
   function handleGamelogic(event) {
@@ -277,8 +289,6 @@ const gameMultiplayer = function (multiplayerElement) {
 
   //SUB_SECTION: Handle Placements Reqs!
 
-  gamefieldParent.addEventListener("click", handleGamelogic);
-
   //SUB_SECTION: Handle Replays Reqs!
 
   replayButton.addEventListener("click", () => {
@@ -287,7 +297,7 @@ const gameMultiplayer = function (multiplayerElement) {
       sField.reset();
     });
     Game.start();
-    gamefieldParent.addEventListener("click", handleGamelogic);
+    addClickability();
   });
 };
 
