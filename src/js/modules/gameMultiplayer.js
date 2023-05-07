@@ -30,6 +30,9 @@ const gameMultiplayer = function (multiplayerElement) {
   //SECTION: Audio
 
   const clickReplaySound = new Audio(clickReplay);
+  const placeObjectSound = new Audio(placeObject);
+  const wonSound = new Audio(statusWon);
+  const drawSound = new Audio(statusDraw);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -228,6 +231,7 @@ const gameMultiplayer = function (multiplayerElement) {
   function handleGamelogic(event) {
     const initChain = new Promise((resolve) => {
       if (event.target.classList[0].includes("fieldBox")) {
+        placeObjectSound.play();
         //SECTION: Insert correct object and switch to other player
         const field = parseInt(event.target.classList[1].slice(-1), 10);
         Game.handleMove(field);
@@ -242,6 +246,7 @@ const gameMultiplayer = function (multiplayerElement) {
     initChain.then(() => {
       const winCheck = Game.checkWin();
       if (typeof winCheck === "object") {
+        wonSound.play();
         console.log("WINNER!");
         Game.gameStatus = "won";
         Game.updateMessage(winCheck);
@@ -250,6 +255,7 @@ const gameMultiplayer = function (multiplayerElement) {
         // gamefieldParent.remove
       } else {
         if (Game.checkDraw()) {
+          drawSound.play();
           console.log("DRAW!");
           Game.gameStatus = "draw";
           Game.updateMessage();
