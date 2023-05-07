@@ -2,6 +2,10 @@
 
 import mulCircle from "../../svg/multiplayer/mulCircle.svg";
 import mulCross from "../../svg/multiplayer/mulCross.svg";
+import clickReplay from "url:../../audio/click-replay.wav";
+import placeObject from "url:../../audio/object-place.wav";
+import statusDraw from "url:../../audio/status-draw.wav";
+import statusWon from "url:../../audio/status-won.wav";
 
 //IMPORT_END:
 
@@ -22,6 +26,10 @@ const gameMultiplayer = function (multiplayerElement) {
   const replayButton = multiplayerElement.querySelector(
     ".multiplayer__menuSection__control--replayButton"
   );
+
+  //SECTION: Audio
+
+  const clickReplaySound = new Audio(clickReplay);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -261,6 +269,7 @@ const gameMultiplayer = function (multiplayerElement) {
   //SUB_SECTION: Handle Replays Reqs!
 
   replayButton.addEventListener("click", () => {
+    clickReplaySound.play();
     Game.field.forEach((sField) => {
       sField.reset();
     });

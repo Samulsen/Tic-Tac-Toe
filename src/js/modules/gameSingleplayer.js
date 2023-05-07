@@ -1,8 +1,21 @@
 //IMPORT_START:
 
 import computerAlgo from "./computerAlgo";
+//SECTION: Ressources
 import sinCircle from "../../svg/singleplayer/sinCircle.svg";
 import sinCross from "../../svg/singleplayer/sinCross.svg";
+//SUB_SECTION: Audio
+import clickReplay from "url:../../audio/click-replay.wav";
+import clickConfirm from "url:../../audio/confirm.wav";
+import clickModeAndBack from "url:../../audio/modeAndBack.wav";
+import clickDiffMode from "url:../../audio/diffMode.wav";
+import clickObjectChoice from "url:../../audio/crossOrCircle.wav";
+
+//NOTE: Dup for multiplayer
+import placeObject from "url:../../audio/object-place.wav";
+import statusDraw from "url:../../audio/status-draw.wav";
+import statusWon from "url:../../audio/status-won.wav";
+import statusLost from "url:../../audio/status-lost.wav";
 
 //IMPORT_END:
 
@@ -69,6 +82,18 @@ const gameSingpleplayer = function (singleplayerElement) {
   const replayButton = singleplayerElement.querySelector(
     ".singleplayer__menuSection__control--replayButton"
   );
+
+  //SECTION: Audio
+
+  const clickReplaySound = new Audio(clickReplay);
+  const clickConfirmSound = new Audio(clickConfirm);
+  const clickModeAndBackSound = new Audio(clickModeAndBack);
+  const clickDiffModeSound = new Audio(clickDiffMode);
+  const clickObjectChoiceSound = new Audio(clickObjectChoice);
+  const placeObjectSound = new Audio(placeObject);
+  const wonSound = new Audio(statusWon);
+  const drawSound = new Audio(statusDraw);
+  const lostSound = new Audio(statusLost);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -325,6 +350,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     playerMove() {
       console.log("Calling: playerMove()");
       gameMessage.textContent = "Turn: Player!";
+      addClickabilityREPLAY();
       addClickability();
     },
     computerMove() {
@@ -505,6 +531,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   //SUB_SECTION: Replay handling
 
   function replayCallback() {
+    clickReplaySound.play();
     Game.start();
   }
 
