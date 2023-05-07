@@ -412,6 +412,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   //SUB_SECTION: Options selection handling NOTE: for SYMBOL
 
   function optionBoxOpener() {
+    clickModeAndBackSound.play();
     optionBox.style.display = enableView;
   }
 
@@ -426,6 +427,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   gameMessage.addEventListener("click", optionBoxOpener);
 
   circleOption.addEventListener("click", (e) => {
+    clickObjectChoiceSound.play();
     selector.style.gridArea = "cir-s";
     Player.AssignedSymbol = Circle;
     Computer.AssignedSymbol = Cross;
@@ -434,6 +436,7 @@ const gameSingpleplayer = function (singleplayerElement) {
     // console.log("SELECT CRIRCLE  " + e.target.classList);
   });
   crossOption.addEventListener("click", (e) => {
+    clickObjectChoiceSound.play();
     selector.style.gridArea = "cro-s";
     Player.AssignedSymbol = Cross;
     Computer.AssignedSymbol = Circle;
@@ -443,6 +446,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   });
 
   confirmButton.addEventListener("click", (e) => {
+    clickConfirmSound.play();
     //NOTE: Hide menu
     optionBox.style.display = disableView;
     //NOTE: start the game
@@ -450,6 +454,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   });
 
   switchModeButton.addEventListener("click", (e) => {
+    clickModeAndBackSound.play();
     optionBox.style.display = disableView;
     diffOptionBox.style.display = enableView;
   });
@@ -457,12 +462,14 @@ const gameSingpleplayer = function (singleplayerElement) {
   //SUB_SECTION: Options selection handling NOTE: for DIFFICULTY
 
   backButton.addEventListener("click", (e) => {
+    clickModeAndBackSound.play();
     optionBox.style.display = enableView;
     diffOptionBox.style.display = disableView;
   });
 
   diffSwitcharea.addEventListener("click", (e) => {
     if (e.target.classList[0].includes("option")) {
+      clickDiffModeSound.play();
       //NOTE: typecoerce from string to number
       const choosenMode = e.target.innerText - 0;
 
