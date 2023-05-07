@@ -3,7 +3,7 @@
 Hey there,
 Welcome to my Tic Tac Toe App!
 The game and the app are simple enough.
-The UI consists of three pages and has additional sounds that underline the game logic and different animations. So it could make sense to turn your volume on!
+The UI consists of three pages and has an additional sound design that underlines the game logic and different animations. So it could make sense to turn your volume on!
 
 The first and default loaded page is the Homepage. It lets you choose between the Singleplayer and Multiplayer pages.
 
@@ -23,25 +23,27 @@ In the Singleplayer you can play against the algorithm that I have developed.
 
 At first load, you are prompted by the message field to click on it. When you do so, an option field will pop up.
 Because of the nature of the game, this is that the Entity that goes first has far higher chances of winning, I implemented an option of choosing between Cross and Circle for the Player (you).
-As in the Multiplayer, the Cross goes first, the Circle second. But unlike here, you can switch as many times as you want without losing your score. Also, when you switch back to the Home or Singlepalyerpage and you have an ongoing game, this game will be paused and can be resumed after returning to the Singleplayer page.
+As in the Multiplayer, the Cross goes first, the Circle second. But unlike here, you can switch the symbols as many times as you want without losing your score. Also, when you switch back to the Home or Singlepalyerpage and you have an ongoing game, this game will be paused and can be resumed after returning to the Singleplayer page.
 
 Additionally in the right bottom corner, there is a button saying "difficulty". Click it and a new option field pop-ups and layers over the previous one. Here you can choose what difficulty you want the algorithm to be.
 
+In both cases, you can always change the symbol or difficulty by clicking on the message field! It is only temporarily disabled while the computer will make its move.
+
 ### **1 (_Easy_)**
 
-_The computer goes just randomly, and will not prevent a possible loss OR will not take knowingly the chance of winning. If this happens, this is by pure accident. Thus you can win against it._
+_The computer goes just randomly, and will not knowingly prevent a possible loss OR will not take knowingly the chance of winning. If this happens, this is by pure accident. Thus you can win against it._
 
 ### **2 (_Middle_)**
 
-_The computer goes half-random and half-conscious. It will prevent a loss and take the chance to win, but will otherwise just go randomly with no strategy in mind. You can win against it, but it requires you to know some strategies._
+_The computer goes half-random and half-conscious. It will prevent a loss and take the chance to win, but will otherwise just go randomly with no strategy in mind. You can win against it, but it requires you to know some tic tac toe strategies._
 
 ### **3 (_Hard_)**
 
-_The computer makes fully conscious moves. It will prevent a loss and will take the chance to win, but ALSO will go otherwise with a strategy in mind. It is impossible to win against the computer in this mode._
+_The computer makes fully conscious moves. It will prevent a loss and will take the chance to win, but ALSO will go otherwise with a strategy in mind. It is impossible to win against the computer in this mode, the best that can happen for you is a draw._
 
 ### **_Comment_**
 
-Regarding the algorithm itself, you can find it inside the "computerAlgo" file inside the modules directory. If you do take a look at it, I just want to say, that after writing I am certain is far too long, and I could be done in I think half of the code approximately...
+Regarding the algorithm itself, you can find it inside the "computerAlgo" file inside the modules directory. If you do take a look at it, I just want to say, that after writing it, I am certain that it is far too long and the same could be achieved with half the code approximately...
 
 ## **Deployment and Scripts**
 
