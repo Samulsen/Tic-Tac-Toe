@@ -6,6 +6,7 @@ import clickReplay from "url:../../audio/click-replay.wav";
 import placeObject from "url:../../audio/object-place.wav";
 import statusDraw from "url:../../audio/status-draw.wav";
 import statusWon from "url:../../audio/status-won.wav";
+import pageLoaded from "url:../../audio/pageOffLoaded.wav";
 
 //IMPORT_END:
 
@@ -33,6 +34,7 @@ const gameMultiplayer = function (multiplayerElement) {
   const placeObjectSound = new Audio(placeObject);
   const wonSound = new Audio(statusWon);
   const drawSound = new Audio(statusDraw);
+  const pageLoadedSound = new Audio(pageLoaded);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -215,8 +217,13 @@ const gameMultiplayer = function (multiplayerElement) {
   };
 
   //SECTION: INVOKING START SET UP
-
   Game.start();
+  multiplayerElement.addEventListener("animationend", (e) => {
+    //NOTE: last animation
+    if (e.target.classList[0].includes("options")) {
+      pageLoadedSound.play();
+    }
+  });
 
   //SECTION: Event handling
 

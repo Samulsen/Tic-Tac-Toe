@@ -10,12 +10,11 @@ import clickConfirm from "url:../../audio/confirm.wav";
 import clickModeAndBack from "url:../../audio/modeAndBack.wav";
 import clickDiffMode from "url:../../audio/diffMode.wav";
 import clickObjectChoice from "url:../../audio/crossOrCircle.wav";
-
-//NOTE: Dup for multiplayer
 import placeObject from "url:../../audio/object-place.wav";
 import statusDraw from "url:../../audio/status-draw.wav";
 import statusWon from "url:../../audio/status-won.wav";
 import statusLost from "url:../../audio/status-lost.wav";
+import pageLoaded from "url:../../audio/pageOffLoaded.wav";
 
 //IMPORT_END:
 
@@ -94,6 +93,7 @@ const gameSingpleplayer = function (singleplayerElement) {
   const wonSound = new Audio(statusWon);
   const drawSound = new Audio(statusDraw);
   const lostSound = new Audio(statusLost);
+  const pageLoadedSound = new Audio(pageLoaded);
 
   //SECTION: CLASS DEFINITIONS
   const Cross = class {
@@ -431,8 +431,13 @@ const gameSingpleplayer = function (singleplayerElement) {
     gameMessage.removeEventListener("click", optionBoxOpener);
   }
 
+  singleplayerElement.addEventListener("animationend", (e) => {
+    //NOTE: last animation
+    if (e.target.classList[0].includes("options")) {
+      pageLoadedSound.play();
+    }
+  });
   gameMessage.addEventListener("click", optionBoxOpener);
-
   circleOption.addEventListener("click", (e) => {
     clickObjectChoiceSound.play();
     selector.style.gridArea = "cir-s";

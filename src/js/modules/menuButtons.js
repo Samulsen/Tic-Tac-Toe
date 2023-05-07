@@ -1,5 +1,4 @@
 import clickNormal from "url:../../audio/click-nor.wav";
-import pageLoaded from "url:../../audio/pageOffLoaded.wav";
 
 const menuButtons = function (
   startpageElement,
@@ -50,7 +49,6 @@ const menuButtons = function (
   //SECTION: Audio Objects
 
   const clickSound = new Audio(clickNormal);
-  const pageLoadedSound = new Audio(pageLoaded);
 
   //SECTION: Eventhandling
 
@@ -88,9 +86,6 @@ const menuButtons = function (
             });
           })
           .then(() => {
-            setTimeout(() => {
-              pageLoadedSound.play();
-            }, 10000);
             viewStartpage.display = disableView;
             viewSingleplayer.display = enableView;
             singleplayerElement.classList.remove("PageOffLoad");
@@ -121,9 +116,6 @@ const menuButtons = function (
             });
           })
           .then(() => {
-            setTimeout(() => {
-              pageLoadedSound.play();
-            }, 10000);
             viewStartpage.display = disableView;
             viewMultiplayer.display = enableView;
             multiplayerElement.classList.remove("PageOffLoad");
@@ -159,9 +151,6 @@ const menuButtons = function (
             });
           })
           .then(() => {
-            setTimeout(() => {
-              pageLoadedSound.play();
-            }, 10000);
             viewSingleplayer.display = disableView;
             viewMultiplayer.display = enableView;
             multiplayerElement.classList.remove("PageOffLoad");
@@ -231,9 +220,6 @@ const menuButtons = function (
             });
           })
           .then(() => {
-            setTimeout(() => {
-              pageLoadedSound.play();
-            }, 10000);
             viewMultiplayer.display = disableView;
             viewSingleplayer.display = enableView;
             singleplayerElement.classList.remove("PageOffLoad");
