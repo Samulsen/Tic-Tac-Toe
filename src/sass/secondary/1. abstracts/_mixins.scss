@@ -81,10 +81,12 @@
       &--1 {
         grid-row: 11/11;
         grid-column: 1 / -1;
+        animation: line-1 2s ease-out 4s 1 normal backwards;
       }
       &--2 {
         grid-row: 22/22;
         grid-column: 1 / -1;
+        animation: line-2 2s ease-out 4s 1 normal backwards;
       }
     }
 
@@ -92,10 +94,12 @@
       &--1 {
         grid-column: 11/11;
         grid-row: 1 / -1;
+        animation: line-3 2s ease-out 4s 1 normal backwards;
       }
       &--2 {
         grid-column: 22/22;
         grid-row: 1 / -1;
+        animation: line-3 2s ease-out 4s 1 normal backwards;
       }
     }
   }
@@ -178,6 +182,7 @@
     justify-self: center;
     border-radius: 10rem;
     align-self: center;
+    animation: fade-in 1s ease-out 2s 1 normal backwards;
   }
 
   &--titleText {
@@ -186,6 +191,7 @@
     font-weight: 700;
     justify-self: center;
     align-self: flex-end;
+    animation: fade-in 1s ease-out 3s 1 normal backwards;
   }
 }
 
@@ -199,6 +205,7 @@
     display: grid;
     grid-template-rows: 1rem 5rem 1rem;
     grid-template-columns: 1rem 30rem 1rem;
+    animation: fade-in 1s ease-out 7s 1 normal backwards;
     //NOTE: Corners
     &__line {
       background-color: $line-col-1-del;
@@ -257,6 +264,7 @@
     justify-items: right;
     align-items: center;
     font-size: 2rem;
+    animation: fade-in 1s ease-out 8s 1 normal backwards;
 
     &--replayButton {
       font-weight: 700;
@@ -300,6 +308,7 @@
     align-items: center;
     font-weight: 700;
     font-size: 2.2rem;
+    animation: fade-in 1s ease-out 9s 1 normal backwards;
 
     &__button {
       border-color: $line-col-1-del;
