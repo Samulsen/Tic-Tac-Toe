@@ -75,10 +75,22 @@
         align-self: stretch;
       }
 
-      &--selector {
-        transform: scale(0.3);
-        grid-area: cir-s;
+      /* Chrome */
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        &--selector {
+          transform: scale(2);
+          grid-area: cir-s;
+        }
       }
+
+      /* Firefox */
+      @-moz-document url-prefix() {
+        &--selector {
+          transform: scale(0.3);
+          grid-area: cir-s;
+        }
+      }
+
       //NOTE: The actual confirm button
       &--confirm {
         align-self: flex-end;
