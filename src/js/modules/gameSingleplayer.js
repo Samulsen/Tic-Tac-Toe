@@ -394,6 +394,11 @@ const gameSingpleplayer = function (singleplayerElement) {
               )
             );
             gameMessage.textContent = "Made my Choice!";
+            resolve();
+          });
+        })
+        .then(() => {
+          return new Promise((resolve) => {
             setTimeout(() => {
               resolve();
             }, 1200);
