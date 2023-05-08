@@ -118,9 +118,20 @@
           }
         }
 
-        &--switcher {
-          grid-area: sel-Three;
-          transform: scale(0.3);
+        /* Chrome */
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+          &--switcher {
+            transform: scale(1.5);
+            grid-area: sel-Three;
+          }
+        }
+
+        /* Firefox */
+        @-moz-document url-prefix() {
+          &--switcher {
+            transform: scale(0.3);
+            grid-area: sel-Three;
+          }
         }
       }
 
