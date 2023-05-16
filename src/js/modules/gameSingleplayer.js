@@ -496,7 +496,8 @@ const gameSingpleplayer = function (singleplayerElement) {
           Game.modeChoice = 1;
           easyMode.style.backgroundColor = "#1cdc1c";
           middleMode.style.backgroundColor = "";
-          hardMode.style.backgroundColor = "#ffffff00";
+          hardMode.style.backgroundColor = "";
+
           break;
 
         case 2:
@@ -504,7 +505,7 @@ const gameSingpleplayer = function (singleplayerElement) {
           Game.modeChoice = 2;
           easyMode.style.backgroundColor = "";
           middleMode.style.backgroundColor = "#f5c710";
-          hardMode.style.backgroundColor = "#ffffff00";
+          hardMode.style.backgroundColor = "";
           break;
 
         case 3:
